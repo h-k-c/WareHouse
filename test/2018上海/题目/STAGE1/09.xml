@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1)
+(sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container)
+(sort 5 chair) (size 5 big) (at 5 5)
+(sort 6 teapoy) (size 6 big) (at 6 6)
+(sort 7 workspace) (size 7 big) (at 7 7)
+(sort 8 sofa) (size 8 big) (at 8 8)
+(sort 9 sofa) (size 9 big) (at 9 9)
+(sort 10 human) (size 10 big) (at 10 10)
+(sort 11 can) (size 11 small) (plate 11)
+(sort 12 cup) (size 12 small) (color 12 green) (at 12 7)
+(sort 13 cup) (size 13 small) (color 13 green) (hold 13)
+(sort 14 remotecontrol) (size 14 small) (color 14 blue)
+(sort 15 can) (size 15 small) (color 15 blue)
+(sort 16 book) (size 16 small) (color 16 yellow)
+(sort 17 can) (size 17 small) (color 17 blue) (at 17 10)
+</info>
+<mis>
+(at 14 5)
+(at 15 7)
+(at 16 7)
+</mis>
+<err>
+<r>
+</r>
+<w>
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (type X container) (sort X washmachine)))
+(:task (putdown X) (:cond (color X blue)))
+(:task (puton X Y) (:cond (color X green) (sort X cup) (sort Y human)))
+(:info (closed X) (:cond (type X container) (sort X refrigerator)))
+(:info (closed X) (:cond (type X container) (sort X washmachine)))
+(:info (closed X) (:cond (sort X microwave) (type X container)))
+)
+</instr>
+<nl>
+Go to the washmachine
+Put down the blue
+Put the green cup on the human
+The refrigerator is closed
+The washmachine is closed
+The microwave is closed
+</nl>
+</test>

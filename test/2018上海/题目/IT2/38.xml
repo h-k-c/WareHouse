@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 16)
+(sort 1 couch) (size 1 big) (at 1 1)
+(sort 2 desk) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 cupboard) (size 5 big) (at 5 5) (type 5 container)
+(sort 6 table) (size 6 big) (at 6 6) 
+(sort 7 bed) (size 7 big) (at 7 7)
+(sort 8 workspace) (size 8 big) (at 8 8)
+(sort 9 airconditioner) (size 9 big) (at 9 9)
+(sort 10 plant) (size 10 big) (at 10 10) 
+(sort 11 chair) (size 11 big) (at 11 11)
+(sort 12 bed) (size 12 big) (at 12 12)
+(sort 13 table) (size 13 big) (at 13 13)
+(sort 14 teapoy) (size 14 big) (at 14 14) 
+(sort 15 television) (size 15 big) (at 15 15)
+(sort 16 sofa) (size 16 big) (at 16 16)
+(sort 17 chair) (size 17 big) (at 17 17)
+(sort 18 teapoy) (size 18 big) (at 18 18)
+(sort 19 remotecontrol) (size 19 small) (color 19 blue) (at 19 13)
+(sort 20 battle) (size 20 small) (color 20 white) (at 20 17)
+(sort 21 cup) (size 21 small) (hold 21)
+(sort 22 battle) (size 22 small) (color 22 yellow) (at 22 4)
+(sort 23 can) (size 23 small) (color 23 yellow) (at 23 4)
+(sort 24 cup) (size 24 small) (color 24 black)
+(sort 25 cup) (size 25 small) (color 25 blue)
+(sort 26 bottle) (size 26 small) (color 26 black) (inside 26 10)
+(sort 27 cup) (size 27 small) (plate 27)
+(sort 28 cup) (size 28 small) (color 28 green)
+(sort 29 remotecontrol) (size 29 small) (color 29 red)
+(sort 30 bottle) (size 30 small) (color 30 green) (at 30 2)
+</info>
+<mis>
+(at 28 12)
+(at 29 2)
+</mis>
+<err>
+<r>
+(at 24 12)
+(inside 25 3)
+</r>
+<w>
+(at 24 3)
+(inside 25 12)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X can) (color X yellow) (sort Y cupboard)))
+(:task (takeout X Y) (:cond (sort X cup) (color X blue) (sort Y cupboard)))
+(:task (close X) (:cond (sort X cupboard) (type X container)))
+(:task (putdown X) (:cond (sort X bottle) (color X green)))
+(:info (opened X) (:cond (sort X cupboard)))
+)
+</instr>
+<nl>
+Take a yellow can out from the cupboard.
+Take a blue cup out from the cupboard.
+Close the cupboard.
+Please put down the green bottle.
+The cupboard is opened.
+</nl>
+</test>

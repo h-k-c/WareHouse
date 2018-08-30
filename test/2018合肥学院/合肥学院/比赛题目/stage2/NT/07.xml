@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 1)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 couch) (size 4 big) (at 4 4)
+(sort 5 worktable) (size 5 big) (at 5 5)
+(sort 6 television) (size 6 big) (at 6 6)
+(sort 7 human) (size 7 big) (at 7 7)
+(sort 8 workspace) (size 8 big) (at 8 8)
+(sort 9 remotecontrol) (size 9 small) (color 9 black) (plate 9)
+(sort 10 can) (size 10 small) (color 10 red) (at 10 7)
+(sort 11 remotecontrol) (size 11 small) (color 11 red) (at 11 7)
+(sort 12 can) (size 12 small) (color 12 blue)
+(sort 13 book) (size 13 small) (hold 13)
+(sort 14 bottle) (size 14 small) (color 14 white) (at 14 6)
+(sort 15 bottle) (size 15 small) (color 15 black)
+(sort 16 remotecontrol) (size 16 small) (color 16 yellow) (at 16 3)
+(sort 17 book) (size 17 small) (color 17 black)
+(sort 18 bottle) (size 18 small) (color 18 blue)
+(sort 19 can) (size 19 small) (color 19 black) (at 19 4)
+(sort 20 bottle) (size 20 small)
+(sort 21 can) (size 21 small) (color 21 blue)
+(sort 22 remotecontrol) (size 22 small) (color 22 blue) (inside 22 2)
+(sort 23 book) (size 23 small) (color 23 blue) (at 23 4)
+(sort 24 bottle) (size 24 small) (color 24 yellow)
+</info>
+<mis>
+(at 12 4)
+(at 17 5)
+(at 21 3)
+(at 24 7)
+</mis>
+<err>
+<r>
+(at 15 6)
+(at 18 6)
+(at 20 7)
+</r>
+<w>
+(at 15 7)
+(at 18 8)
+(at 20 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (puton X Y) (:cond (color X black) (sort X remotecontrol) (sort Y workspace)))
+(:task (pickup X) (:cond (sort X can) (color X red)))
+(:task (putin X Y) (:cond (color X red) (sort X can) (sort Y cupboard)))
+(:task (pickup X) (:cond (sort X book)))
+(:info (at X Y) (:cond (sort X bottle) (sort Y workspace)))
+(:info (opened X) (:cond (sort X cupboard) (type X container)))
+)
+</instr>
+<nl>
+Put a remotecontrol which is black on the workspace.
+Pick up the red can.
+Put a  can which is red in the cupboard.
+Please pick up the book.
+The bottle is at the workspace.
+The cupboard is opened.
+</nl>
+</test>

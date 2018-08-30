@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 4)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 sofa) (size 2 big) (at 2 2)
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 bottle) (size 5 small) (hold 5)
+(sort 6 can) (size 6 small) (color 6 white)
+(sort 7 book) (size 7 small) (color 7 green)
+(sort 8 can) (size 8 small)
+(sort 9 bottle) (size 9 small)
+(sort 10 book) (size 10 small) (color 10 black)
+(sort 11 remotecontrol) (size 11 small) (plate 11)
+</info>
+<mis>
+(at 6 3)
+(at 8 2)
+(inside 9 4)
+</mis>
+<err>
+<r>
+(at 7 1)
+(at 10 1)
+</r>
+<w>
+(at 7 4)
+(at 10 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X cupboard) (type X container)))
+(:info (opened X) (:cond (sort X cupboard)))
+(:info (plate X) (:cond (sort X can)))
+)
+</instr>
+<nl>
+Close the cupboard
+The cupboard is opened
+The can is on the plate
+</nl>
+</test>

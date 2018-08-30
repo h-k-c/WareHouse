@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env>
+<info>
+(at 0 1)
+(sort 1 couch) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 couch) (size 3 big) (at 3 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 television) (size 5 big) (at 5 5)
+(sort 6 cupboard) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 bottle) (size 7 small) (color 7 black) (inside 7 4)
+(sort 8 remotecontrol) (color 8 red) (size 8 small)
+(sort 9 book) (size 9 small) (color 9 blue)
+(sort 10 can) (size 10 small) (color 10 red) (hold 10)
+(sort 11 book) (size 11 small) (color 11 red)
+(sort 12 bottle) (size 12 small) (color 12 blue) (plate 12)
+(sort 13 remotecontrol) (color 13 greed) (size 13 small)
+</info>
+<mis>
+(inside 8 6)
+(at 13 1)
+</mis>
+<err>
+<r>
+(at 9 3)
+(at 11 1)
+</r>
+<w>
+(at 9 1)
+(at 11 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X remotecontrol) (sort Y microwave)))
+(:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y cupboard)))
+(:task (puton X Y) (:cond (sort X book) (color X red) (sort Y couch)))
+(:info (plate X) (:cond (sort X bottle) (color X black)))
+(:task (close X) (:cond (sort X cupboard)))
+)
+</instr>
+<nl>
+</nl>
+</test>

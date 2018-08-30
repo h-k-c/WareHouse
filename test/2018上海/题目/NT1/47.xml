@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 plant) (size 1 big) (at 1 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) 
+(sort 4 human) (size 4 big) (at 4 4)
+(sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) 
+(sort 6 cupboard) (size 6 big) (at 6 6) (type 6 container) 
+(sort 7 book) (size 7 small) (color 7 green) (at 7 1)
+(sort 8 cup) (size 8 small) (color 8 green) (inside 8 5)
+(sort 9 book) (size 9 small) (color 9 white) (inside 9 3)
+(sort 10 can) (size 10 small) (color 10 yellow) (at 10 1)
+(sort 11 can) (size 11 small) (color 11 green) (at 11 2)
+(sort 12 can) (size 12 small) (color 12 black) (plate 12)
+(sort 13 bottle) (size 13 small) (color 13 green) (inside 13 6)
+(sort 14 can) (size 14 small) (color 14 blue)
+(sort 15 bottle) (size 15 small) (color 15 white) (at 15 1)
+(sort 16 bottle) (size 16 small) (color 16 black) (inside 16 3)
+(sort 17 remotecontrol) (size 17 small) (color 17 yellow) (hold 17)
+(sort 18 book) (size 18 small) (color 18 blue)
+(sort 19 bottle) (size 19 small) (color 19 blue)
+</info>
+<mis>
+(at 14 2)
+(inside 18 5)
+</mis>
+<err>
+<r>
+(at 19 2)
+</r>
+<w>
+(inside 19 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X microwave) (type X container)))
+(:info (closed X) (:cond (sort X refrigerator) (type X container)))
+(:info (opened X) (:cond (sort X cupboard) (type X container)))
+(:cons_notnot (:info (at X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard))))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X yellow)))
+(:task (open X) (:cond (sort X refrigerator)))
+(:task (takeout X Y) (:cond (sort X book) (color X blue) (sort Y refrigerator)))
+(:task (goto X) (:cond (sort X television)))
+(:task (putdown X) (:cond (sort X book) (color X blue)))
+(:task (give human X) (:cond (sort X can) (color X blue)))
+)
+</instr>
+<nl>
+The microwave is closed.
+The refrigerator is closed.
+The cupboard is opened.
+The green bottle must be in the cupboard. 
+Put down the yellow remotecontrol.
+Open the refrigerator.
+Take out the blue book from the refrigerator.
+Go to the television.
+Put down the blue book.
+Give the blue can for human.
+</nl>
+</test>

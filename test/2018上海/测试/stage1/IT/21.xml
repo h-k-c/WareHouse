@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 2)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 chair) (size 3 big) (at 3 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 cupboard) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 couch) (size 7 big) (at 7 7)
+(sort 8 workspace) (size 8 big) (at 8 8)
+(sort 9 cupboard) (size 9 big) (at 9 9) (type 9 container) (closed 9)
+(sort 10 bottle) (size 10 small)
+(sort 11 cup) (size 11 small) (color 11 white)
+(sort 12 book) (size 12 small) (color 12 blue)
+(sort 13 can) (size 13 small) (color 13 white) (hold 13)
+(sort 14 cup) (size 14 small) (color 14 yellow)
+(sort 15 bottle) (size 15 small) (color 15 blue)
+</info>
+<mis>
+(at 11 4)
+(inside 12 6)
+(at 14 8)
+(inside 15 5)
+</mis>
+<err>
+<r>
+(at 10 1)
+</r>
+<w>
+(at 10 9)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X book) (type Y container) (sort Y microwave)))
+(:info (at X Y) (:cond (sort X bottle) (sort Y chair)))
+(:info (closed X) (:cond (sort X cupboard) (type X container)))
+(:info (closed X) (:cond (sort X microwave) (type X container)))
+)
+</instr>
+<nl>
+Put the book in the microwave.
+The bottle is at the chair.
+The cupboard is closed.
+The microwave is closed.
+</nl>
+</test>

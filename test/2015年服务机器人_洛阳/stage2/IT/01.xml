@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+    <info>
+    (at 0 4) (plate 11) (hold 12)
+    (sort 1 human) (at 1 1) (size 1 big)
+    (sort 2 table) (at 2 2) (size 2 big)
+    (sort 3 worktable) (at 3 3) (size 3 big)
+    (sort 4 chair) (at 4 4) (size 4 big)
+    (sort 5 desk) (at 5 5) (size 5 big)
+    (sort 6 teapoy) (at 6 6) (size 6 big)
+    (sort 7 televison) (at 7 7) (size 7 big)
+    (sort 8 closet) (at 8 8) (size 8 big) (opened 8) (type 8 container)
+    (sort 9 cupboard) (at 9 9) (size 9 big) (closed 9) (type 9 container)
+    (sort 10 microwave) (at 10 10) (size 10 big) (type 10 container)
+    (sort 11 book) (color 11 green) (size 11 small)
+    (sort 12 book) (color 12 yellow) (size 12 small)
+    (sort 13 can) (color 13 red) (size 13 small) (inside 13 8)
+    (sort 14 can) (color 14 blue) (size 14 small) (at 14 2)
+    (sort 15 can) (color 15 yellow) (size 15 small)
+    (sort 16 cup) (color 16 red) (size 16 small) (at 16 7)
+    (sort 17 remotecontrol) (color 17 red) (size 17 small)
+    (sort 18 remotecontrol) (color 18 black) (size 18 small) (at 18 5)
+    (sort 19 remotecontrol) (color 19 white) (size 19 small)
+    </info>
+    <mis>
+    (at 15 3) (inside 19 9)
+    </mis>
+    <err>
+        <r>(at 17 9)</r>
+        <w>(inside 17 9)</w>
+    </err>
+    <extra>
+    (opened 10)
+    </extra>
+</env>
+<instr>
+(:ins
+      (:info (opened X) (:cond (sort X microwave)))
+      (:task (puton X Y) (:cond (sort X can) (color X yellow) (sort Y cupboard)))
+      (:task (puton X Y) (:cond (sort X remotecontrol) (color X red) (sort Y closet)))
+      (:task (takeout X) (:cond (sort X can) (color X red) (sort Y closet)))
+      (:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y microwave)))
+      (:task (puton X Y) (:cond (sort X remotecontrol) (color X white) (sort Y microwave)))
+      (:task (goto X) (:cond (sort X desk)))
+)
+</instr>
+<nl>
+The door of the microwave is opened.
+Put a can which is yellow on the cupboard.
+Put the red remotecontrol on the closet.
+Take out the red can from the closet.
+Put a cup which is red in the microwave.
+Put the white remotecontrol on the microwave.
+Go to the desk.
+</nl>
+</test>

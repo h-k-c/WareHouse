@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 9)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2) 
+(sort 3 couch) (size 3 big) (at 3 3)
+(sort 4 sofa) (size 4 big) (at 4 4) 
+(sort 5 plant) (size 5 big) (at 5 5)
+(sort 6 television) (size 6 big) (at 6 6)
+(sort 7 teapoy) (size 7 big) (at 7 7)
+(sort 8 television) (size 8 big) (at 8 8)
+(sort 9 teapoy) (size 9 big) (at 9 9) 
+(sort 10 bed) (size 10 big) (at 10 10)
+(sort 11 refrigerator) (size 11 big) (at 11 11) (type 11 container) (opened 11)
+(sort 12 microwave) (size 12 big) (at 12 12) (type 12 container) (closed 12)
+(sort 13 workspace) (size 13 big) (at 13 13)
+(sort 14 human) (size 14 big) (at 14 14)
+(sort 15 washmachine) (size 15 big) (at 15 15) (type 15 container) (opened 15)
+(sort 16 can) (size 16 small) (color 16 black) (hold 16)
+(sort 17 bottle) (size 17 small) (color 17 red)
+(sort 18 book) (size 18 small) (color 18 yellow) (at 18 8)
+(sort 19 cup) (size 19 small) (color 19 red)
+(sort 20 remotecontrol) (size 20 small) (color 20 white)
+(sort 21 cup) (size 21 small) (color 21 yellow) (at 21 13)
+(sort 22 can) (size 22 small) (color 22 green) (inside 22 11)
+(sort 23 cup) (size 23 small) (at 23 13)
+(sort 24 can) (size 24 small) (color 24 yellow)
+(sort 25 can) (size 25 small) (color 25 black)
+</info>
+<mis>
+(inside 20 11)
+(at 24 8)
+</mis>
+<err>
+<r>
+(inside 17 12)
+(inside 19 12)
+(at 25 7)
+</r>
+<w>
+(inside 17 13)
+(inside 19 15)
+(at 25 10)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X yellow) (sort X cup) (type Y container) (sort Y washmachine)))
+(:task (puton X Y) (:cond (color X red) (sort X cup) (type Y container)(sort Y refrigerator)))
+(:task (putdown X) (:cond (sort X can) (color X green)))
+(:task (puton X Y) (:cond (sort X can) (sort Y television)))
+(:task (takeout X Y) (:cond (sort X bottle) (color X red) (type Y container) (sort Y microwave)))
+(:cons_not (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y table))))
+)
+</instr>
+<nl>
+Put a yellow cup in the washmachine.
+Put a red cup in the refrigerator.
+Put down the green can.
+Put a can on the television.
+Take the red bottle out of the microwave.
+Do not put the black can on the table.
+</nl>
+</test>

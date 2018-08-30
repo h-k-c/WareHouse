@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 1)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 human) (size 4 big) (at 4 4)
+(sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 remotecontrol) (size 6 small) (color 6 white) (hold 6)
+(sort 7 remotecontrol) (size 7 small) (color 7 yellow)
+(sort 8 remotecontrol) (size 8 small)
+(sort 9 book) (size 9 small) (color 9 blue)
+(sort 10 can) (size 10 small) (color 10 blue)
+(sort 11 book) (size 11 small)
+(sort 12 can) (size 12 small) (color 12 red)
+</info>
+<mis>
+(at 7 1)
+(at 9 1)
+</mis>
+<err>
+<r>
+(at 8 3)
+(inside 10 5)
+(at 11 1)
+(at 12 2)
+</r>
+<w>
+(at 8 4)
+(inside 10 3)
+(at 11 2)
+(at 12 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X human)))
+(:task (open X) (:cond (sort X closet)))
+(:info (plate X) (:cond (sort X remotecontrol)))
+(:info (at X Y) (:cond (sort X can) (sort Y airconditioner)))
+(:cons_not (:task (close X) (:cond (sort X closet))))
+(:cons_not (:task (takeout X Y) (:cond (sort X remotecontrol) (type Y container))))
+)
+</instr>
+<nl>
+Go to the human.
+Open the door of the closet.
+There is a remotecontrol in the plate.
+There is a can in the airconditioner.
+The door of the closet must not be closed.
+Do not take the remotecontrole out of the container.
+</nl>
+</test>

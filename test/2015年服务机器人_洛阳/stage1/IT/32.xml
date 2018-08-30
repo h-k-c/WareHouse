@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+    <info>
+    (hold 0) (plate 16) (at 0 0)
+    (sort 1 human) (size 1 big) (at 1 1)
+    (sort 2 plant) (size 2 big) (at 2 2)
+    (sort 3 couch) (size 3 big) (at 3 3)
+    (sort 4 desk) (size 4 big) (at 4 4)
+    (sort 5 sofa) (size 5 big) (at 5 5)
+    (sort 6 table) (size 6 big) (at 6 6)
+    (sort 7 teapoy) (size 7 big) (at 7 7)
+    (sort 8 worktable) (size 8 big) (at 8 8)
+    (sort 9 cupboard) (size 9 big) (at 9 9) (type 9 container)
+    (sort 10 closet) (size 10 big) (at 10 10) (type 10 container) (closed 10)
+    (sort 11 washmachine) (size 11 big) (at 11 11) (type 11 container) (opened 11)
+    (sort 12 refrigerator) (size 12 big) (at 12 12) (type 12 container) (opened 12)
+    (sort 13 remotecontrol) (size 13 small) (color 13 red) (at 13 3)
+    (sort 14 remotecontrol) (size 14 small) (color 14 black) (at 14 5)
+    (sort 15 bottle) (size 15 small) (color 15 green) 
+    (sort 16 bottle) (size 16 small) (color 16 yellow)
+    (sort 17 book) (size 17 small) (color 17 white)
+    (sort 18 book) (size 18 small) (color 18 yellow) (inside 18 9)
+    (sort 19 cup) (size 19 small) (color 19 green)  (inside 17 9)
+    (sort 20 cup) (size 20 small) (color 20 white) (at 20 6)
+    </info>
+    <mis>
+    (at 19 3)
+    </mis>
+    <err>
+        <r>(at 15 2)</r>
+        <w>(at 15 6)</w>
+    </err>   
+    <extra>
+    (opened 9)
+    </extra>
+</env>
+<instr>
+(:ins
+    (:info (opened X) (:cond (sort X cupboard)))
+    (:task (close X) (:cond (sort X cupboard)))
+    (:task (puton X Y) (:cond (sort X remotecontrol) (color X red) (sort Y sofa)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X cup) (sort Y teapoy)))
+    (:task (give human X) (:cond (sort X book) (color X white)))
+    (:cons_not (:task (pickup X) (:cond (sort X cup) (color X white))))   
+)
+</instr>
+<nl>
+The door of the cupboard is opened.
+Close the cupboard.
+Put the red remotecontrol on the sofa.
+Put a bottle which is green in the cupboard.
+Put a cup on the teapoy.
+Give human a white book.
+Do not pick up a cup which is white.
+</nl>
+</test>

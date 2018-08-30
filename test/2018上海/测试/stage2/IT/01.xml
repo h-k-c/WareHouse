@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 4)
+(sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 television) (size 4 big) (at 4 4)
+(sort 5 cup) (size 5 small) (color 5 blue) (hold 5)
+(sort 6 can) (size 6 small) (inside 6 2)
+(sort 7 book) (size 7 small) (inside 7 3)
+(sort 8 book) (size 8 small) (color 8 red) (inside 8 2)
+(sort 9 can) (size 9 small) (plate 9)
+(sort 10 book) (size 10 small) (color 10 green)
+(sort 11 remotecontrol) (size 11 small) (inside 11 2)
+(sort 12 cup) (size 12 small) (color 12 blue)
+(sort 13 can) (size 13 small) (inside 13 1)
+(sort 14 book) (size 14 small) (color 14 blue)
+(sort 15 can) (size 15 small) (color 15 red) (inside 15 1)
+(sort 16 book) (size 16 small) (color 16 yellow)
+(sort 17 bottle) (size 17 small)
+(sort 18 can) (size 18 small) (color 18 black) (at 18 4)
+(sort 19 cup) (size 19 small) (inside 19 1)
+</info>
+<mis>
+(inside 12 1)
+(inside 14 3)
+(inside 16 2)
+</mis>
+<err>
+<r>
+(inside 10 2)
+(inside 17 1)
+</r>
+<w>
+(inside 10 1)
+(inside 17 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (type X container)))
+(:task (pickup X) (:cond (sort X book)))
+(:task (putdown X) (:cond (sort X cup)))
+(:task (close X) (:cond (type X container)))
+(:info (at X Y) (:cond (color X red) (sort X can) (sort Y closet)))
+(:info (plate X) (:cond (sort X can)))
+(:cons_not (:info (opened X) (:cond (sort X refrigerator) (type X container))))
+(:cons_not (:task (puton X Y) (:cond (color X blue) (sort X cup) (type Y container))))
+)
+</instr>
+<nl>
+Go to the container.
+Pick up a book.
+Putdown the cup.
+Close all container.
+The red can is in the closet.
+Do not open the refigerator.
+Do not put the blue an on the container.
+</nl>
+</test>

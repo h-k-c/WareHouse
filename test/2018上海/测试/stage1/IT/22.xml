@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 teapoy) (size 2 big) (at 2 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 can) (size 4 small) (color 4 green)
+(sort 5 remotecontrol) (size 5 small) (plate 5)
+(sort 6 book) (size 6 small)
+(sort 7 cup) (size 7 small) (color 7 yellow)
+(sort 8 bottle) (size 8 small)
+(sort 9 can) (size 9 small) (inside 9 1)
+(sort 10 cup) (size 10 small) (color 10 blue) (hold 10)
+(sort 11 book) (size 11 small) (color 11 yellow) (at 11 2)
+</info>
+<mis>
+(at 6 2)
+(inside 8 1)
+</mis>
+<err>
+<r>
+(inside 4 1)
+(inside 7 1)
+</r>
+<w>
+(inside 4 2)
+(inside 7 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X book)))
+(:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y teapoy)))
+(:info (opened X) (:cond (sort X refrigerator) (type X container)))
+(:info (plate X) (:cond (sort X cup)))
+(:info (plate X) (:cond (sort X book)))
+(:cons_not (:task (puton X Y) (:cond (sort X cup) (sort Y desk))))
+(:cons_not (:task (goto X) (:cond (sort X desk))))
+)
+</instr>
+<nl>
+Put down the book.
+Put the yellow book on the teapoy.
+The refrigerator is opened.
+The cup is n the plate.
+The book is on the plate.
+Do not put the cup on the desk.
+Do not goto the desk.
+</nl>
+</test>

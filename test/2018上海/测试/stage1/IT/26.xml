@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 8)
+(sort 1 desk) (size 1 big) (at 1 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 teapoy) (size 4 big) (at 4 4)
+(sort 5 couch) (size 5 big) (at 5 5)
+(sort 6 television) (size 6 big) (at 6 6)
+(sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (opened 7)
+(sort 8 refrigerator) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 book) (size 9 small) (color 9 white)
+(sort 10 book) (size 10 small) (at 10 1)
+(sort 11 remotecontrol) (size 11 small) (color 11 yellow) (hold 11)
+(sort 12 bottle) (size 12 small) (color 12 yellow) (inside 12 7)
+(sort 13 book) (size 13 small) (color 13 red) (plate 13)
+(sort 14 remotecontrol) (size 14 small) (color 14 black) (inside 14 8)
+(sort 15 book) (size 15 small) (color 15 green)
+(sort 16 can) (size 16 small)
+</info>
+<mis>
+(at 9 4)
+(at 15 4)
+</mis>
+<err>
+<r>
+(inside 16 7)
+</r>
+<w>
+(inside 16 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X book) (color X white) (sort Y refrigerator) (type Y container)))
+(:task (putdown X) (:cond (sort X remotecontrol)))
+(:info (at X Y) (:cond (sort X bottle) (sort Y teapoy)))
+)
+</instr>
+<nl>
+Put the white book int the refrigerator.
+Put down the remotecontrol.
+The bottle is at the teapoy.
+</nl>
+</test>

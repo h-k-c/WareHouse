@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 5)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 sofa) (size 2 big) (at 2 2)
+(sort 3 worktable) (size 3 big) (at 3 3)
+(sort 4 bed) (size 4 big) (at 4 4)
+(sort 5 worktable) (size 5 big) (at 5 5)
+(sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 worktable) (size 7 big) (at 7 7)
+(sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 human) (size 9 big) (at 9 9)
+(sort 10 chair) (size 10 big) (at 10 10)
+(sort 11 bottle) (size 11 small) (color 11 white)
+(sort 12 cup) (size 12 small) (color 12 red) (at 12 2)
+(sort 13 bottle) (size 13 small)
+(sort 14 cup) (size 14 small) (color 14 white) (plate 14)
+(sort 15 book) (size 15 small) (color 15 yellow) (at 15 10)
+(sort 16 bottle) (size 16 small)
+(sort 17 cup) (size 17 small) (color 17 green) (hold 17)
+(sort 18 cup) (size 18 small) (color 18 black) (at 18 4)
+(sort 19 can) (size 19 small) (color 19 white)
+(sort 20 remotecontrol) (size 20 small) (color 20 yellow)
+(sort 21 can) (size 21 small) (color 21 green) (inside 21 8)
+(sort 22 can) (size 22 small) (color 22 white) (at 22 5)
+(sort 23 can) (size 23 small) (color 23 green) (inside 23 1)
+(sort 24 book) (size 24 small) (color 24 blue)
+</info>
+<mis>
+(inside 11 1)
+(at 13 5)
+(at 16 2)
+(at 24 9)
+</mis>
+<err>
+<r>
+(at 19 4)
+(at 20 5)
+</r>
+<w>
+(at 19 5)
+(at 20 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (type X container) (sort X washmachine)))
+(:task (puton X Y) (:cond (sort X can) (sort Y sofa)))
+(:task (takeout X Y) (:cond (color X green) (sort X can) (sort Y closet) (type Y container)))
+(:task (takeout X Y) (:cond (color X white) (sort X bottle) (sort Y washmachine)))
+(:task (puton X Y) (:cond (sort X bottle) (sort Y worktable)))
+)
+</instr>
+<nl>
+Close the washmachine.
+Put a can on the sofa.
+Take out the green can from the closet.
+Take out the white bottle from the washmachine.
+Put a bottle on the worktable.
+</nl>
+</test>

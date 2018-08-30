@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+    <info>
+    (plate 0) (at 0 8)
+    (sort 1 plant) (size 1 big) (at 1 1)
+    (sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+    (sort 3 workspace) (size 3 big) (at 3 3)
+    (sort 4 desk) (size 4 big) (at 4 4)
+    (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+    (sort 6 table) (size 6 big) (at 6 6)
+    (sort 7 sofa) (size 7 big) (at 7 7)
+    (sort 8 teapoy) (size 8 big)  (at 8 8)
+    (sort 9 refrigerator) (size 9 big) (at 9 9) (type 9 container) (opened 9)
+    (sort 10 couch) (size 10 big) (at 10 10) 
+    (sort 11 washmachine) (size 11 big) (at 11 11) (type 11 container) (opened 11)
+    (sort 12 closet) (size 12 big) (at 12 12) (type 12 container) (opened 12)
+    (sort 13 human) (size 13 big) (at 13 13)
+    (sort 14 cup) (size 14 small) (color 14 yellow) (hold 14)
+    (sort 15 cup) (size 15 small) (color 15 blue)
+    (sort 16 cup) (size 16 small) (color 16 black) (at 16 7)
+    (sort 17 bottle) (size 17 small) (color 17 green) (inside 17 12)
+    (sort 18 bottle) (size 18 small) (color 18 yellow)
+    (sort 19 remotecontrol) (size 19 small) (color 19 red) (at 19 7)
+    (sort 20 remotecontrol) (size 20 small) (color 20 black) 
+    (sort 21 book) (size 21 small) (color 21 black) (inside 21 11)
+    (sort 22 book) (size 22 small) (color 22 red)
+    (sort 23 book) (color 23 green) (size 23 small) (at 23 13)
+    </info>
+    <mis>
+    (inside 15 2)
+    </mis>
+    <err>
+        <r>(at 18 3)</r>
+        <w>(at 18 1)</w>
+    </err>
+    <extra>
+    (at 20 5) (at 22 8)
+    </extra>
+</env>
+<instr>
+(:ins
+    (:cons_not (:task (goto X) (:cond (sort X human))))
+    (:cons_notnot (:info (on X Y) (:cond (sort X remotecontrol) (color X red) (sort Y sofa))))
+    (:cons_not (:task (takeout X Y) (:cond (sort X book) (color X black) (sort Y washmachine))))
+    (:info (on X Y) (:cond (sort X remotecontrol) (color X black) (sort Y microwave)))
+    (:info (on X Y) (:cond (sort X book) (color X red) (sort Y teapoy)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y refrigerator)))
+    (:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y washmachine)))
+    (:task (close X) (:cond (sort X refrigerator)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X yellow) (sort Y washmachine)))
+    (:task (putin X Y) (:cond (sort X remotecontrol) (sort Y refrigerator))) 
+)
+</instr>
+<nl>
+Do not go to the human.
+The red remotecontrol must be on the sofa.
+Do not take out a book which is washmachine from the washmachine.
+There is black remotecontrol on the microwave.
+There is the red book on the teapoy.
+Put a book in the refrigerator.
+Put the blue cup on the washmachine.
+Close the door of the refrigerator.
+Put the yellow bottle in the washmachine.
+Put a remotecontrol in the refrigerator.
+</nl>
+</test>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 human) (size 2 big) (at 2 2)
+(sort 3 worktable) (size 3 big) (at 3 3)
+(sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 remotecontrol) (size 5 small) (color 5 black) (plate 5)
+(sort 6 book) (size 6 small) (color 6 white)
+(sort 7 book) (size 7 small) (color 7 white) (hold 7)
+(sort 8 cup) (size 8 small) (color 8 green)
+(sort 9 cup) (size 9 small) (color 9 white)
+(sort 10 book) (size 10 small)
+(sort 11 can) (size 11 small)
+</info>
+<mis>
+(at 6 3)
+(at 9 2)
+(at 10 3)
+(in 11 4)
+</mis>
+<err>
+<r>
+(at 8 1)
+</r>
+<w>
+(at 8 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X remotecontrol)))
+(:task (putdown X) (:cond (sort X cup)))
+(:task (takeout X Y) (:cond (sort X can) (sort Y microwave)))
+(:cons_not (:task (putin X Y) (:cond (color X green) (sort X cup) (type Y container))))
+)
+</instr>
+<nl>
+Pick up remotecontrol.
+Put down cup.
+Take out the can from microwave.
+Do not put the green cup in container.
+</nl>
+</test>

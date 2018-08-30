@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 2) (plate 5) (hold 6)
+(sort 1 couch) (size 1 big) (at 1 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 teapoy) (size 3 big) (at 3 3)
+(sort 4 remotecontrol) (size 4 small) (color 4 yellow)
+(sort 5 book) (size 5 small) (color 5 black) 
+(sort 6 cup) (size 6 small) (color 6 black) 
+(sort 7 cup) (size 7 small) (color 7 yellow) (at 7 1)
+(sort 8 can) (size 8 small) (color 8 white) (at 8 1)
+(sort 9 bottle) (size 9 small) (color 9 white)
+(sort 10 bottle) (size 10 small) (color 10 green) (at 10 3)
+(sort 11 remotecontrol) (size 11 small) (at 11 3)
+(sort 12 book) (size 12 small) (color 12 blue) (at 12 1)
+(sort 13 cup) (size 13 small) (color 13 red) (at 13 3)
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 4 1)
+(at 9 1)
+</r>
+<w>
+(at 4 3)
+(at 9 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:cons_notnot (:info (on X Y) (:cond (sort X book) (color X blue) (sort Y couch))))
+(:task (putdown X) (:cond (color X black) (sort X cup)))
+(:task (pickup X) (:cond (color X yellow) (sort X remotecontrol)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y teapoy)))
+(:task (puton X Y) (:cond (sort X book) (color X black) (sort Y teapoy)))
+)
+</instr>
+<nl>
+The blue book must be on the couch.
+Put down the black cup.
+Pick up the yellow remotecontrol.
+Put the yellow remotecontrol on the teapoy.
+Put the black book on the teapoy.
+</nl>
+</test>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (hold 0) (at 0 10)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 teapoy) (size 3 big) (at 3 3)
+(sort 4 workspace) (size 4 big) (at 4 4)
+(sort 5 bed) (size 5 big) (at 5 5)
+(sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 desk) (size 7 big) (at 7 7)
+(sort 8 airconditioner) (size 8 big) (at 8 8)
+(sort 9 washmachine) (size 9 big) (at 9 9) (type 9 container) (closed 9)
+(sort 10 worktable) (size 10 big) (at 10 10)
+(sort 11 remotecontrol) (size 11 small) (color 11 blue)
+(sort 12 book) (size 12 small) (color 12 red)
+(sort 13 book) (size 13 small)
+(sort 14 cup) (size 14 small) (color 14 black)
+(sort 15 remotecontrol) (size 15 small) (color 15 yellow)
+(sort 16 cup) (size 16 small) (color 16 blue)
+</info>
+<mis>
+(at 11 3)
+(inside 12 2)
+(inside 13 2)
+(inside 14 2)
+(inside 16 2)
+</mis>
+<err>
+<r>
+(inside 15 6)
+</r>
+<w>
+(inside 15 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (at X Y) (:cond (sort X book) (sort Y airconditioner)))
+(:info (closed X) (:cond (sort X washmachine)))
+(:info (plate X) (:cond (sort X cup) (color X black)))
+(:task (putdown X) (:cond (sort X cup) (color X blue)))
+(:task (putdown X) (:cond (sort X cup) (color X black)))
+(:task (putin X Y) (:cond (sort X cup) (color X black) (sort Y closet) (type Y container)))
+)
+</instr>
+<nl>
+The book is at the airconditioner.
+The washmachine is closed.
+The black cup is on the plate.
+Put down the blue cup.
+Put down the black cup.
+Put the black cup in the closet.
+</nl>
+</test>

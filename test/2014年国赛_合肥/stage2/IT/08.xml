@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 1)
+(sort 1 desk) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 cup) (size 4 small) (color 4 red) (at 4 3)
+(sort 5 book) (size 5 small) (color 5 green) (inside 5 2)
+(sort 6 book) (size 6 small) (color 6 white)
+(sort 7 bottle) (size 7 small) (color 7 red) (hold 7)
+(sort 8 book) (size 8 small) (color 8 black) (at 8 3)
+(sort 9 can) (size 9 small) (color 9 blue) (inside 9 2)
+(sort 10 can) (size 10 small) (color 10 white) (at 10 1)
+(sort 11 remotecontrol) (size 11 small) (color 11 yellow) (plate 11)
+(sort 12 bottle) (size 12 small) (color 12 yellow)
+(sort 13 remotecontrol) (size 13 small) (color 13 green) (inside 13 2)
+(sort 14 book) (size 14 small) (color 14 yellow) (at 14 1)
+(sort 15 cup) (size 15 small) (color 15 yellow) (at 15 3)
+(sort 16 bottle) (size 16 small)
+(sort 17 book) (size 17 small)
+</info>
+<mis>
+(inside 6 2)
+(inside 17 2)
+</mis>
+<err>
+<r>
+(inside 12 2)
+(inside 16 2)
+</r>
+<w>
+(inside 12 1)
+(inside 16 1)
+</w>
+</err>
+</env>
+<instr>(:ins
+(:task (goto X) (:cond (sort X desk)))
+(:info (opened X) (:cond (type X container)))
+(:info (at X Y) (:cond (color X red) (sort X bottle) (sort Y microwave) (type Y container)))
+(:info (opened X) (:cond (sort X microwave) (type X container)))
+(:cons_not (:info (plate X) (:cond (sort X cup))))
+)
+</instr>
+<nl>
+</nl>
+</test>

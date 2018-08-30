@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (hold 0) (at 0 2)
+(sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 plant) (size 3 big) (at 3 3)
+(sort 4 worktable) (size 4 big) (at 4 4)
+(sort 5 airconditioner) (size 5 big) (at 5 5)
+(sort 6 bed) (size 6 big) (at 6 6)
+(sort 7 teapoy) (size 7 big) (at 7 7)
+(sort 8 television) (size 8 big) (at 8 8)
+(sort 9 sofa) (size 9 big) (at 9 9)
+(sort 10 book) (size 10 small) (color 10 white)
+(sort 11 book) (size 11 small) (color 11 blue)
+(sort 12 book) (size 12 small)
+(sort 13 bottle) (size 13 small) (color 13 green) (at 13 6)
+(sort 14 remotecontrol) (size 14 small) (color 14 yellow) (at 14 8)
+(sort 15 book) (size 15 small) (color 15 green) (at 15 6)
+(sort 16 cup) (size 16 small) (color 16 green) (at 16 2)
+(sort 17 book) (size 17 small) (color 17 white)
+(sort 18 cup) (size 18 small) (color 18 black) (at 18 2)
+(sort 19 remotecontrol) (size 19 small) (color 19 blue)
+(sort 20 book) (size 20 small) (color 20 red)
+</info>
+<mis>
+(inside 11 1)
+(inside 12 1)
+(at 17 3)
+(at 19 8)
+(at 20 8)
+</mis>
+<err>
+<r>
+(at 10 6)
+</r>
+<w>
+(at 10 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X book) (color X red)))
+(:task (close X) (:cond (sort X refrigerator)))
+(:info (closed X) (:cond (sort X refrigerator)))
+(:info (plate X) (:cond (sort X book)))
+(:info (at X Y) (:cond (sort X cup) (sort Y bed)))
+(:info (at X Y) (:cond (sort X book) (sort Y bed)))
+)
+</instr>
+<nl>
+Pick up the red book.
+Close the refrigerator.
+The refrigerator is closed.
+The book is on the plate.
+The cup is at the bed.
+The book is at the bed.
+</nl>
+</test>

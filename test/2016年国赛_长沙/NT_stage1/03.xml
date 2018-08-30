@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 2)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 cupboard) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 chair) (size 7 big) (at 7 7)
+(sort 8 remotecontrol) (size 8 small) (color 8 green) (hold 8)
+(sort 9 cup) (size 9 small) (color 9 yellow) (inside 9 5)
+(sort 10 can) (size 10 small) (color 10 yellow) (inside 10 6)
+(sort 11 bottle) (size 11 small) (color 11 green) (inside 11 5)
+(sort 12 can) (size 12 small) (color 12 red) (inside 12 1)
+(sort 13 book) (size 13 small) (color 13 green) (inside 13 6)
+(sort 14 remotecontrol) (size 14 small) (color 14 yellow)
+(sort 15 can) (size 15 small) (color 15 yellow) (inside 15 4)
+(sort 16 cup) (size 16 small) (color 16 yellow)
+(sort 17 can) (size 17 small) (at 17 3)
+(sort 18 book) (size 18 small) (color 18 black)
+(sort 19 can) (size 19 small) (color 19 blue) (at 19 3)
+(sort 20 book) (size 20 small) (color 20 white) (at 20 3)
+</info>
+<mis>
+(at 18 7)
+</mis>
+<err>
+<r>
+(inside 14 5)
+(inside 16 6)
+</r>
+<w>
+(inside 14 3)
+(inside 16 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X cupboard) (type X container)))
+(:task (open X) (:cond (sort X washmachine) (type X container)))
+(:task (puton X Y) (:cond (sort X can) (sort Y television)))
+(:task (takeout X Y) (:cond (sort X remotecontrol) (color X yellow) (sort 5 microwave) (type Y container)))
+(:info (closed X) (:cond (type X container) (sort X cupboard)))
+(:info (opened X) (:cond (sort X microwave) (type X container)))
+)
+</instr>
+<nl>
+Open the cupboard.
+Open the washmachine.
+Put the can on the television.
+Take out the yellow remotecontrol from the microwave.
+The cupboard is closed.
+The microwave is opened.
+</nl>
+</test>

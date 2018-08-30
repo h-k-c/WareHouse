@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 3)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 teapoy) (size 2 big) (at 2 2)
+(sort 3 worktable) (size 3 big) (at 3 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 cupboard) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 couch) (size 6 big) (at 6 6)
+(sort 7 bed) (size 7 big) (at 7 7)
+(sort 8 cup) (size 8 small) (color 8 yellow)
+(sort 9 can) (size 9 small) (color 9 red)
+(sort 10 bottle) (size 10 small) (color 10 red)
+(sort 11 can) (size 11 small) (color 11 yellow)
+(sort 12 bottle) (size 12 small) (color 12 green)
+(sort 13 cup) (size 13 small) (color 13 red) (at 13 1)
+(sort 14 remotecontrol) (size 14 small)
+(sort 15 bottle) (size 15 small) (color 15 white) (at 15 1)
+(sort 16 bottle) (size 16 small) (color 16 red) (at 16 3)
+(sort 17 remotecontrol) (size 17 small) (color 17 green) (at 17 3)
+(sort 18 can) (size 18 small) (plate 18)
+(sort 19 remotecontrol) (size 19 small) (color 19 blue)
+(sort 20 cup) (size 20 small) (color 20 black) (inside 20 5)
+(sort 21 book) (size 21 small) (color 21 white)
+</info>
+<mis>
+(at 8 2)
+(at 9 4)
+(at 11 6)
+(at 21 1)
+</mis>
+<err>
+<r>
+(at 10 4)
+(at 12 1)
+(inside 14 5)
+(at 19 2)
+</r>
+<w>
+(at 10 3)
+(at 12 4)
+(inside 14 1)
+(at 19 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X white) (sort X bottle) (sort Y cupboard)))
+(:task (close X) (:cond (sort X cupboard) (type X container)))
+(:task (close X) (:cond (type X container)))
+(:info (plate X) (:cond (sort X can)))
+(:info (closed X) (:cond (sort X cupboard) (type X container)))
+(:info (at X Y) (:cond (color X green) (sort X remotecontrol) (sort Y bed)))
+(:info (at X Y) (:cond (color X red) (sort Y cupboard) (type Y container)))
+)
+</instr>
+<nl>
+Put the white bottle in the cupboard
+Close the cupboard
+Close the container
+The can is on the plate
+The cupboard is closed
+The green remotecontrol is at the bed
+The red is at the the cupboard
+</nl>
+</test>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 9)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 worktable) (size 3 big) (at 3 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 chair) (size 6 big) (at 6 6)
+(sort 7 plant) (size 7 big) (at 7 7)
+(sort 8 table) (size 8 big) (at 8 8)
+(sort 9 couch) (size 9 big) (at 9 9)
+(sort 10 remotecontrol) (size 10 small) (color 10 green)
+(sort 11 cup) (size 11 small) (color 11 yellow) (at 11 8)
+(sort 12 can) (size 12 small) (color 12 red) (inside 12 5)
+(sort 13 cup) (size 13 small) (color 13 yellow) (at 13 3)
+(sort 14 can) (size 14 small) (color 14 yellow) (at 14 2)
+(sort 15 remotecontrol) (size 15 small) (color 15 white) (at 15 7)
+(sort 16 book) (size 16 small) (color 16 black) (at 16 3)
+(sort 17 book) (size 17 small)
+(sort 18 cup) (size 18 small) (color 18 red) (hold 18)
+(sort 19 bottle) (size 19 small) (inside 19 4)
+(sort 20 remotecontrol) (size 20 small) (color 20 black) (plate 20)
+(sort 21 can) (size 21 small) (color 21 blue) (at 21 6)
+(sort 22 book) (size 22 small) (color 22 blue) (inside 22 5)
+(sort 23 bottle) (size 23 small) (color 23 blue) (at 23 7)
+(sort 24 cup) (size 24 small) (color 24 red) (inside 24 4)
+(sort 25 can) (size 25 small) (color 25 green)
+</info>
+<mis>
+(at 10 3)
+(at 17 3)
+</mis>
+<err>
+<r>
+(at 25 2)
+</r>
+<w>
+(at 25 9)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X washmachine)))
+(:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y closet)))
+(:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y chair)))
+(:task (goto X) (:cond (sort X teapoy)))
+(:info (plate X) (:cond (color X yellow) (sort X can)))
+(:info (opened X) (:cond (type X container)))
+)
+</instr>
+<nl>
+Open the washmachine.
+Put the book which is blue in the closet.
+Put the bottle which is blue on the chair.
+Go to teapoy.
+There is a cup on the plate.
+The door of each container is opened.
+</nl>
+</test>

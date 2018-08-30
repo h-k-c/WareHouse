@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 1)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 book) (size 4 small) (color 4 yellow) (hold 4)
+(sort 5 cup) (size 5 small) (color 5 blue) (plate 5)
+(sort 6 bottle) (size 6 small)
+(sort 7 can) (size 7 small) (color 7 red)
+(sort 8 book) (size 8 small) (color 8 red)
+(sort 9 bottle) (size 9 small)
+</info>
+<mis>
+(inside 6 2)
+(inside 7 2)
+</mis>
+<err>
+<r>
+(inside 8 2)
+(at 9 1)
+</r>
+<w>
+(inside 8 3)
+(at 9 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X book)))
+(:task (takeout X Y) (:cond (color X red) (sort X can) (type Y container)))
+(:info (opened X) (:cond (sort X closet) (type X container)))
+)
+(:info (at X Y) (:cond (color X yellow) (sort X book) (sort Y workspace)))
+(:info (at X Y) (:cond (color X blue) (sort Y workspace)))
+
+</instr>
+<nl>
+Put down the book which is yellow.
+Take the can which is red out of the closet.
+The door of the closet is opened.
+There has a yellow book at the workspace.
+There has a blue cup at the workspace.
+
+</nl>
+</test>

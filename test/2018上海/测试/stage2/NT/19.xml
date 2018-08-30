@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 5)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 human) (size 3 big) (at 3 3)
+(sort 4 teapoy) (size 4 big) (at 4 4)
+(sort 5 chair) (size 5 big) (at 5 5)
+(sort 6 desk) (size 6 big) (at 6 6)
+(sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+(sort 8 bottle) (size 8 small) (color 8 yellow)
+(sort 9 book) (size 9 small) (color 9 red)
+(sort 10 can) (size 10 small) (color 10 black)
+(sort 11 cup) (size 11 small) (color 11 yellow)
+(sort 12 can) (size 12 small) (color 12 green)
+(sort 13 remotecontrol) (size 13 small) (color 13 blue)
+</info>
+<mis>
+(at 8 3)
+(at 9 1)
+(at 11 4)
+(at 13 1)
+</mis>
+<err>
+<r>
+(at 10 3)
+(at 12 4)
+</r>
+<w>
+(at 10 4)
+(at 12 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X closet)))
+(:task (pickup X) (:cond (sort X can) (color X green)))
+(:task (puton X Y) (:cond (sort X can) (sort Y television)))
+(:info (closed X) (:cond (type X container)))
+
+
+(:cons_not (:task (putin X Y) (:cond (color X green) (sort X can) (type Y container) (sort Y closet))))
+(:cons_notnot (:info (opened X) (:cond (type X container))))
+(:cons_notnot (:info (at X Y) (:cond (sort X bottle) (color X yellow) (type Y container) (sort Y closet))))
+)
+</instr>
+<nl>
+Open the door of the closet.
+Pick up the can which is green.
+Put the can on the television.
+The door of the closet is closed.
+The green can must not in the closet.
+The door of the closet must be opened.
+There must has a yellow bottle on the closet.
+</nl>
+</test>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1)
+(sort 1 bed) (size 1 big) (at 1 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 book) (size 4 small) (color 4 green)
+(sort 5 can) (size 5 small)
+(sort 6 remotecontrol) (size 6 small) (color 6 yellow) (at 6 1)
+(sort 7 book) (size 7 small) (color 7 black) (hold 7)
+(sort 8 remotecontrol) (size 8 small) (color 8 black) (inside 8 2)
+(sort 9 remotecontrol) (size 9 small) (color 9 green) (plate 9)
+(sort 10 bottle) (size 10 small) (color 10 white)
+(sort 11 cup) (size 11 small) (color 11 green)
+(sort 12 can) (size 12 small) (color 12 white) (at 12 3)
+(sort 13 cup) (size 13 small)
+(sort 14 bottle) (size 14 small) (color 14 green) (at 14 3)
+(sort 15 can) (size 15 small) (color 15 yellow) (at 15 3)
+(sort 16 remotecontrol) (size 16 small) (color 16 red)
+(sort 17 can) (size 17 small) (inside 17 2)
+(sort 18 remotecontrol) (size 18 small) (color 18 green) (at 18 3)
+(sort 19 cup) (size 19 small) (color 19 red) (inside 19 2)
+</info>
+<mis>
+(at 5 1)
+(at 16 1)
+</mis>
+<err>
+<r>
+(at 4 1)
+(at 10 3)
+(at 11 3)
+(inside 13 2)
+</r>
+<w>
+(at 4 3)
+(at 10 1)
+(at 11 1)
+(inside 13 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (type X container) (sort X refrigerator)))
+(:task (goto X) (:cond (sort X bed)))
+(:task (takeout X Y) (:cond (sort X remotecontrol) (type Y container) (sort Y refrigerator)))
+(:info (plate X) (:cond (color X yellow)))
+(:info (at X Y) (:cond (sort X cup) (sort Y bed)))
+(:info (at X Y) (:cond (sort X cup) (color X green) (type Y container)))
+(:info (at X Y) (:cond (sort X can) (sort Y bed)))
+(:cons_not (:task (goto X) (:cond (sort X airconditioner))))
+)
+</instr>
+<nl>
+Open the refrigerator
+Go to the bed
+Take out the remotecontrol from the refrigerator
+The yellow is on the plate
+The cup is at the bed
+The green is at the container
+The can is at the bed
+Do not go to the airconditioner
+</nl>
+</test>

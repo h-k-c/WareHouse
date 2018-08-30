@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+    <info>
+    (hold 16) (plate 17) (at 0 4)
+    (sort 1 plant) (size 1 big) (at 1 1)
+    (sort 2 human) (size 2 big) (at 2 2)
+    (sort 3 desk) (size 3 big) (at 3 3)
+    (sort 4 chair) (size 4 big) (at 4 4)
+    (sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+    (sort 6 table) (size 6 big) (at 6 6)
+    (sort 7 refrigerator) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+    (sort 8 couch) (size 8 big) (at 8 8) (type 8 container)
+    (sort 9 cupboard) (size 9 big) (at 9 9) (type 9 container) (opened 9)
+    (sort 10 television) (size 10 big) (at 10 10) 
+    (sort 11 microwave) (size 11 big) (at 11 11) (type 11 container) (closed 11)
+    (sort 12 airconditioner) (size 12 big) (at 12 12)
+    (sort 13 book) (size 13 small) (color 13 green)
+    (sort 14 book) (size 14 small) (color 14 blue) (at 14 8)
+    (sort 15 remotecontrol) (size 15 small) (color 15 white) (at 15 7)
+    (sort 16 remotecontrol) (size 16 small) (color 16 yellow)
+    (sort 17 remotecontrol) (size 17 small) (color 17 red) 
+    (sort 18 bottle) (size 18 small) (color 18 black)
+    (sort 19 bottle) (size 19 small) (color 19 red) (at 19 8)
+    (sort 20 cup) (size 20 small) (color 20 red)
+    (sort 21 cup) (size 21 small) (color 21 black) 
+    </info>
+    <mis>
+    (at 13 4) (at 18 2)
+    </mis>
+    <err>
+        <r>(at 21 6)</r>
+        <w>(at 21 3)</w>
+    </err>   
+    <extra>
+    (inside 20 5) (closed 11) (opened 5)
+    </extra>
+</env>
+<instr>
+(:ins
+    (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet)))
+    (:task (puton X Y) (:cond (sort X book) (sort Y refrigerator)))
+    (:task (open X) (:cond (sort X microwave)))
+    (:task (pickup X) (:cond (sort X cup) (color X black)))
+    (:task (puton X Y) (:cond (sort X remotecontrol) (color X white) (sort Y microwave)))
+    (:cons_not (:task (putin X Y) (:cond (sort X bottle) (sort Y microwave))))
+    (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X red) (sort Y couch))))
+)
+</instr>
+<nl>
+There is a cup which is red in the closet.
+Put a book on the refrigerator.
+Open the microwave.
+Pick up the the black cup.
+Put a bottle in the microwave.
+Put a remotecontrol which is white on the microwave.
+Do not put the bottle in  microwave.
+The red bottle must be on the couch.
+</nl>
+</test>

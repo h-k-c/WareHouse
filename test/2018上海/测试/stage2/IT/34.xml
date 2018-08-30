@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 4)
+(sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 human) (size 5 big) (at 5 5)
+(sort 6 table) (size 6 big) (at 6 6)
+(sort 7 teapoy) (size 7 big) (at 7 7)
+(sort 8 desk) (size 8 big) (at 8 8)
+(sort 9 cupboard) (size 9 big) (at 9 9) (type 9 container) (opened 9)
+(sort 10 microwave) (size 10 big) (at 10 10) (type 10 container) (closed 10)
+(sort 11 washmachine) (size 11 big) (at 11 11) (type 11 container) (closed 11)
+(sort 12 bed) (size 12 big) (at 12 12)
+(sort 13 couch) (size 13 big) (at 13 13)
+(sort 14 couch) (size 14 big) (at 14 14)
+(sort 15 television) (size 15 big) (at 15 15)
+(sort 16 plant) (size 16 big) (at 16 16)
+(sort 17 workspace) (size 17 big) (at 17 17)
+(sort 18 desk) (size 18 big) (at 18 18)
+(sort 19 closet) (size 19 big) (at 19 19) (type 19 container) (opened 19)
+(sort 20 workspace) (size 20 big) (at 20 20)
+(sort 21 can) (size 21 small) (color 21 yellow)
+(sort 22 cup) (size 22 small)
+(sort 23 remotecontrol) (size 23 small)
+(sort 24 can) (size 24 small)
+(sort 25 bottle) (size 25 small) (color 25 blue) (at 25 20)
+(sort 26 remotecontrol) (size 26 small) (color 26 blue)
+(sort 27 cup) (size 27 small) (color 27 white) (at 27 16)
+(sort 28 book) (size 28 small) (color 28 yellow) (inside 28 19)
+(sort 29 remotecontrol) (size 29 small) (color 29 white) (at 29 14)
+(sort 30 book) (size 30 small) (color 30 blue) (inside 30 10)
+(sort 31 remotecontrol) (size 31 small) (color 31 white) (inside 31 10)
+</info>
+<mis>
+(inside 22 9)
+(at 24 5)
+(at 26 13)
+</mis>
+<err>
+<r>
+(at 21 13)
+(at 23 6)
+</r>
+<w>
+(at 21 8)
+(at 23 8)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X cupboard) (type X container)))
+(:task (takeout X Y) (:cond (sort X cup) (sort Y cupboard)))
+(:task (goto X) (:cond (sort X workspace)))
+(:task (puton X Y) (:cond (color X yellow) (sort X can) (sort Y cupboard)))
+(:info (at X Y) (:cond (sort X book) (color X yellow) (sort Y workspace)))
+(:cons_not (:info (plate X) (:cond (sort X bottle))))
+)
+</instr>
+<nl>
+Close the door the cupboard.
+Take out a cup from the cupboard.
+Go to the workspace.
+Put a yellow can on the cupboard.
+The yellow book in on the workspace.
+The bottle must not be on the plate.
+</nl>
+</test>

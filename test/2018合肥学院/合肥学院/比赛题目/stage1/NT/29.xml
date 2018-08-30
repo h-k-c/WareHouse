@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+	<info>
+	(at 0 8)
+    (sort 1 worktable) (size 1 big) (at 1 1)
+    (sort 2 sofa) (size 2 big) (at 2 2)
+	(sort 3 human) (size 3 big) (at 3 3)
+	(sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+	(sort 5 desk) (size 5 big) (at 5 5)
+    (sort 6 washmachine) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+	(sort 7 chair) (size 7 big) (at 7 7)
+	(sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+	(sort 9 workspace) (size 9 big) (at 9 9)
+	(sort 10 teapoy) (size 10 big) (at 10 10)
+	(sort 11 cupboard) (size 11 big) (at 11 11) (type 11 container) (closed 11)
+	(sort 12 plant) (size 12 big) (at 12 12)
+	(sort 13 can) (size 13 small) (color 13 red) (at 13 12)
+	(sort 14 book) (size 14 small) (color 14 black) (at 14 3)
+	(sort 15 remotecontrol) (size 15 small) (color 15 green) (plate 15)
+	(sort 16 remotecontrol) (size 16 small) (color 16 red)
+	(sort 17 remotecontrol) (size 17 small) (color 17 white) (inside 17 8)
+	(sort 18 book) (size 18 small) (color 18 yellow) (at 18 12)
+	(sort 19 cup) (size 19 small) (color 19 green)
+	(sort 20 cup) (size 20 small) (color 20 white) (at 20 9)
+	(sort 21 cup) (size 21 small) (color 21 yellow) (hold 21)
+	(sort 22 can) (size 22 small) (color 22 white) (inside 22 4)
+	</info>
+	<mis>
+	(inside 19 4)
+	</mis>
+	<err>
+	<r>
+	(inside 16 8)
+	</r>
+	<w>
+	(at 16 3)
+	</w>
+	</err>
+	<extra>
+	(at 19 7)
+    </extra>
+</env>
+<instr>
+(:ins 
+	(:task (putin X Y) (:cond (sort X remotecontrol) (color X red) (sort Y refrigerator)))
+	(:task (open X) (:cond (sort X closet)))
+	(:task (putdown X) (:cond (sort X remotecontrol) (color X green)))
+	(:task (goto X) (:cond (sort X teapoy)))
+	(:info (on X Y) (:cond (sort X cup) (color X green) (sort Y chair)))
+)
+</instr>
+<nl>
+Put the red remotecontrol in refrigerator.
+Open the closet.
+Put down the green remotecontrol.
+Go to teapoy.
+The green cup is on chair.
+</nl>
+</test>

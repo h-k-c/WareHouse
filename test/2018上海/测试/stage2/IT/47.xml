@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 washmachine) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 desk) (size 5 big) (at 5 5)
+(sort 6 can) (size 6 small) (color 6 yellow)
+(sort 7 can) (size 7 small) (color 7 black)
+(sort 8 remotecontrol) (size 8 small) (color 8 red)
+(sort 9 book) (size 9 small) (color 9 yellow) (hold 9) 
+(sort 10 remotecontrol) (size 10 small) (color 10 black)
+(sort 11 bottle) (size 11 small) (plate 11)
+</info>
+<mis>
+(at 8 5)
+(at 9 4)
+</mis>
+<err>
+<r>
+(inside 6 3)
+(inside 7 2)
+(at 10 5)
+</r>
+<w>
+(inside 6 1)
+(inside 7 1)
+(at 10 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (color X yellow) (sort X book)))
+(:task (open X) (:cond (sort X refrigerator) (type X container)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y sofa)))
+(:task (open X) (:cond (type X container) (sort X washmachine)))
+(:task (putin X Y) (:cond (sort X bottle) (sort Y refrigerator) (type Y container)))
+(:cons_notnot (:info (opened X) (:cond (sort X washmachine) (type X container))))
+)
+</instr>
+<nl>
+Put down the yellow book.
+Open the door of the refrigerator.
+Put a remotecontrol on the sofa.
+Open the door of washmachine.
+Put a bottle in the refrigerator.
+The washmachine must be opened.
+</nl>
+</test>

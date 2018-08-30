@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (hold 0) (at 0 4)
+(sort 1 bed) (size 1 big) (at 1 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 chair) (size 3 big) (at 3 3)
+(sort 4 bed) (size 4 big) (at 4 4)
+(sort 5 teapoy) (size 5 big) (at 5 5)
+(sort 6 worktable) (size 6 big) (at 6 6)
+(sort 7 microwave) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+(sort 8 can) (size 8 small) (color 8 blue)
+(sort 9 can) (size 9 small) (color 9 yellow)
+(sort 10 remotecontrol) (size 10 small) (color 10 yellow) (at 10 5)
+(sort 11 book) (size 11 small) (at 11 4)
+(sort 12 remotecontrol) (size 12 small)
+(sort 13 book) (size 13 small) (color 13 yellow)
+(sort 14 cup) (size 14 small) (color 14 yellow)
+(sort 15 book) (size 15 small) (at 15 3)
+</info>
+<mis>
+(at 12 4)
+</mis>
+<err>
+<r>
+(at 8 4)
+(at 9 4)
+(at 13 4)
+(inside 14 7)
+</r>
+<w>
+(at 8 7)
+(at 9 5)
+(at 13 2)
+(inside 14 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X book)))
+(:info (opened X) (:cond (sort X refrigerator0) (type X container)))
+)
+</instr>
+<nl>
+Put down the book.
+The refrigerator is opened.
+</nl>
+</test>

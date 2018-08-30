@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 5)
+(sort 1 desk) (size 1 big) (at 1 1)
+(sort 2 desk) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 teapoy) (size 4 big) (at 4 4)
+(sort 5 television) (size 5 big) (at 5 5)
+(sort 6 bed) (size 6 big) (at 6 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 worktable) (size 8 big) (at 8 8)
+(sort 9 bed) (size 9 big) (at 9 9)
+(sort 10 chair) (size 10 big) (at 10 10)
+(sort 11 cup) (size 11 small) (color 11 blue) (at 11 3)
+(sort 12 bottle) (size 12 small) (color 12 red) (at 12 8)
+(sort 13 remotecontrol) (size 13 small) (color 13 red) (at 13 3)
+(sort 14 book) (size 14 small) (color 14 green)
+(sort 15 cup) (size 15 small) (color 15 green) (at 15 5)
+(sort 16 bottle) (size 16 small) (color 16 black) (at 16 7)
+(sort 17 can) (size 17 small) (at 17 2)
+(sort 18 remotecontrol) (size 18 small) (at 18 2)
+(sort 19 book) (size 19 small)
+(sort 20 remotecontrol) (size 20 small)
+(sort 21 book) (size 21 small) (color 21 green)
+(sort 22 bottle) (size 22 small)
+(sort 23 book) (size 23 small) (color 23 blue)
+(sort 24 can) (size 24 small) (color 24 white) (plate 24)
+</info>
+<mis>
+(at 14 9)
+(at 19 2)
+(at 20 5)
+(at 22 3)
+(at 23 3)
+</mis>
+<err>
+<r>
+(at 21 4)
+</r>
+<w>
+(at 21 10)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X remotecontrol)))
+(:info (plate X) (:cond (color X black) (sort X bottle)))
+(:cons_not (:task (pickup X) (:cond (sort X cup))))
+(:info (at X Y) (:cond (sort X can) (color X white) (sort Y bed)))
+)
+</instr>
+<nl>
+Put down the remotecontrol.
+A black bottle is on the plate.
+Do not pick up a cup.
+A white can is on the bed.
+</nl>
+</test>

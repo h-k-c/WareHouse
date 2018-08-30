@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 3)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) 
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 couch) (size 3 big) (at 3 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) 
+(sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) 
+(sort 6 cup) (size 6 small) (color 6 black) (at 6 2)
+(sort 7 remotecontrol) (size 7 small) (color 7 pink)
+(sort 8 bottle) (size 8 small) (color 8 red) (inside 8 5)
+(sort 9 remotecontrol) (size 9 small) (color 9 white)
+(sort 10 bottle) (size 10 small) (color 10 yellow)(inside 10 4)
+(sort 11 bottle) (size 11 small) (color 11 blue) (at 11 3)
+(sort 12 book) (size 12 small) (color 12 white) (plate 12)
+(sort 13 cup) (size 13 small) (color 13 green) 
+(sort 14 remotecontrol) (size 14 small) (color 14 black)
+(sort 15 book) (size 15 small) (color 15 red)
+</info>
+<mis>
+(inside 7 5)
+(inside 9 4)
+</mis>
+<err>
+<r>
+(at 14 3)
+(at 15 2)
+</r>
+<w>
+(at 14 4)
+(at 15 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X closet) (type X container)))
+(:info (opened X) (:cond (sort X refrigerator)))
+(:info (opened X) (:cond (sort X washmachine)))
+(:info (at X Y) (:cond (color X green) (sort X cup) (sort Y workspace)))
+(:cons_not (:task (in X Y) (:cond (sort X book) (color X red) (type Y container) (sort Y washmachine))))
+(:task (puton X Y) (:cond (sort X book) (color X white) (sort Y couch)))
+(:task (pickup X) (:cond (sort X remotecontrol) (color X black)))
+(:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X black)))
+(:task (takeout X Y) (:cond (sort X remotecontrol) (color X pink) (sort Y refrigerator)))
+)
+
+</instr>
+<nl>
+The closet is closed.
+The refrigerator is opened.
+The washmachine is opened.
+The green cup is near the workspace.
+Do not put the red book in the washmachine.
+Put the white book on the couch.
+Pick up the black remotecontrol.
+Put the blue bottle on the refrigerator in the refrigerator.
+Put down the black remotecontrol.
+Take out the pink remotecontrol from the refrigerator.
+</nl>
+</test>

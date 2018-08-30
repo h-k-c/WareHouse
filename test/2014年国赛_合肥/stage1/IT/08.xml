@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 sofa) (size 2 big) (at 2 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 can) (size 4 small) (color 4 yellow) (at 4 3)
+(sort 5 can) (size 5 small) (color 5 red) (plate 5)
+(sort 6 bottle) (size 6 small) (at 6 2)
+(sort 7 cup) (size 7 small) (color 7 black)
+(sort 8 remotecontrol) (size 8 small)
+(sort 9 cup) (size 9 small) (hold 9)
+(sort 10 book) (size 10 small) (color 10 blue) (at 10 1)
+</info>
+<mis>
+(at 7 2)
+</mis>
+<err>
+<r>
+(at 8 3)
+</r>
+<w>
+(at 8 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X workspace)))
+(:info (at X Y) (:cond (color X red) (sort X can) (sort Y workspace)))
+(:info (at X Y) (:cond (sort X bottle) (sort Y sofa)))
+(:info (plate X) (:cond (color X yellow) (sort X can)))
+(:info (plate X) (:cond (sort X book) (color X blue)))
+(:cons_not (:info (plate X) (:cond (color X blue))))
+(:cons_not (:info (at X Y) (:cond (sort X cup) (sort Y workspace))))
+)
+</instr>
+<nl>
+</nl>
+</test>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 4)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 table) (size 3 big) (at 3 3)
+(sort 4 teapoy) (size 4 big) (at 4 4)
+(sort 5 book) (size 5 small) (color 5 yellow) (at 5 4)
+(sort 6 bottle) (size 6 small) (color 6 blue)
+(sort 7 remotecontrol) (size 7 small) (color 7 white) (hold 7)
+(sort 8 remotecontrol) (size 8 small) (color 8 red) (at 8 4)
+(sort 9 can) (size 9 small) (color 9 green) (at 9 4)
+(sort 10 book) (size 10 small) (color 10 yellow) (plate 10)
+(sort 11 cup) (size 11 small) (color 11 blue)
+(sort 12 remotecontrol) (size 12 small) (color 12 green) (at 12 2)
+(sort 13 can) (size 13 small) (at 13 2)
+(sort 14 book) (size 14 small) (color 14 green)
+(sort 15 can) (size 15 small) (color 15 white) (at 15 2)
+(sort 16 can) (size 16 small) (color 16 yellow)
+(sort 17 book) (size 17 small) (color 17 yellow) (at 17 4)
+(sort 18 bottle) (size 18 small) (at 18 3)
+(sort 19 can) (size 19 small) (color 19 white) (at 19 4)
+</info>
+<mis>
+(at 14 1)
+(at 16 1)
+</mis>
+<err>
+<r>
+(at 6 2)
+(at 11 3)
+</r>
+<w>
+(at 6 3)
+(at 11 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X teapoy)))
+(:task (puton X Y) (:cond (sort X book) (color X green) (sort Y teapoy)))
+(:task (pickup X) (:cond (sort X book) (color X yellow)))
+(:task (putdown X) (:cond (sort X cup) (color X blue)))
+(:cons_not (:task (putdown X) (:cond (sort X book))))
+(:cons_notnot (:info (at X Y) (:cond (color X green) (sort X remotecontrol) (sort Y table))))
+)
+</instr>
+<nl>
+Go to teapoy.
+Put a book which is green on teapoy.
+Pick up the yellow book.
+Put down the blue cup.
+Do not put down a book.
+The green remotecontrol must be at the airconditioner.
+</nl>
+</test>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 remotecontrol) (size 4 small) (color 4 red) (hold 4)
+(sort 5 cup) (size 5 small) (at 5 1)
+(sort 6 can) (size 6 small) (color 6 white) (at 6 2)
+(sort 7 remotecontrol) (size 7 small) (color 7 red)
+(sort 8 book) (size 8 small) (color 8 black) (plate 8)
+(sort 9 book) (size 9 small) (color 9 green) (inside 9 3)
+(sort 10 book) (size 10 small) (color 10 yellow) (at 10 2)
+(sort 11 can) (size 11 small)
+(sort 12 bottle) (size 12 small) (color 12 green) (inside 12 3)
+(sort 13 bottle) (size 13 small) (color 13 blue) (at 13 2)
+(sort 14 bottle) (size 14 small) (color 14 yellow) (at 14 2)
+(sort 15 cup) (size 15 small) (color 15 red) (at 15 1)
+(sort 16 bottle) (size 16 small) (color 16 yellow) (at 16 1)
+(sort 17 remotecontrol) (size 17 small) (color 17 black) (at 17 2)
+(sort 18 cup) (size 18 small) (color 18 green) (at 18 1)
+</info>
+<mis>
+(inside 11 3)
+</mis>
+<err>
+<r>
+(at 7 2)
+</r>
+<w>
+(at 7 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X human)))
+(:task (putdown X) (:cond (sort X book)))
+(:task (putdown X) (:cond (color X red) (sort X remotecontrol)))
+(:info (at X Y) (:cond (sort X bottle) (sort Y television)))
+(:info (closed X) (:cond (type X container) (sort X washmachine)))
+(:cons_not (:info (plate X) (:cond (sort X cup) (color X green))))
+)
+</instr>
+<nl>
+Go to the human.
+Put down the book which is black.
+Put down the remotecontrol which is red.
+There is a bottle on the television.
+The door of the washmachine is closed.
+There must not has a cup which is green on the plate.
+
+</nl>
+</test>

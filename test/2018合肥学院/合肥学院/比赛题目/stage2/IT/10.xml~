@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env>
+<info>
+(at 0 6)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 plant) (size 2 big) (at 2 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 table) (size 6 big) (at 6 6)
+(sort 7 can) (size 7 small) (color 7 black) (at 7 2)
+(sort 8 remotecontrol) (size 8 small) (color 8 black)
+(sort 9 remotecontrol) (size 9 small) (color 9 green) (at 9 6)
+(sort 10 remotecontrol) (size 10 small) (color 10 yellow) (plate 10)
+(sort 11 remotecontrol) (size 11 small) (color 11 red) (inside 11 4)
+(sort 12 can) (size 12 small)
+(sort 13 remotecontrol) (size 13 small) (color 13 red) (at 13 6)
+(sort 14 bottle) (size 14 small) (color 14 yellow)
+(sort 15 bottle) (size 15 small) (color 15 blue) (at 15 2)
+(sort 16 remotecontrol) (size 16 small) (color 16 black) (at 16 1)
+(sort 17 book) (size 17 small)
+(sort 18 bottle) (size 18 small) (at 18 2)
+(sort 19 can) (size 19 small) (color 19 blue) (inside 19 5)
+(sort 20 cup) (size 20 small) (at 20 3)
+(sort 21 bottle) (size 21 small) (color 21 white) (at 21 6)
+(sort 22 can) (size 22 small) (hold 22)
+</info>
+<mis>
+(inside 8 5)
+(at 12 3)
+(at 14 2)
+</mis>
+<err>
+<r>
+(at 17 2)
+</r>
+<w>
+(at 17 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X can) (type Y container) (sort Y microwave)))
+(:task (putin X Y) (:cond (color X red) (type Y container) (sort Y refrigerator)))
+(:task (goto X) (:cond (sort X desk)))
+(:task (pickup X) (:cond (color X blue)))
+(:task (goto X) (:cond (sort X microwave) (type X container)))
+(:info (at X Y) (:cond (color X blue) (sort X can) (sort Y microwave) (type Y container)))
+(:info (plate X) (:cond (sort X bottle) (color X yellow)))
+(:info (plate X) (:cond (sort X can)))
+(:cons_notnot (:info (opened X) (:cond (type X container))))
+(:cons_notnot (:info (plate X) (:cond (sort X book))))
+(:cons_not (:info (opened X) (:cond (type X container) (sort X microwave))))
+)
+</instr>
+<nl>
+</nl>
+</test>

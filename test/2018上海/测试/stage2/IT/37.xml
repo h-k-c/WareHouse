@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 12)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 chair) (size 2 big) (at 2 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 table) (size 4 big) (at 4 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 refrigerator) (size 7 big) (at 7 7) (type 7 container) (opened 7)
+(sort 8 bed) (size 8 big) (at 8 8)
+(sort 9 airconditioner) (size 9 big) (at 9 9)
+(sort 10 table) (size 10 big) (at 10 10)
+(sort 11 closet) (size 11 big) (at 11 11) (type 11 container) (closed 11)
+(sort 12 sofa) (size 12 big) (at 12 12)
+(sort 13 bottle) (size 13 small) (color 13 white) (at 13 4)
+(sort 14 remotecontrol) (size 14 small)
+(sort 15 bottle) (size 15 small) (color 15 black)
+(sort 16 cup) (size 16 small) (color 16 red) (at 16 4)
+(sort 17 cup) (size 17 small) (color 17 yellow)
+(sort 18 can) (size 18 small) (color 18 blue) (inside 18 11)
+(sort 19 bottle) (size 19 small) (color 19 yellow) (hold 19)
+(sort 20 cup) (size 20 small) (color 20 red) (inside 20 3)
+(sort 21 cup) (size 21 small) (color 21 blue) (at 21 4)
+(sort 22 remotecontrol) (size 22 small)
+</info>
+<mis>
+(inside 14 3)
+(at 15 2)
+</mis>
+<err>
+<r>
+(inside 17 6)
+(at 22 2)
+</r>
+<w>
+(inside 17 2)
+(at 22 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X cup) (type Y container) (sort Y washmachine)))
+(:task (putin X Y) (:cond (sort X cup) (type Y container) (sort Y microwave)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y chair)))
+(:task (goto X) (:cond (type X container) (sort X refrigerator)))
+(:task (puton X Y) (:cond (color X blue) (sort X cup) (sort Y microwave) (type Y container)))
+(:task (putdown X) (:cond (sort X bottle)))
+(:info (at X Y) (:cond (sort X bottle) (color X yellow) (type Y container) (sort Y microwave)))
+)
+</instr>
+<nl>
+Take a cup out from the washmachine.
+Put a cup in the microwave.
+Put remotecontrol on the chair.
+Go to the refrigerator.
+Put a blue cup in the microwave.
+Put down the bottle.
+The yellow bottle is in the microwave.
+</nl>
+</test>

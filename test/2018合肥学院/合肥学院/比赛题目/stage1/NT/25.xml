@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 couch) (size 5 big) (at 5 5)
+(sort 6 desk) (size 6 big) (at 6 6)
+(sort 7 can) (size 7 small) (inside 7 4)
+(sort 8 remotecontrol) (size 8 small) (color 8 yellow)
+(sort 9 book) (size 9 small) (color 9 yellow)
+(sort 10 book) (size 10 small) (color 10 yellow)
+(sort 11 can) (size 11 small) (color 11 red)
+(sort 12 bottle) (size 12 small) (color 12 yellow)
+(sort 13 bottle) (size 13 small) (color 13 blue) (plate 13)
+(sort 14 can) (size 14 small) (color 14 white) (hold 14)
+(sort 15 cup) (size 15 small) (color 15 yellow)
+(sort 16 book) (size 16 small) (color 16 green) (inside 16 4)
+(sort 17 remotecontrol) (size 17 small) (color 17 yellow) (at 17 5)
+(sort 18 cup) (size 18 small) (color 18 red)
+</info>
+<mis>
+(at 8 1)
+(inside 11 4)
+(at 15 6)
+(at 18 5)
+</mis>
+<err>
+<r>
+(at 9 3)
+(at 10 3)
+(at 12 3)
+</r>
+<w>
+(at 9 4)
+(at 10 5)
+(at 12 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X yellow) (sort X remotecontrol) (sort Y cupboard)))
+(:task (putdown X) (:cond (color X yellow) (sort X bottle)))
+(:task (open X) (:cond (sort X cupboard)))
+(:task (pickup X) (:cond (sort X can) (color X red)))
+(:task (goto X) (:cond (sort X workspace)))
+(:cons_not (:info (opened X) (:cond (sort X cupboard))))
+(:cons_not (:info (plate X) (:cond (sort X bottle) (color X yellow))))
+)
+</instr>
+<nl>
+Put a remotecontrol which is yellow in the cupboard.
+Put down the yellow bottle.
+Open the door of the cupboard.
+Pick up the red can.
+Go to the workspace.
+Do not open the door of the cupboard.
+The yellow bottle must be not on the plate.
+</nl>
+</test>

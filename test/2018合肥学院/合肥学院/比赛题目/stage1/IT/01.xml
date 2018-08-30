@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 10)
+(sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 table) (size 4 big) (at 4 4)
+(sort 5 television) (size 5 big) (at 5 5)
+(sort 6 teapoy) (size 6 big) (at 6 6)
+(sort 7 couch) (size 7 big) (at 7 7)
+(sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 airconditioner) (size 9 big) (at 9 9)
+(sort 10 refrigerator) (size 10 big) (at 10 10) (type 10 container) (closed 10)
+(sort 11 cup) (size 11 small) (color 11 blue)
+(sort 12 book) (size 12 small) (at 12 9)
+(sort 13 can) (size 13 small) (color 13 white) (at 13 2)
+(sort 14 bottle) (size 14 small) (color 14 blue) (at 14 6)
+(sort 15 cup) (size 15 small) (color 15 blue) (plate 15)
+(sort 16 can) (size 16 small)
+(sort 17 book) (size 17 small) (color 17 green) (hold 17)
+(sort 18 book) (size 18 small) (color 18 red)
+(sort 19 book) (size 19 small) (color 19 white) (at 19 9)
+(sort 20 bottle) (size 20 small)
+(sort 21 book) (size 21 small) (color 21 yellow) (at 21 9)
+(sort 22 book) (size 22 small) (color 22 white) (inside 22 10)
+(sort 23 cup) (size 23 small) (color 23 yellow)
+</info>
+<mis>
+(at 11 4)
+(inside 18 1)
+(at 20 3)
+</mis>
+<err>
+<r>
+(inside 16 8)
+(at 23 6)
+</r>
+<w>
+(inside 16 3)
+(at 23 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (type X container)))
+(:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))
+(:task (putin X Y) (:cond (sort X can) (sort Y closet)))
+(:info (closed X) (:cond (sort X cupboard)))
+(:cons_notnot (:info (opened X) (:cond (type X container))))
+(:cons_not (:info (plate X) (:cond (sort X cup) (color X blue))))
+)
+</instr>
+Open the door of each container. 
+Put the blue bottle in the refrigerator.
+Put a can in the closet.
+The door of cupboard is closed.
+The door of each container must be opened.
+The cup which is blue must not be on the plate.
+<nl>
+</nl>
+</test>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1) (hold 7) (plate 4)
+(sort 1 workspace) (size 1 big) (at 1 1)
+(sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) 
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 bottle) (size 4 small) (color 4 green)
+(sort 5 cup) (size 5 small)
+(sort 6 remotecontrol) (size 6 small) (color 6 yellow)
+(sort 7 can) (size 7 small) (color 9 white)
+(sort 8 bottle) (size 8 small) (color 8 yellow) (at 8 1)
+(sort 9 can) (size 9 small) (color 9 red) (at 9 2)
+(sort 10 book) (size 10 small) (color 10 green)
+</info>
+<mis>
+(at 5 1)
+(at 6 3)
+</mis>
+<err>
+<r>
+(at 10 3)
+</r>
+<w>
+(at 10 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X cupboard) (type X container)))
+(:cons_not (:info (inside X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y workspace))))
+(:cons_notnot (:info (at X Y) (:cond (sort X can) (color X red) (sort Y cupboard))))
+(:task (putdown X) (:cond (sort X can) (color X white)))
+(:task (puton X Y) (:cond (sort X cup) (sort Y sofa)))
+(:task (takeout X Y) (:cond (sort X can) (color X red) (sort Y cupboard)))
+(:task (putin X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard)))
+)
+</instr>
+<nl>
+The cupboard is closed.
+Do not put the yellow remotecontrol on the workspace.
+The red can must be in the cupboard.
+Put down the white can.
+Put the cup on the sofa.
+Take out the red can from the cupboard.
+Put the green bottle in the cupboard.
+</nl>
+</test>

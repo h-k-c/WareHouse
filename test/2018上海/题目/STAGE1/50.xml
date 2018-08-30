@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 7)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 couch) (size 2 big) (at 2 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 washmachine) (size 7 big) (at 7 7) (type 7 container) (opened 7)
+(sort 8 washmachine) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 teapoy) (size 9 big) (at 9 9)
+(sort 10 can) (size 10 small) (color 10 red) (at 10 2)
+(sort 11 remotecontrol) (size 11 small) (color 11 yellow) (inside 11 8)
+(sort 12 cup) (size 12 small) (color 12 green)
+(sort 13 book) (size 13 small) (inside 13 3)
+(sort 14 book) (size 14 small)
+(sort 15 bottle) (size 15 small) (color 15 blue) (inside 15 3)
+(sort 16 cup) (size 16 small) (color 16 red) (hold 16)
+(sort 17 can) (size 17 small)
+(sort 18 remotecontrol) (size 18 small) (color 18 blue) (at 18 9)
+(sort 19 bottle) (size 19 small) (color 19 red) (at 19 2)
+(sort 20 book) (size 20 small) (color 20 red)
+</info>
+<mis>
+(inside 17 5)
+</mis>
+<err>
+<r>
+(inside 12 7)
+(inside 14 5)
+(at 20 4)
+</r>
+<w>
+(inside 12 5)
+(inside 14 3)
+(at 20 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X red) (sort Y cupboard)))
+(:task (putdown X) (:cond (sort X book)))
+(:task (putdown X) (:cond (color X red)))
+(:info (plate X) (:cond (sort X cup)))
+)
+</instr>
+<nl>
+Put the red in the cupboard
+Put down the book
+Put down the red
+The cup is on the plate
+</nl>
+</test>

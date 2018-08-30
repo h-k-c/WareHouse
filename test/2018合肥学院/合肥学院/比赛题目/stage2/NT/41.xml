@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+	<info>
+	(at 0 5)
+	(sort 1 airconditioner) (size 1 big) (at 1 1)
+	(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+	(sort 3 television) (size 3 big) (at 3 3)
+	(sort 4 desk) (size 4 big) (at 4 4)
+	(sort 6 can) (size 6 small) (color 6 black) (plate 6)
+	(sort 7 book) (size 7 small) (color 7 black) (at 7 3)
+	(sort 8 can) (size 8 small) (color 8 blue) (at 8 5)
+	(sort 9 can) (size 9 small) (color 9 green)
+	(sort 10 can) (size 10 small) (color 10 red) (inside 10 2)
+	(sort 11 can) (size 11 small) (color 11 black) (at 11 5)
+	(sort 12 can) (size 12 small) (color 12 white)
+	(sort 13 cup) (size 13 small) (color 13 black) (hold 13)
+	(sort 14 bottle) (size 14 small) (color 14 red) (at 14 4)
+	(sort 15 bottle) (size 15 small) (color 15 white) (at 15 4)
+	(sort 16 remotecontrol) (size 16 small) (color 16 white) (inside 16 2)
+	</info>
+	<mis>
+	</mis>
+	<err>
+	<r>(at 9 5) (at 12 5) </r>
+	<w>(at 9 2) (at 12 3) </w>
+	</err>
+	<extra>
+	(at 14 3)
+	(opened 2)
+    	</extra>
+</env>
+<instr>
+(:ins 
+	(:task (close X) (:cond (sort X closet) (type X container)))
+	(:task (putin X Y) (:cond (sort X book) (color X black) (sort Y closet) (type Y container)))
+	(:task (goto X) (:cond (sort X airconditioner)))
+	(:info (on X Y) (:cond (sort X bottle) (color X red) (sort Y television)))
+	(:info (opened X) (:cond (type X container) (sort X closet)))
+	)
+</instr>
+<nl>
+Close the closet.
+Put the black book in closet.
+Go to airconditioner.
+The red bottle is on television.
+The closet is opened.
+</nl>
+</test>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+	<info>
+	(plate 0) (hold 0) (at 0 19)
+	(sort 1 table) (at 1 1) (size 1 big)
+	(sort 2 plant) (at 2 2) (size 2 big)
+	(sort 3 sofa) (at 3 3) (size 3 big)
+	(sort 4 closet) (at 4 4) (size 4 big) (type 4 container)
+	(sort 5 couch) (at 5 5) (size 5 big)
+	(sort 6 television) (at 6 6) (size 6 big)
+	(sort 7 desk) (at 7 7) (size 7 big)
+	(sort 8 chair) (at 8 8) (size 8 big)
+	(sort 9 teapoy) (at 9 9) (size 9 big)
+	(sort 10 workspace) (at 10 10) (size 10 big)
+	(sort 11 airconditioner) (at 11 11) (size 11 big)
+	(sort 12 worktable) (at 12 12) (size 12 big)
+	(sort 13 washmachine) (at 13 13) (size 13 big) (type 13 container) (opened 13)
+	(sort 14 can) (color 14 red) (size 14 small)
+	(sort 15 can) (color 15 blue) (size 15 small)
+	(sort 16 bottle) (color 16 blue) (size 16 small)
+	(sort 17 cup) (color 17 red) (size 17 small)
+	(sort 18 book) (color 18 yellow) (size 18 small)
+	(sort 19 book) (color 19 red) (size 19 small)
+	(sort 20 bottle) (color 20 yellow) (size 20 small) (at 20 6)
+	</info>
+	<mis>
+	(inside 15 4)
+	</mis>
+	<err>
+	    <r>(at 14 1) (at 16 2) (at 17 1)</r>
+	    <w>(at 14 2) (at 16 9) (at 17 6)</w>
+	</err>
+<extra>
+	(opened 4) (at 19 10) (inside 18 4)
+    </extra>
+</env>
+<instr>
+(:ins 
+	(:task (pickup X) (:cond (sort X book) (color X red)))
+	(:task (puton X Y) (:cond (color X yellow) (sort X book) (sort Y desk)))
+	(:task (putin X Y) (:cond (color X blue) (sort X bottle) (sort Y washmachine) (type Y container)))
+	(:task (puton X Y) (:cond (color X red) (sort X cup) (sort Y couch)))
+	(:task (puton X Y) (:cond (color X red) (sort X can) (sort Y desk)))
+	(:info (opened X) (:cond (sort X closet)))
+	(:info (on X Y) (:cond (sort X book) (color X red) (sort Y workspace)))
+	(:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y closet) (type Y container)))
+)
+</instr>
+<nl>
+Pick up a book which is red.
+Put the yellow book on the desk.
+Put a bottle which is blue in the washmachine.
+Put a cup which is red on the couch.
+Put the red can on the desk.
+The door of the closet is opened.
+There is a book which is red on the workspace.
+There is a yellow book in the closet.
+</nl>
+</test>

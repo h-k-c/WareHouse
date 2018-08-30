@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 chair) (size 2 big) (at 2 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 bed) (size 4 big) (at 4 4)
+(sort 5 bed) (size 5 big) (at 5 5)
+(sort 6 cup) (size 6 small) (color 6 yellow) (at 6 2)
+(sort 7 remotecontrol) (size 7 small) (color 7 yellow)
+(sort 8 book) (size 8 small) (color 8 yellow) (at 8 5)
+(sort 9 bottle) (size 9 small) (at 9 2)
+(sort 10 remotecontrol) (size 10 small) (color 10 blue)
+(sort 11 remotecontrol) (size 11 small) (at 11 4)
+(sort 12 can) (size 12 small) (color 12 white) (at 12 4)
+(sort 13 can) (size 13 small) (color 13 white) (at 13 5)
+(sort 14 can) (size 14 small) (color 14 black) (at 14 2)
+(sort 15 book) (size 15 small) (plate 15)
+(sort 16 remotecontrol) (size 16 small) (color 16 red)
+(sort 17 remotecontrol) (size 17 small) (color 17 yellow) (at 17 1)
+(sort 18 remotecontrol) (size 18 small) (at 18 1)
+(sort 19 book) (size 19 small) (color 19 black) (at 19 5)
+(sort 20 cup) (size 20 small) (color 20 white) (hold 20)
+(sort 21 remotecontrol) (size 21 small) (inside 21 3)
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 7 1)
+(at 10 2)
+(inside 16 3)
+</r>
+<w>
+(at 7 5)
+(at 10 4)
+(inside 16 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X cup) (sort Y cupboard) (type Y container)))
+(:task (goto X) (:cond (sort X television)))
+(:info (closed X) (:cond (sort X cupboard) (type X container)))
+(:cons_notnot (:info (closed X) (:cond (type X container) (sort X cupboard))))
+(:cons_not (:info (at X Y) (:cond (color X yellow) (sort X cup) (sort Y bed))))
+(:cons_not (:task (goto X) (:cond (sort X bed))))
+)
+</instr>
+<nl>
+Take out the cup from the cupboard.
+Go to the television.
+The cupboard is closed.
+The cupboard must be closed.
+Do not put the yellow cup on the bed.
+Do not go to the bed.
+</nl>
+</test>

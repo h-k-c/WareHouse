@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 1)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 washmachine) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 human) (size 5 big) (at 5 5)
+(sort 6 workspace) (size 6 big) (at 6 6)
+(sort 7 teapoy) (size 7 big) (at 7 7)
+(sort 8 worktable) (size 8 big) (at 8 8)
+(sort 9 couch) (size 9 big) (at 9 9)
+(sort 10 cup) (size 10 small) (color 10 white) (plate 10)
+(sort 11 remotecontrol) (size 11 small) (at 11 6)
+(sort 12 can) (size 12 small)
+(sort 13 cup) (size 13 small) (color 13 green) (inside 13 4)
+(sort 14 remotecontrol) (size 14 small) (color 14 blue) (at 14 9)
+(sort 15 bottle) (size 15 small) (color 15 green)
+(sort 16 bottle) (size 16 small) (color 16 green)
+(sort 17 bottle) (size 17 small)
+</info>
+<mis>
+(at 12 7)
+(at 16 5)
+(inside 17 3)
+</mis>
+<err>
+<r>
+(at 15 9)
+</r>
+<w>
+(at 15 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (type X container) (sort X microwave)))
+(:task (putdown X) (:cond (sort X bottle)))
+(:info (opened X) (:cond (sort X microwave)))
+(:info (closed X) (:cond (sort X microwave)))
+(:info (plate X) (:cond (sort X bottle)))
+)
+</instr>
+<nl>
+Close the door of the microwave.
+Putdown a bottle.
+A microwave is opened.
+A microwave is closed.
+A bottle is on the plate.
+</nl>
+</test>

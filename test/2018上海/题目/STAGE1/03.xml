@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 6)
+(sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 chair) (size 3 big) (at 3 3)
+(sort 4 workspace) (size 4 big) (at 4 4)
+(sort 5 television) (size 5 big) (at 5 5)
+(sort 6 cupboard) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 book) (size 7 small) (color 7 red) (hold 7)
+(sort 8 book) (size 8 small) (color 8 yellow)
+(sort 9 can) (size 9 small) (color 9 white) (inside 9 6)
+(sort 10 book) (size 10 small) (color 10 green)
+(sort 11 cup) (size 11 small) (color 11 black) (plate 11)
+(sort 12 book) (size 12 small) (color 12 green)
+(sort 13 remotecontrol) (size 13 small) (color 13 yellow)
+(sort 14 book) (size 14 small)
+</info>
+<mis>
+(inside 8 1)
+(inside 14 1)
+</mis>
+<err>
+<r>
+(at 10 4)
+(at 12 5)
+(inside 13 6)
+</r>
+<w>
+(at 10 6)
+(at 12 4)
+(inside 13 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X book) (sort Y cupboard) (type Y container)))
+(:task (open X) (:cond (type X container) (sort X cupboard)))
+(:cons_notnot (:info (opened X) (:cond (sort X cupboard) (type X container))))
+(:cons_not (:info (plate X) (:cond (sort X book))))
+)
+</instr>
+<nl>
+Put the book in the cupboard
+Open the cupboard
+The cupboard must be opened
+The book must not be on the plate
+
+</nl>
+</test>

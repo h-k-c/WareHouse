@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 7)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 plant) (size 3 big) (at 3 3)
+(sort 4 table) (size 4 big) (at 4 4)
+(sort 5 plant) (size 5 big) (at 5 5)
+(sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 television) (size 7 big) (at 7 7)
+(sort 8 washmachine) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 worktable) (size 9 big) (at 9 9)
+(sort 10 book) (size 10 small) (color 10 blue)
+(sort 11 book) (size 11 small)
+(sort 12 book) (size 12 small) (color 12 black) (plate 12)
+(sort 13 bottle) (size 13 small) (color 13 black)
+(sort 14 bottle) (size 14 small)
+(sort 15 can) (size 15 small) (color 15 red) (at 15 5)
+(sort 16 remotecontrol) (size 16 small) (color 16 blue)
+(sort 17 remotecontrol) (size 17 small) (color 17 black)
+</info>
+<mis>
+(inside 11 6)
+(at 13 5)
+(at 14 9)
+(at 16 7)
+(inside 17 8)
+</mis>
+<err>
+<r>
+(inside 10 2)
+</r>
+<w>
+(inside 10 8)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X book)))
+(:task (putin X Y) (:cond (sort X can) (color X red) (sort Y refrigerator) (type Y container)))
+(:task (goto X) (:cond (sort X table)))
+(:task (takeout X Y) (:cond (color X black) (sort X bottle) (type Y container) (sort Y refrigerator)))
+(:info (at X Y) (:cond (sort X bottle) (type Y container) (sort Y microwave)))
+(:cons_not (:info (plate X) (:cond (sort X bottle) (color X black))))
+)
+</instr>
+<nl>
+Put down the book.
+Put the red can in refrigerator.
+Go to the table.
+Take the bottle which is black out from refrigerator.
+There is a bottle in the microwave.
+Do not put a bottle on the plate.
+</nl>
+</test>

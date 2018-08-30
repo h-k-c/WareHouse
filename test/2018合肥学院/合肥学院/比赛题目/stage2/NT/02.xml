@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 4)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 desk) (size 2 big) (at 2 2)
+(sort 3 couch) (size 3 big) (at 3 3)
+(sort 4 couch) (size 4 big) (at 4 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 sofa) (size 6 big) (at 6 6)
+(sort 7 plant) (size 7 big) (at 7 7)
+(sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 cup) (size 9 small) (color 9 black)
+(sort 10 can) (size 10 small) (color 10 red)
+(sort 11 bottle) (size 11 small) (color 11 black)
+(sort 12 cup) (size 12 small) (color 12 blue) (hold 12)
+(sort 13 remotecontrol) (size 13 small) (color 13 white)
+(sort 14 remotecontrol) (size 14 small) (color 14 white) (at 14 6)
+(sort 15 can) (size 15 small) (color 15 green)
+(sort 16 can) (size 16 small) (color 16 black)
+</info>
+<mis>
+(inside 9 5)
+(at 11 7)
+(at 15 6)
+(at 16 6)
+</mis>
+<err>
+<r>
+(at 10 7)
+(at 13 2)
+</r>
+<w>
+(at 10 4)
+(at 13 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (type X container)))
+(:task (putdown X) (:cond (color X blue)))
+(:task (pickup X) (:cond (sort X cup) (color X black)))
+(:task (puton X Y) (:cond (sort X cup) (color X black) (sort Y desk)))
+(:info (closed X) (:cond (type X container) (sort X microwave)))
+(:cons_not (:info (plate X) (:cond (color X white))))
+)
+</instr>
+<nl>
+Close the door of the microwave.
+Put down the blue cup.
+Pick up the black cup.
+Put the black cup on the desk.
+The door of the microwave is closed.
+There must not have a white remotecontrol on the plate. 
+</nl>
+</test>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 7)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 workspace) (size 4 big) (at 4 4)
+(sort 5 desk) (size 5 big) (at 5 5)
+(sort 6 desk) (size 6 big) (at 6 6)
+(sort 7 cupboard) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+(sort 8 worktable) (size 8 big) (at 8 8) 
+(sort 9 closet) (size 9 big) (at 9 9) (type 9 container) (closed 9)
+(sort 10 airconditioner) (size 10 big) (at 10 10)
+(sort 11 table) (size 11 big) (at 11 11)
+(sort 12 couch) (size 12 big) (at 12 12)
+(sort 13 cup) (size 13 small)
+(sort 14 can) (size 14 small) (color 14 blue) (plate 14)
+(sort 15 bottle) (size 15 small)
+(sort 16 book) (size 16 small) (color 16 red)
+(sort 17 can) (size 17 small) (color 17 black)
+(sort 18 bottle) (size 18 small) (color 18 black)
+(sort 19 can) (size 19 small) (color 19 white)
+</info>
+<mis>
+(at 13 1)
+(at 17 6)
+(at 18 12)
+</mis>
+<err>
+<r>
+(at 15 6)
+(at 16 6)
+(inside 19 2)
+</r>
+<w>
+(at 15 7)
+(at 16 11)
+(inside 19 11)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X bottle)))
+(:task (open X) (:cond (sort X cupboard) (type X container)))
+(:task (puton X Y) (:cond (color X red) (sort X book) (sort Y table)))
+(:task (putdown X) (:cond (sort X bottle) (color X black)))
+(:task (putin X Y) (:cond (sort X bottle) (color X black) (type Y container) (sort Y microwave)))
+(:task (open X) (:cond (sort X cupboard) (type X container)))
+(:info (closed X) (:cond (sort X microwave) (type X container)))
+(:info (closed X) (:cond (type X container) (sort X closet)))
+(:info (plate X) (:cond (sort X book) (color X red)))
+)
+</instr>
+<nl>
+Put down the bottle.
+Open the door of the cupboard.
+Put a red book on the table.
+Put the black bottle down.
+Put a black bottle in the microwave.
+Open the door of the cupboard.
+The door of microwave is closed.
+The door of container is closed.
+There is a red book on the plate.
+</nl>
+</test>

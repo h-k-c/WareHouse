@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 plant) (size 2 big) (at 2 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 cup) (size 4 small) (at 4 1)
+(sort 5 bottle) (size 5 small) (at 5 1)
+(sort 6 can) (size 6 small) (color 6 black) (plate 6)
+(sort 7 cup) (size 7 small) (color 7 blue) (hold 7)
+(sort 8 can) (size 8 small) (color 8 white) (at 8 1)
+(sort 9 bottle) (size 9 small) (color 9 red)
+(sort 10 bottle) (size 10 small) (at 10 1)
+(sort 11 can) (size 11 small) (color 11 yellow)
+(sort 12 can) (size 12 small) (color 12 yellow)
+(sort 13 book) (size 13 small) (color 13 green) (at 13 2)
+(sort 14 bottle) (size 14 small)
+(sort 15 can) (size 15 small)
+</info>
+<mis>
+(at 9 3)
+(at 14 1)
+(at 15 2)
+</mis>
+<err>
+<r>
+(at 11 1)
+(at 12 2)
+</r>
+<w>
+(at 11 2)
+(at 12 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (color X yellow)))
+(:task (putdown X) (:cond (color X yellow)))
+(:task (putdown X) (:cond (sort X bottle)))
+(:info (plate X) (:cond (sort X book) (color X green)))
+(:info (at X Y) (:cond (sort X can) (sort Y airconditioner)))
+(:info (at X Y) (:cond (sort X can) (sort Y plant)))
+(:info (plate X) (:cond (color X black) (sort X can)))
+)
+</instr>
+<nl>
+Pick up the yellow
+Put down the yellow
+Put down the bottle
+The green book is on the plate
+The can is at the airconditioner
+The can is at the plant
+The black can is on the plate
+</nl>
+</test>

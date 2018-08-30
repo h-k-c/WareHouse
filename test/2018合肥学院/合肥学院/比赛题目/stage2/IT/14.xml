@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 desk) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 cup) (size 4 small) (color 4 red) (plate 4)
+(sort 5 cup) (size 5 small) (hold 5)
+(sort 6 can) (size 6 small) (color 6 white)
+(sort 7 can) (size 7 small)
+(sort 8 cup) (size 8 small) (color 8 green) (at 8 2)
+(sort 9 book) (size 9 small) (at 9 2)
+(sort 10 remotecontrol) (size 10 small) (color 10 blue)
+</info>
+<mis>
+(inside 6 1)
+</mis>
+<err>
+<r>
+(at 7 3)
+(inside 10 1)
+</r>
+<w>
+(at 7 2)
+(inside 10 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X book) (type Y container) (sort Y washmachine)))
+(:info (plate X) (:cond (color X blue)))
+(:info (at X Y) (:cond (color X red) (type Y container)))
+(:cons_not (:info (closed X) (:cond (sort X washmachine))))
+)
+</instr>
+<nl>
+Take out the book from the washmachine
+The blue is on the plate
+The red is at the container
+The washmachine must not be closed
+</nl>
+</test>

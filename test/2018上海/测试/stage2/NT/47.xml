@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 5)
+(sort 1 chair) (size 1 big) (at 1 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 teapoy) (size 5 big) (at 5 5)
+(sort 6 chair) (size 6 big) (at 6 6)The
+(sort 7 cup) (size 7 small)
+(sort 8 cup) (size 8 small) (color 8 black) (plate 8)
+(sort 9 book) (size 9 small) (color 9 red) (at 9 2)
+(sort 10 bottle) (size 10 small) (color 10 black)
+(sort 11 bottle) (size 11 small) (color 11 blue) (hold 11)
+(sort 12 can) (size 12 small) (color 12 yellow)
+</info>
+<mis>
+(at 7 3)
+(at 10 1)
+(at 12 5)
+</mis>
+<err>
+<r>
+</r>
+<w>
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X cup)))
+(:task (close X) (:cond (sort X microwave) (type X container)))
+(:task (putdown X) (:cond (sort X bottle)))
+(:info (closed X) (:cond (sort X microwave) (type X container)))
+(:info (at X Y) (:cond (sort X can) (color X yellow) (sort Y chair)))
+(:info (closed X) (:cond (type X container) (sort X microwave)))
+)
+</instr>
+<nl>
+Put down the black cup.
+Close the door of the microwave.
+Put down the blue bottle.
+The door of the microwave is closed.
+There has a yellow can on the chair.
+The door of the microwave is closed.
+</nl>
+</test>

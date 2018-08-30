@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env  mis="on" err="on" ans="on">
+<info>
+(at 0 7)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 cupboard) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 sofa) (size 6 big) (at 6 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 human) (size 8 big) (at 8 8)
+(sort 9 chair) (size 9 big) (at 9 9)
+(sort 10 couch) (size 10 big) (at 10 10)
+(sort 11 closet) (size 11 big) (at 11 11) (type 11 container) (opened 11)
+(sort 12 plant) (size 12 big) (at 12 12)
+(sort 13 book) (size 13 small) (color 13 yellow) (hold 13)
+(sort 14 book) (size 14 small) (color 14 white)
+(sort 15 cup) (size 15 small) (color 15 black)
+(sort 16 can) (size 16 small) (color 16 white)
+(sort 17 book) (size 17 small) (color 17 black) (plate 17)
+(sort 18 remotecontrol) (size 18 small) (color 18 red) (inside 18 5)
+(sort 19 remotecontrol) (size 19 small) (color 19 yellow)
+(sort 20 bottle) (size 20 small) (color 20 green)
+(sort 21 bottle) (size 21 small) (color 21 white) (at 21 1)
+(sort 22 book) (size 22 small) (color 22 green) (at 22 8)
+(sort 23 can) (size 23 small) (at 23 2)
+</info>
+<mis>
+(at 19 1)
+</mis>
+<err>
+<r>
+(at 14 8)
+(at 15 9)
+(at 16 7)
+(at 20 12)
+</r>
+<w>
+(at 14 7)
+(at 15 5)
+(at 16 10)
+(at 20 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X book)))
+(:task (takeout X Y) (:cond (sort X cup) (color X black) (type Y container) (sort Y washmachine)))
+(:task (takeout X Y) (:cond (sort X bottle) (color X green) (type Y container)))
+(:task (open X) (:cond (sort X cupboard)))
+(:task (goto X) (:cond (sort X couch)))
+(:info (plate X) (:cond (color X green) (sort X bottle)))
+)
+</instr>
+<nl>
+Pick up a book.
+Take out a black cup from the washmachine.
+Take out a bottle which is green from container.
+Open the door of the cupboard.
+Go to the couch.
+There is a green bottle on the plate.
+</nl>
+</test>

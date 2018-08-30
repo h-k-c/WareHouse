@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 5)
+(sort 1 plant) (size 1 big) (at 1 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 washmachine) (size 4 big) (at 4 4)
+(sort 5 table) (size 5 big) (at 5 5)
+(sort 6 bottle) (size 6 small)
+(sort 7 can) (size 7 small) (color 7 white)
+(sort 8 book) (size 8 small) (color 8 red)
+(sort 9 book) (size 9 small) (color 9 blue) (inside 9 3)
+(sort 10 remotecontrol) (size 10 small) (inside 10 3)
+(sort 11 book) (size 11 small) (color 11 white)
+(sort 12 bottle) (size 12 small) (at 12 1)
+(sort 13 bottle) (size 13 small) (color 13 yellow)
+(sort 14 can) (size 14 small) (inside 14 3)
+(sort 15 book) (size 15 small) (color 15 white)
+(sort 16 can) (size 16 small) (color 16 white) (plate 16)
+(sort 17 cup) (size 17 small) (color 17 black)
+(sort 18 remotecontrol) (size 18 small) (color 18 black)
+(sort 19 book) (size 19 small) (color 19 black) (inside 19 3)
+(sort 20 cup) (size 20 small) (color 20 red) (hold 20)
+</info>
+<mis>
+(at 7 4)
+(at 15 4)
+(at 17 1)
+(at 18 4)
+</mis>
+<err>
+<r>
+(at 6 5)
+(inside 8 3)
+(inside 11 3)
+(at 13 5)
+</r>
+<w>
+(at 6 1)
+(inside 8 3)
+(inside 11 3)
+(at 13 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (plate X) (:cond (sort X can)))
+(:info (opened X) (:cond (sort X closet)))
+(:info (at X Y) (:cond (sort X remotecontrol) (sort Y bed)))
+(:cons_not (:task (close X) (:cond (type X container) (sort X closet))))
+(:task (putdown X) (:cond (color X black) (sort X cup)))
+(:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y closet) (type Y container)))
+(:task (goto X) (:cond (type X container) (sort X closet)))
+)
+</instr>
+<nl>
+The can is on the plate.
+The closet is closed.
+The remotecontrol is at the bed.
+Do not close the closet.
+Put down the black cup.
+Put the blue book in the container.
+Go to the closet.
+</nl>
+</test>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 7)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 desk) (size 4 big) (at 4 4)
+(sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 airconditioner) (size 6 big) (at 6 6)
+(sort 7 teapoy) (size 7 big) (at 7 7)
+(sort 8 teapoy) (size 8 big) (at 8 8)
+(sort 9 remotecontrol) (size 9 small) (color 9 red)
+(sort 10 remotecontrol) (size 10 small) (color 10 black) (at 10 8)
+(sort 11 remotecontrol) (size 11 small) (color 11 blue) (at 11 4)
+(sort 12 cup) (size 12 small) (color 12 black)
+(sort 13 can) (size 13 small) (hold 13)
+(sort 14 bottle) (size 14 small) (color 14 black) (at 14 8)
+(sort 15 bottle) (size 15 small)
+(sort 16 cup) (size 16 small) (color 16 green) (inside 16 2)
+(sort 17 can) (size 17 small) (inside 17 5)
+(sort 18 can) (size 18 small)
+(sort 19 bottle) (size 19 small) (color 19 yellow)
+</info>
+<mis>
+(inside 15 3)
+(inside 18 5)
+(inside 19 2)
+</mis>
+<err>
+<r>
+(inside 9 2)
+(at 12 6)
+</r>
+<w>
+(inside 9 4)
+(at 12 8)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X refrigerator) (type X container)))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X black)))
+(:info (at X Y) (:cond (sort X can) (sort Y teapoy)))
+(:info (closed X) (:cond (sort X washmachine)))
+(:info (at X Y) (:cond (color X black) (type Y container) (sort Y closet)))
+)
+</instr>
+<nl>
+Open the refrigerator
+Put down the black remotecontrol
+The can is at the teapoy
+The washmachine is closed
+The black is at the closet
+</nl>
+</test>

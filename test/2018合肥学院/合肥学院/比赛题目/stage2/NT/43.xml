@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 8)
+(sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 worktable) (size 6 big) (at 6 6)
+(sort 7 table) (size 7 big) (at 7 7)
+(sort 8 table) (size 8 big) (at 8 8)
+(sort 9 book) (size 9 small) (color 9 green)
+(sort 10 book) (size 10 small)
+(sort 11 bottle) (size 11 small) (color 11 yellow)
+(sort 12 book) (size 12 small) (color 12 black)
+(sort 13 bottle) (size 13 small)
+(sort 14 book) (size 14 small) (color 14 white)
+(sort 15 book) (size 15 small) (color 15 red) (inside 15 2)
+(sort 16 remotecontrol) (size 16 small) (color 16 white)
+(sort 17 cup) (size 17 small) (color 17 white)
+</info>
+<mis>
+(at 11 3)
+(at 12 6)
+(at 13 8)
+(at 14 6)
+(at 16 3)
+</mis>
+<err>
+<r>
+(inside 9 4)
+(inside 10 4)
+(at 17 8)
+</r>
+<w>
+(inside 9 8)
+(inside 10 5)
+(at 17 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X book) (sort Y microwave)))
+(:task (open X) (:cond (sort X microwave)))
+(:task (goto X) (:cond (sort X refrigerator)))
+(:task (takeout X Y) (:cond (sort X book) (color X green) (sort Y cupboard)))
+(:info (closed X) (:cond (sort X refrigerator)))
+)
+</instr>
+<nl>
+Take out the book from the microwave.
+Open the microwave.
+Go to the refrigerator.
+Take out the green book from the cupboard.
+The refrigerator is not closed.
+</nl>
+</test>

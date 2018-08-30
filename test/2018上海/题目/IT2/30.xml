@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 4)
+(sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 sofa) (size 4 big) (at 4 4)
+(sort 5 desk) (size 5 big) (at 5 5)
+(sort 6 cupboard) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 washmachine) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 remotecontrol) (size 9 small) (color 9 green) (at 9 2)
+(sort 10 bottle) (size 10 small) (color 10 green) (at 10 4)
+(sort 11 can) (size 11 small) (hold 11)
+(sort 12 can) (size 12 small) (inside 12 1)
+(sort 13 remotecontrol) (size 13 small) (color 13 blue)
+(sort 14 cup) (size 14 small)
+(sort 15 cup) (size 15 small) (plate 15)
+(sort 16 bottle) (size 16 small) (color 16 blue) (inside 16 8)
+(sort 17 cup) (size 17 small) (color 17 green)
+(sort 18 cup) (size 18 small) (color 18 red) (inside 18 1)
+(sort 19 can) (size 19 small) (color 19 white) (at 19 5)
+(sort 20 book) (size 20 small) (color 20 green)
+(sort 21 book) (size 21 small) (color 21 yellow) (at 21 4)
+(sort 22 cup) (size 22 small) (color 22 green) (at 22 5)
+(sort 23 cup) (size 23 small) (color 23 green)
+(sort 24 book) (size 24 small) (color 24 white)
+</info>
+<mis>
+(inside 13 3)
+(inside 17 8)
+</mis>
+<err>
+<r>
+(at 14 2)
+(at 20 7)
+(at 23 2)
+(inside 24 8)
+</r>
+<w>
+(at 14 3)
+(at 20 8)
+(at 23 6)
+(inside 24 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X can) (type Y container)))
+(:task (takeout X Y) (:cond (color X yellow) (sort X book) (type Y container)))
+(:info (at X Y) (:cond (color X blue) (sort Y workspace)))
+(:info (closed X) (:cond (type X container)))
+(:info (closed X) (:cond (sort X closet) (type X container)))
+(:cons_not (:info (plate X) (:cond (sort X cup) (color X green))))
+(:cons_notnot (:info (plate X) (:cond (sort X cup))))
+(:cons_not (:info (plate X) (:cond (sort X remotecontrol) (color X blue))))
+)
+</instr>
+<nl>
+Take out the can from the container.
+Take out the yellow book from the container.
+The blue is at the workspace.
+The container is closed.
+The closet is closed.
+Do not put the green cup on the plate.
+The cup must be on the plate.
+Do not put the blue remotecontrol on the plate.
+</nl>
+</test>

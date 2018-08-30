@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 6)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 couch) (size 2 big) (at 2 2)
+(sort 3 plant) (size 3 big) (at 3 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 chair) (size 5 big) (at 5 5)
+(sort 6 chair) (size 6 big) (at 6 6)
+(sort 7 bottle) (size 7 small) (color 7 black) (hold 7)
+(sort 8 can) (size 8 small) (color 8 blue)
+(sort 9 remotecontrol) (size 9 small) (color 9 yellow) (at 9 2)
+(sort 10 remotecontrol) (size 10 small) (at 10 1)
+(sort 11 cup) (size 11 small) (color 11 green) (at 11 3)
+(sort 12 cup) (size 12 small)
+(sort 13 cup) (size 13 small) (color 13 yellow) (at 13 2)
+(sort 14 can) (size 14 small) (color 14 yellow)
+(sort 15 book) (size 15 small) (at 15 2)
+(sort 16 can) (size 16 small) (color 16 blue)
+(sort 17 remotecontrol) (size 17 small) (color 17 white) (at 17 1)
+</info>
+<mis>
+(at 16 2)
+</mis>
+<err>
+<r>
+(at 8 6)
+(at 12 4)
+(at 14 2)
+</r>
+<w>
+(at 8 5)
+(at 12 3)
+(at 14 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X bottle)))
+(:task (puton X Y) (:cond (color X green) (sort X cup) (sort Y plant)))
+(:task (pickup X) (:cond (color X blue) (sort X can)))
+(:task (goto X) (:cond (sort X chair)))
+)
+</instr>
+<nl>
+Put down the bottle.
+Put the green cup on the plant.
+Pick up a blue can.
+Go to a chair.
+</nl>
+</test>
+

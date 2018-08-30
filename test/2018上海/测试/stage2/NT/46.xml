@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 4)
+(sort 1 desk) (size 1 big) (at 1 1)
+(sort 2 teapoy) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 plant) (size 5 big) (at 5 5)
+(sort 6 book) (size 6 small) (color 6 blue)
+(sort 7 book) (size 7 small)
+(sort 8 bottle) (size 8 small) (color 8 blue)
+(sort 9 can) (size 9 small) (color 9 green)
+(sort 10 remotecontrol) (size 10 small) (color 10 green) (plate 10)
+(sort 11 cup) (size 11 small) (color 11 red) (hold 11)
+</info>
+<mis>
+(at 6 5)
+(inside 8 4)
+(inside 9 4)
+</mis>
+<err>
+<r>
+(at 7 5)
+</r>
+<w>
+(at 7 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X cup) (color X red)))
+(:task (pickup X) (:cond (sort X can)))
+(:info (plate X) (:cond (color X green) (sort X remotecontrol)))
+)
+</instr>
+<nl>
+Put down the cup which color is red.
+Pick up the green can. 
+There has a green remotecontrol on the plate.
+</nl>
+</test>

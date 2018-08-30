@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+	<info>
+	(plate 0) (at 0 1)
+	(sort 1 airconditioner) (size 1 big) (at 1 1)
+	(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+	(sort 3 table) (size 3 big) (at 3 3)
+	(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+	(sort 5 worktable) (size 5 big) (at 5 5)
+	(sort 6 table) (size 6 big) (at 6 6)
+	(sort 7 bed) (size 7 big) (at 7 7)
+	(sort 9 television) (size 9 big) (at 9 9)
+	(sort 10 workspace) (size 10 big) (at 10 10)
+	(sort 11 bottle) (size 11 small) (color 11 yellow) (hold 11)
+	(sort 12 bottle) (size 12 small) (color 12 blue)
+	(sort 13 bottle) (size 13 small) (color 13 black)
+	(sort 14 book) (size 14 small) (color 14 red)
+	(sort 15 cup) (size 15 small) (color 15 green) (at 15 3)
+	(sort 16 book) (size 16 small) (color 16 white)
+	(sort 17 bottle) (size 17 small) (color 17 yellow) (at 17 3)
+	(sort 18 book) (size 18 small)(color 18 green) (at 18 1)
+	(sort 19 cup) (size 19 small) (color 19 yellow) (at 19 6)
+	(sort 20 book) (size 20 small) (color 20 red)
+	</info>
+	<mis>
+	(at 20 5)
+	</mis>
+	<err>
+	<r>(at 12 10) (at 13 1) (at 14 2)</r>
+	<w>(at 12 5) (at 13 4) (at 14 6)</w>
+	</err>
+    <extra>
+	(plate 16)
+	(closed 2)
+    </extra>
+</env>
+<instr>
+(:ins 
+	(:task (goto X) (:cond (sort X bed)))
+	(:task (pickup X) (:cond (color X yellow) (sort X cup)))
+	(:task (pickup X) (:cond (color X red) (sort X book)))
+	(:task (close X) (:cond (sort X washmachine)))
+	(:info (plate X) (:cond (sort X book) (color X white))) 
+	(:info (closed X) (:cond (sort X closet) (type X container)))
+	(:cons_notnot (:info (closed X) (:cond (type X container) (sort X closet))))
+	(:cons_not (:task (putin X Y) (:cond (sort X book) (type Y container) (sort Y washmachine))))
+	)
+</instr>
+<nl>
+Go to bed.
+Pick up red book.
+Close the washmachine.
+There is the white book on plate.
+The closet is closed.
+Pick up the yellow cup.
+There must be closet is closed.
+Do not put a book in washmachine.
+
+</nl>
+</test>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 5)
+(sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 airconditioner) (size 4 big) (at 4 4)
+(sort 5 plant) (size 5 big) (at 5 5)
+(sort 6 washmachine) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 human) (size 7 big) (at 7 7)
+(sort 8 plant) (size 8 big) (at 8 8)
+(sort 9 sofa) (size 9 big) (at 9 9)
+(sort 10 plant) (size 10 big) (at 10 10)
+(sort 11 cup) (size 11 small)
+(sort 12 book) (size 12 small) (color 12 black) (at 12 5)
+(sort 13 can) (size 13 small) (color 13 green) (plate 13)
+(sort 14 cup) (size 14 small) (color 14 blue) (hold 14)
+(sort 15 can) (size 15 small)
+(sort 16 cup) (size 16 small)
+(sort 17 cup) (size 17 small) (color 17 yellow)
+(sort 18 bottle) (size 18 small) (color 18 white)
+(sort 19 bottle) (size 19 small) (color 19 yellow)
+(sort 20 can) (size 20 small) (color 20 red) (inside 20 1)
+</info>
+<mis>
+(inside 11 1)
+(at 17 10)
+(at 19 5)
+</mis>
+<err>
+<r>
+(at 15 7)
+(at 16 4)
+(inside 18 1)
+</r>
+<w>
+(at 15 8)
+(at 16 6)
+(inside 18 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X cup)))
+(:task (goto X) (:cond (sort X airconditioner)))
+(:task (takeout X Y) (:cond (sort X can) (color X red) (sort Y cupboard)))
+(:task (puton X Y) (:cond (color X yellow) (sort X cup) (sort Y washmachine)))
+(:info (plate X) (:cond (color X yellow) (sort X bottle)))
+(:info (opened X) (:cond (sort X cupboard)))
+)
+</instr>
+<nl>
+Pick up the cup.
+Go to the airconditioner.
+Take out the can which is red from cupboard.
+Put the cup which is yellow on the washmachine.
+There is a yellow bottle on the plate.
+The door of the cupboard is opened.
+</nl>
+</test>

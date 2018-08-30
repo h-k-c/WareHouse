@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 1)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 chair) (size 2 big) (at 2 2)
+(sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) 
+(sort 4 couch) (size 4 big) (at 4 4)
+(sort 5 airconditioner) (size 5 big) (at 5 5)
+(sort 6 table) (size 6 big) (at 6 6)
+(sort 7 couch) (size 7 big) (at 7 7) 
+(sort 8 sofa) (size 8 big) (at 8 8)
+(sort 9 human) (size 9 big) (at 9 9)
+(sort 10 closet) (size 10 big) (at 10 10) (type 10 container) (closed 10)
+(sort 11 bed) (size 11 big) (at 11 11) 
+(sort 12 plant) (size 12 big) (at 12 12)
+(sort 13 refrigerator) (size 13 big) (at 13 13) (type 13 container) (closed 13)
+(sort 14 chair) (size 14 big) (at 14 14)
+(sort 15 remotecontrol) (size 15 small) (color 15 white) (at 15 4)
+(sort 16 book) (size 16 small) (color 16 green)
+(sort 17 bottle) (size 17 small)
+(sort 18 remotecontrol) (size 18 small) (color 18 black) (inside 18 13)
+(sort 19 cup) (size 19 small) (at 19 2)
+(sort 20 bottle) (size 20 small) (color 20 blue) (at 20 1)
+(sort 21 book) (size 21 small) (at 21 12)
+(sort 22 bottle) (size 22 small) (color 22 yellow)
+(sort 23 remotecontrol) (size 23 small)
+</info>
+<mis>
+(inside 22 10)
+(at 23 1)
+</mis>
+<err>
+<r>
+(at 16 6)
+(at 17 4)
+</r>
+<w>
+(at 16 13)
+(at 17 13)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X book) (sort Y refrigerator) (type Y container)))
+(:task (open X) (:cond (type X container) (sort X closet)))
+(:task (puton X Y) (:cond (sort X bottle) (color X red) (sort Y closet)))
+(:task (putdown X) (:cond (sort X cup)))
+(:task (puton X Y) (:cond (color X blue) (sort X bottle) (type Y container) (sort Y refrigerator)))
+(:task (goto X) (:cond (sort X sofa)))
+(:info (closed X) (:cond (type X container)))
+)
+</instr>
+<nl>
+Put a book in refrigerator.
+Open the closet.
+Put a bottle which is red in closet.
+Put down the cup.
+Put a blue bottle in refrigerator.
+Go to the sofa.
+All the container is closed.
+</nl>
+</test>
+
+

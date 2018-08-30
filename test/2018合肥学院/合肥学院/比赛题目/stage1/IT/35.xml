@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 2)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 human) (size 2 big) (at 2 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 desk) (size 4 big) (at 4 4)
+(sort 5 teapoy) (size 5 big) (at 5 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 cupboard) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+(sort 8 television) (size 8 big) (at 8 8)
+(sort 9 refrigerator) (size 9 big) (at 9 9) (type 9 container) (opened 9)
+(sort 10 remotecontrol) (size 10 small) (color 10 black)
+(sort 11 bottle) (size 11 small) (color 11 blue)
+(sort 12 cup) (size 12 small)
+(sort 13 bottle) (size 13 small) (hold 13)
+(sort 14 book) (size 14 small) (color 14 white)
+(sort 15 book) (size 15 small) (color 15 white) (at 15 8)
+(sort 16 can) (size 16 small) (color 16 white)
+(sort 17 bottle) (size 17 small)
+</info>
+<mis>
+(at 14 1)
+(at 16 1)
+</mis>
+<err>
+<r>
+(inside 10 6)
+(inside 11 7)
+(at 12 5)
+(inside 17 9)
+</r>
+<w>
+(inside 10 7)
+(inside 11 5)
+(at 12 9)
+(inside 17 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X cupboard) (type X container)))
+(:task (putdown X) (:cond (sort X bottle) (color X blue)))
+(:cons_notnot (:info (at X Y) (:cond (sort X bottle) (type Y container))))
+)
+</instr>
+<nl>
+Please open the door of the cupboard.
+Putdown the blue bottle.
+The bottle must be in the container.
+</nl>
+</test>

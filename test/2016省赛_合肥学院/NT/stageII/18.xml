@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 1)
+(sort 1 plant) (size 1 big) (at 1 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 table) (size 3 big) (at 3 3)
+(sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 worktable) (size 6 big) (at 6 6)
+(sort 7 plant) (size 7 big) (at 7 7)
+(sort 8 sofa) (size 8 big) (at 8 8)
+(sort 9 table) (size 9 big) (at 9 9)
+(sort 10 can) (size 10 small) (color 10 yellow) (plate 10)
+(sort 11 bottle) (size 11 small)
+(sort 12 book) (size 12 small) (color 12 black)
+(sort 13 can) (size 13 small) (at 13 3)
+(sort 14 can) (size 14 small) (color 14 red) (at 14 2)
+(sort 15 can) (size 15 small) (at 15 2)
+(sort 16 bottle) (size 16 small) (color 16 yellow) (at 16 2)
+(sort 17 remotecontrol) (size 17 small) (color 17 black)
+(sort 18 remotecontrol) (size 18 small) (color 18 blue) (at 18 1)
+(sort 19 book) (size 19 small) (color 19 blue)
+(sort 20 book) (size 20 small)
+(sort 21 bottle) (size 21 small) (color 21 yellow)
+(sort 22 can) (size 22 small) (color 22 yellow) (inside 22 5)
+(sort 23 bottle) (size 23 small) (hold 23)
+</info>
+<mis>
+(at 17 7)
+(inside 20 4)
+(at 21 6)
+</mis>
+<err>
+<r>
+(at 11 3)
+(at 12 2)
+(at 19 1)
+</r>
+<w>
+(at 11 8)
+(at 12 5)
+(at 19 8)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X yellow) (sort X can) (type Y container) (sort Y refrigerator)))
+(:task (goto X) (:cond (sort X sofa)))
+(:task (pickup X) (:cond (sort X book) (color X blue)))
+(:task (close X) (:cond (type X container) (sort X closet)))
+(:info (plate X) (:cond (sort X bottle)))
+(:info (opened X) (:cond (sort X refrigerator) (type X container)))
+(:info (at X Y) (:cond (sort X bottle) (sort Y table)))
+)
+</instr>
+<nl>
+Put the yellow can in the refrigerator.
+Go to the sofa.
+Pick up the blue book.
+Close the closet.
+A bottle is on the plate.
+The door of refrigerator is opened.
+There is a bottle on the table.
+</nl>
+</test>

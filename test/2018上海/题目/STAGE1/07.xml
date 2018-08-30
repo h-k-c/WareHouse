@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 2)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 television) (size 4 big) (at 4 4)
+(sort 5 bottle) (size 5 small) (color 5 yellow) (hold 5)
+(sort 6 book) (size 6 small) (color 6 black) (plate 6)
+(sort 7 cup) (size 7 small) (color 7 yellow) (inside 7 3)
+(sort 8 cup) (size 8 small) (color 8 yellow)
+(sort 9 book) (size 9 small) (color 9 green)
+(sort 10 bottle) (size 10 small)
+(sort 11 remotecontrol) (size 11 small) (color 11 blue)
+(sort 12 can) (size 12 small) (color 12 yellow) (at 12 4)
+(sort 13 bottle) (size 13 small) (inside 13 2)
+</info>
+<mis>
+(inside 8 3)
+(inside 9 2)
+(inside 10 3)
+</mis>
+<err>
+<r>
+(at 11 4)
+</r>
+<w>
+(at 11 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X yellow) (sort X bottle) (type Y container) (sort Y refrigerator)))
+(:task (takeout X Y) (:cond (color X green) (sort X book) (sort Y closet)))
+(:task (open X) (:cond (type X container)))
+(:info (plate X) (:cond (sort X cup)))
+)
+</instr>
+<nl>
+Put the yellow bottle in the refrigerator
+Take out the green book from the closet
+Open the container
+The cup is on the plate
+</nl>
+</test>

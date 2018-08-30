@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 television) (size 4 big) (at 4 4)
+(sort 5 sofa) (size 5 big) (at 5 5)
+(sort 6 couch) (size 6 big) (at 6 6)
+(sort 7 cupboard) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+(sort 8 cup) (size 8 small) (color 8 green)
+(sort 9 book) (size 9 small) (color 9 black) (at 9 3)
+(sort 10 can) (size 10 small) (color 10 yellow)
+(sort 11 cup) (size 11 small)
+(sort 12 remotecontrol) (size 12 small)
+(sort 13 book) (size 13 small) (color 13 green) (at 13 5)
+(sort 14 bottle) (size 14 small) (at 14 3)
+</info>
+<mis>
+(inside 8 7)
+(at 12 2)
+</mis>
+<err>
+<r>
+(at 10 1)
+(at 11 5)
+</r>
+<w>
+(at 10 6)
+(at 11 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (type X container) (sort X cupboard)))
+(:task (goto X) (:cond (sort X television)))
+(:task (putdown X) (:cond (sort X cup)))
+(:task (give human X) (:cond (sort X can)))
+(:info (closed X) (:cond (type X container) (sort X cupboard)))
+(:cons_not (:info (at X Y) (:cond (sort X can) (color X yellow) (type Y container))))
+)
+</instr>
+<nl>
+Open the door of a cupboard.
+Go to the television.
+Putdown the cup.
+Give human a can. 
+The door of the cupboard is closed.
+The yellow can must not be in a container.
+</nl>
+</test>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+	<info>
+	(at 0 6)
+	(sort 1 worktable) (at 1 1) (size 1 big)
+	(sort 2 sofa) (at 2 2) (size 2 big)
+	(sort 3 couch) (at 3 3) (size 3 big)
+	(sort 4 chair) (at 4 4) (size 4 big)
+	(sort 5 table) (at 5 5) (size 5 big)
+	(sort 6 workspace) (at 6 6) (size 6 big)
+	(sort 7 human) (at 7 7) (size 7 big)
+	(sort 8 airconditioner) (at 8 8) (size 8 big)
+	(sort 9 closet) (at 9 9) (size 9 big) (type 9 container) 
+	(sort 10 cupboard) (at 10 10) (size 10 big) (type 10 container) (closed 10)
+	(sort 11 book) (size 11 small) (color 11 red) (at 11 1)
+	(sort 12 book) (size 12 small) (color 12 yellow)
+	(sort 13 book) (size 13 small) (color 13 green) (inside 13 9)
+	(sort 14 cup) (size 14 small) (color 14 white) (at 14 5)
+	(sort 15 cup) (size 15 small) (color 15 green)
+	(sort 16 cup) (size 16 small) (color 16 blue) (at 17 3)
+	(sort 17 cup) (size 17 small) (color 17 black) 
+	(sort 18 remotecontrol) (size 18 small) (color 18 black) (at 18 6)
+	(sort 19 remotecontrol) (size 19 small) (color 19 white) (at 19 5)
+	(sort 20 remotecontrol) (size 20 small) (color 20 blue) (inside 20 10)
+	(sort 21 bottle) (size 21 small) (color 21 green) (inside 21 9)
+	(sort 22 bottle) (size 22 small) (color 22 black) 
+	(sort 23 bottle) (size 23 small) (color 23 red) (hold 23)
+	(sort 24 can) (size 24 small) (color 24 white) (plate 24)
+	</info>
+	<mis>
+	(opened 9) (at 12 1) (at 16 5)
+	</mis>
+	<err>
+		<w>(inside 22 9)</w>
+		<r>(at 22 9)</r>
+	</err>
+	<extra>
+	(at 18 3)
+	</extra>
+</env>
+<instr>
+(:ins
+	(:info (opened X) (:cond (sort X closet)))
+	(:task (puton X Y) (:cond (sort X can) (sort Y table)))
+	(:task (give human X) (:cond (sort X bottle)))
+	(:task (putin X Y) (:cond (sort X book) (sort Y closet)))
+	(:task (putin X Y) (:cond (sort X remotecontrol) (color X black) (sort Y closet)))
+	(:task (close X) (:cond (sort X closet)))
+	(:task (goto X) (:cond (sort X airconditioner)))
+	(:cons_notnot (:info (on X Y) (:cond (sort X book) (color X red) (sort Y worktable))))
+)
+</instr>
+<nl>
+The door of the closet is opened.
+Please put a can on the table.
+Please give human a bottle.
+Please put a book in the closet.
+Please put the black remotecontrol in the closet.
+Please close the closet.
+Please go to the airconditioner.
+There must be the red book on the worktable.
+</nl>
+</test>

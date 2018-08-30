@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 7)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 closet) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 human) (size 7 big) (at 7 7)
+(sort 8 refrigerator) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 teapoy) (size 9 big) (at 9 9)
+(sort 10 can) (size 10 small)
+(sort 11 cup) (size 11 small) (at 11 9)
+(sort 12 book) (size 12 small) (color 12 blue)
+(sort 13 remotecontrol) (size 13 small) (color 13 black)
+(sort 14 book) (size 14 small) (color 14 green)
+(sort 15 book) (size 15 small) (color 15 green) (plate 15)
+</info>
+<mis>
+(at 10 2)
+(inside 12 4)
+</mis>
+<err>
+<r>
+(at 13 7)
+(at 14 2)
+</r>
+<w>
+(at 13 4)
+(at 14 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (color X green) (sort Y microwave) (type Y container)))
+(:task (open X) (:cond (type X container) (sort Y microwave)))
+(:task (open X) (:cond (sort X refrigerator) (type X container)))
+)
+</instr>
+<nl>
+Take the green book out of the microwave.
+Open the door of the microwave.
+Open the door of the refrigerator.
+</nl>
+</test>

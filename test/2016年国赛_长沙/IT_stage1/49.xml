@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+    <info>
+    (hold 10) (plate 15) (at 0 7)
+    (sort 1 human) (size 1 big) (at 1 1)
+    (sort 2 desk) (size 2 big) (at 2 2)
+    (sort 3 television) (size 3 big) (at 3 3)
+    (sort 4 chair) (size 4 big) (at 4 4)
+    (sort 5 bed) (size 5 big) (at 5 5)
+    (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container)
+    (sort 7 cupboard) (size 7 big) (at 7 7) (type 7 container) (opened 7)
+    (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container)
+    (sort 9 book) (size 9 small) (color 9 yellow) 
+    (sort 10 book) (size 10 small) (color 10 green)
+    (sort 11 book) (size 11 small) (color 11 white) 
+    (sort 12 bottle) (size 12 small) (color 12 green) (at 12 2)
+    (sort 13 bottle) (size 13 small) (color 13 blue)  
+    (sort 14 remotecontrol) (size 14 small) 
+    (sort 15 can) (size 15 small) (color 15 blue)
+    (sort 16 can) (size 16 small) (color 16 red)
+    (sort 17 can) (size 17 small) (color 17 white)
+    </info>
+    <mis>
+    (inside 9 6) (inside 13 6) (at 14 2)
+    </mis>
+    <err>
+        <r>(inside 11 7) (at 15 1) (inside 14 7)</r>
+        <w>(inside 11 7) (inside 15 8) (inside 14 7)</w>
+    </err>
+    <extra>
+    (closed 6) (opened 8)
+    </extra>
+</env>
+<instr>
+(:ins
+    (:info (closed X) (:cond (sort X refrigerator)))
+    (:info (opened X) (:cond (sort X microwave)))
+    (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk))))
+    (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y cupboard))))
+    (:task (putin X Y) (:cond (sort X book) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y desk)))
+    (:task (putin X Y) (:cond (sort X can) (color X blue) (sort Y microwave)))
+)
+</instr>
+<nl>
+The door of refrigerator is closed.
+The door of microwave is opened.
+There must be a green bottle on desk.
+Do not put the green book on cupboard.
+Put a book in the cupboard.
+Put a green bottle on the cupboard.
+Put the remotecontrol on the desk.
+Put the blue can in microwave.
+</nl>
+</test>

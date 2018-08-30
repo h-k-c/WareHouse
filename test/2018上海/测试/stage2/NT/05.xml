@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 remotecontrol) (size 4 small) (color 4 blue)
+(sort 5 remotecontrol) (size 5 small) (hold 5)
+(sort 6 book) (size 6 small) (color 6 green)
+(sort 7 bottle) (size 7 small) (at 7 2)
+(sort 8 bottle) (size 8 small) (color 8 white) (plate 8)
+(sort 9 can) (size 9 small) (at 9 3)
+(sort 10 bottle) (size 10 small) (color 10 white) (at 10 3)
+(sort 11 can) (size 11 small) (color 11 green)
+(sort 12 can) (size 12 small) (color 12 green)
+</info>
+<mis>
+(at 4 3)
+(inside 11 1)
+(inside 12 1)
+</mis>
+<err>
+<r>
+(at 6 2)
+</r>
+<w>
+(at 6 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X remotecontrol)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y sofa)))
+(:task (goto X) (:cond (sort X bed)))
+(:info (plate X) (:cond (sort X bottle)))
+)
+</instr>
+<nl>
+Put down the remotecontrol.
+Put the remotecontrol on the sofa.
+Go to the bed.
+There is a bottle on the plate.
+</nl>
+</test>

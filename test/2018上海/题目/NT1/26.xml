@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3) (hold 11) (plate 15)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 chair) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 teapoy) (size 5 big) (at 5 5)
+(sort 6 cupboard) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 plant) (size 7 big) (at 7 7)
+(sort 8 sofa) (size 8 big) (at 8 8)
+(sort 9 airconditioner) (size 9 big) (at 9 9)
+(sort 10 plant) (size 10 big) (at 10 10)
+(sort 11 bottle) (size 11 small) (color 11 blue) 
+(sort 12 book) (size 12 small) (color 12 white)
+(sort 13 remotecontrol) (size 13 small) (color 13 white) (inside 13 6)
+(sort 14 cup) (size 14 small) (color 14 white) (at 14 8)
+(sort 15 remotecontrol) (size 15 small) (color 15 green)
+(sort 16 can) (size 16 small) (color 16 green) (at 16 5)
+(sort 17 book) (size 17 small) (color 17 black) (at 17 10)
+(sort 18 bottle) (size 18 small) (color 18 yellow)
+(sort 19 cup) (size 19 small) (color 19 yellow)
+
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 12 3)
+(at 18 8)
+(at 19 10)
+</r>
+<w>
+(at 12 7)
+(at 18 3)
+(at 19 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:cons_notnot (:info (opened X) (:cond (sort X closet))))
+(:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y bed)))
+(:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa)))
+(:task (goto X) (:cond (sort X teapoy)))
+(:task (pickup X) (:cond (sort X can) (color X green)))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X green)))
+)
+</instr>
+<nl>
+The closet must be opened.
+Put the blue bottle on the bed.
+Put the white book on the sofa.
+Go to the teapoy.
+Pick up the green can.
+Put down the green remotecontrol.
+</nl>
+</test>

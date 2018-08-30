@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 2)
+(sort 1 bed) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 worktable) (size 7 big) (at 7 7)
+(sort 8 cup) (size 8 small) (color 8 yellow) (plate 8)
+(sort 9 cup) (size 9 small) (color 9 green) (inside 9 5)
+(sort 10 bottle) (size 10 small)
+(sort 11 remotecontrol) (size 11 small) (color 11 red) (at 11 3)
+(sort 12 cup) (size 12 small) (inside 12 6)
+(sort 13 book) (size 13 small) (color 13 yellow) (at 13 7)
+(sort 14 remotecontrol) (size 14 small) (inside 14 6)
+(sort 15 bottle) (size 15 small)
+(sort 16 book) (size 16 small) (color 16 red)
+(sort 17 book) (size 17 small) (color 17 black) (hold 17)
+(sort 18 book) (size 18 small) (color 18 green) (at 18 7)
+(sort 19 can) (size 19 small) (color 19 red) (at 19 2)
+(sort 20 bottle) (size 20 small) (color 20 blue) (inside 20 5)
+(sort 21 bottle) (size 21 small) (color 21 white) (at 21 7)
+</info>
+<mis>
+(at 10 7)
+(at 16 3)
+</mis>
+<err>
+<r>
+(at 15 3)
+</r>
+<w>
+(at 15 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X worktable)))
+(:task (pickup X) (:cond (color X black) (sort X book)))
+(:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y microwave)))
+(:task (open X) (:cond (sort X washmachine)))
+(:task (putin X Y) (:cond (color X yellow) (sort X cup) (sort Y microwave)))
+(:info (at X Y) (:cond (sort X bottle) (color X white) (sort Y worktable)))
+(:info (opened X) (:cond (sort X microwave)))
+)
+</instr>
+<nl>
+Go to the worktable.
+Pick up the black book.
+Put a bottle which is blue in the microwave.
+Open the washmachine.
+Put a cup which is yellow in the microwave.
+The white bottle is at the worktable.
+The microwave is opened. 
+</nl>
+</test>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 bed) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) 
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) 
+(sort 5 remotecontrol) (size 5 small) (color 5 black) (hold 5)
+(sort 6 book) (size 6 small) (color 6 yellow) (at 6 1)
+(sort 7 book) (size 7 small) (color 7 blue) (inside 7 2)
+(sort 8 cup) (size 8 small)
+(sort 9 remotecontrol) (size 9 small) (color 9 blue)
+(sort 10 bottle) (size 10 small) (color 10 yellow)
+(sort 11 cup) (size 11 small) (color 11 yellow) (plate 11)
+(sort 12 book) (size 12 small) (color 12 green) (inside 12 2)
+(sort 13 cup) (size 13 small) (color 13 blue) (inside 13 2)
+(sort 14 remotecontrol) (size 14 small) (color 14 yellow)
+(sort 15 can) (size 15 small) (color 15 white) (at 15 3)
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 8 1)
+(at 9 1)
+(inside 10 4)
+(inside 14 4)
+</r>
+<w>
+(at 8 2)
+(at 9 2)
+(inside 10 1)
+(inside 14 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X closet)))
+(:info (opened X) (:cond (sort X cupboard)))
+(:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y airconditioner))))
+(:cons_notnot (:info (at X Y) (:cond (sort X bottle) (color X yellow) (sort Y cupboard))))
+(:task (puton X Y) (:cond (sort X remotecontrol) (color X black) (sort Y airconditioner)))
+(:task (putin X Y) (:cond (sort X can) (color X white) (sort Y closet)))
+(:task (takeout X Y) (:cond (sort X book) (color X green) (type Y container) (sort Y closet)))
+(:task (goto X) (:cond (sort X bed)))
+(:task (putdown X) (:cond (color X green) (sort X book)))
+)
+</instr>
+<nl>
+The closet is closed.
+The cupboard is opened.
+Do not put the green book on the airconditioner.
+The yellow bottle must be in the cupboard.
+Put the black remotecontrol on the airconditioner.
+Put the white can in the closet.
+Take out the green book from the closet.
+Go to the bed.
+Put down the green book.
+</nl>
+</test>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 3)
+(sort 1 table) (size 1 big) (at 1 1)
+(sort 2 couch) (size 2 big) (at 2 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 worktable) (size 4 big) (at 4 4)
+(sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 airconditioner) (size 6 big) (at 6 6)
+(sort 7 couch) (size 7 big) (at 7 7)
+(sort 8 workspace) (size 8 big) (at 8 8)
+(sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (closed 9)
+(sort 10 microwave) (size 10 big) (at 10 10) (type 10 container) (closed 10)
+(sort 11 book) (size 11 small) (color 11 green)
+(sort 12 bottle) (size 12 small) (color 12 green)
+(sort 13 can) (size 13 small)
+(sort 14 remotecontrol) (size 14 small)
+(sort 15 can) (size 15 small)
+(sort 16 can) (size 16 small) (color 16 yellow)
+</info>
+<mis>
+(at 12 8)
+(inside 13 9)
+(at 16 3)
+</mis>
+<err>
+<r>
+(inside 11 5)
+(at 14 4)
+(inside 15 5)
+</r>
+<w>
+(inside 11 3)
+(at 14 1)
+(inside 15 8)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X remotecontrol)))
+(:task (goto X) (:cond (sort X worktable)))
+(:task (pickup X) (:cond (color X green) (sort X bottle)))
+(:info (plate X) (:cond (color X green)))
+(:info (opened X) (:cond (sort X microwave) (type X container)))
+(:cons_not (:info (at X Y) (:cond (sort X remotecontrol) (sort Y couch))))
+)
+</instr>
+<nl>
+Pick up the remotecontrol.
+Go to the worktable.
+Pick up the bottle which is green.
+There has a green bottle on the plate.
+There must not has a remotecontrol on the couch.
+</nl>
+</test>

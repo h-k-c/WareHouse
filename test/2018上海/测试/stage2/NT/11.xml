@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 5)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 sofa) (size 4 big) (at 4 4)
+(sort 5 sofa) (size 5 big) (at 5 5)
+(sort 6 bottle) (size 6 small) (color 6 yellow)
+(sort 7 remotecontrol) (size 7 small) (color 7 green) (plate 7)
+(sort 8 can) (size 8 small)
+(sort 9 can) (size 9 small) (color 9 green) (inside 9 1)
+(sort 10 remotecontrol) (size 10 small)
+(sort 11 book) (size 11 small) (color 11 white) (at 11 3)
+(sort 12 book) (size 12 small) (color 12 green) 
+(sort 13 remotecontrol) (size 13 small) (color 13 blue)
+(sort 14 cup) (size 14 small) (at 14 4)
+(sort 15 cup) (size 15 small) (color 15 blue) (inside 15 2)
+(sort 16 remotecontrol) (size 16 small) (color 16 yellow)
+(sort 17 remotecontrol) (size 17 small) (color 17 red) (at 17 5)
+(sort 18 book) (size 18 small) (color 18 black) (at 18 3)
+(sort 19 cup) (size 19 small)
+(sort 20 bottle) (size 20 small) (color 20 yellow) (inside 20 1)
+</info>
+<mis>
+(inside 13 1)
+(inside 19 1)
+</mis>
+<err>
+<r>
+(inside 6 1)
+(at 8 3)
+(at 10 4)
+(inside 16 2)
+</r>
+<w>
+(inside 6 5)
+(at 8 5)
+(at 10 5)
+(inside 16 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X remotecontrol) (type Y container)))
+(:task (open X) (:cond (type X container) (sort X closet)))
+(:info (at X Y) (:cond (sort X cup) (type Y container) (sort Y closet)))
+(:info (at X Y) (:cond (sort X can) (sort Y workspace)))
+(:cons_not (:info (at X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y workspace))))
+)
+</instr>
+<nl>
+Put the remotecontrol in the closet.
+Open the door of the closet.
+There is a cup in the closet.
+there is a can on the workspace.
+Do put the remotecontrol which is yellow on the workspace.
+</nl>
+</test>

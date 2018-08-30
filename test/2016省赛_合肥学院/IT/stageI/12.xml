@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 7) (at 0 5) (hold 0)
+(sort 1 desk) (size 1 big) (at 1 1)
+(sort 2 plant) (size 2 big) (at 2 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 closet) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 airconditioner) (size 5 big) (at 5 5)
+(sort 6 bottle) (size 6 small) (inside 6 4)
+(sort 7 book) (size 7 small) (color 7 blue)
+(sort 8 bottle) (size 8 small) (color 8 yellow)
+(sort 9 can) (size 9 small) (color 9 blue)
+(sort 10 book) (size 10 small) (color 10 white)
+(sort 11 book) (size 11 small) (color 11 black)
+(sort 12 cup) (size 12 small) (color 12 yellow) (at 12 2)
+(sort 13 book) (size 13 small)
+(sort 14 cup) (size 14 small) (color 14 white) (inside 14 3)
+(sort 15 bottle) (size 15 small) (color 15 white) (at 15 2)
+(sort 16 book) (size 16 small) (inside 16 3)
+(sort 17 bottle) (size 17 small) (color 17 black) (at 17 1)
+(sort 18 remotecontrol) (size 18 small) (color 18 yellow)
+(sort 19 book) (size 19 small) (color 19 white)
+(sort 20 book) (size 20 small) (color 20 green) (inside 20 3)
+(sort 21 can) (size 21 small)
+</info>
+<mis>
+(inside 10 3)
+(inside 11 3)
+(inside 13 4)
+</mis>
+<err>
+<r>
+(at 8 2)
+(at 9 1)
+(inside 18 3)
+(inside 19 3)
+(inside 21 3)
+</r>
+<w>
+(at 8 4)
+(at 9 5)
+(inside 18 1)
+(inside 19 2)
+(inside 21 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X closet) (type X container)))
+(:task (takeout X Y) (:cond (sort X book) (color X white) (sort Y washmachine)))
+(:task (putdown X) (:cond (color X black) (sort X book)))
+(:task (puton X Y) (:cond (sort X bottle) (color X white) (type Y container) (sort Y closet)))
+(:task (putdown X) (:cond (color X white) (sort X book)))
+(:task (pickup X) (:cond (sort X bottle) (color X black)))
+(:info (plate X) (:cond (sort X book)))
+(:info (closed X) (:cond (type X container)))
+(:cons_not (:task (puton X Y) (:cond (sort X book) (sort Y airconditioner))))
+)
+</instr>
+<nl>
+Close the closet.
+Take out the white book from the washmachine.
+Put down the black book.
+Put the white bottle on the closet.
+Put down the white book.
+Pick the black bottle up.
+There is a book on the plate.
+The Doors of the containers are closed.
+Do not put the book on the airconditioner.
+</nl>
+</test>

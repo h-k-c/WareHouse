@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 cup) (size 4 small) (color 4 green) (plate 4)
+(sort 5 bottle) (size 5 small) (hold 5)
+(sort 6 can) (size 6 small) (at 6 2)
+(sort 7 bottle) (size 7 small)
+(sort 8 can) (size 8 small) (color 8 red)
+(sort 9 cup) (size 9 small) (color 9 green)
+(sort 10 can) (size 10 small) (color 10 yellow) (at 10 3)
+</info>
+<mis>
+(at 7 3)
+(at 8 2)
+</mis>
+<err>
+<r>
+(at 9 2)
+</r>
+<w>
+(at 9 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (color X yellow) (type Y container)))
+(:task (puton X Y) (:cond (color X green) (sort Y worktable)))
+(:task (putdown X) (:cond (sort X cup) (color X green)))
+(:info (opened X) (:cond (sort X closet)))
+)
+</instr>
+<nl>
+Take out the yellow from the container
+Put the green on the worktable
+Put down the green cup
+The closet is opened
+</nl>
+</test>

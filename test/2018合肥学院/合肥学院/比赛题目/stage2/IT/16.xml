@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 couch) (size 3 big) (at 3 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 table) (size 5 big) (at 5 5)
+(sort 6 remotecontrol) (size 6 small) (at 6 3)
+(sort 7 cup) (size 7 small) (hold 7)
+(sort 8 can) (size 8 small) (at 8 4)
+(sort 9 remotecontrol) (size 9 small) (color 9 red)
+(sort 10 book) (size 10 small) (color 10 blue) (at 10 1)
+(sort 11 remotecontrol) (size 11 small) (color 11 white)
+(sort 12 book) (size 12 small) (color 12 green)
+(sort 13 remotecontrol) (size 13 small) (plate 13)
+(sort 14 bottle) (size 14 small) (color 14 green) (at 14 4)
+(sort 15 remotecontrol) (size 15 small) (color 15 yellow) (at 15 5)
+(sort 16 bottle) (size 16 small) (color 16 black)
+(sort 17 bottle) (size 17 small) (color 17 blue)
+(sort 18 microwave) (size 18 big) (at 18 18) (type 18 container) (closed 18)
+</info>
+<mis>
+(at 9 4)
+(at 12 3)
+</mis>
+<err>
+<r>
+(at 11 3)
+(at 16 3)
+(at 17 5)
+</r>
+<w>
+(at 11 1)
+(at 16 5)
+(at 17 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (color X green) (sort X book)))
+(:task (close X) (:cond (sort X microwave)))
+(:task (pickup X) (:cond (color X yellow) (sort X remotecontrol)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y chair)))
+(:task (puton X Y) (:cond (sort X book) (sort Y chair)))
+(:info (at X Y) (:cond (sort X book) (sort Y worktable)))
+(:info (plate X) (:cond (sort X book) (color X green)))
+(:cons_notnot (:info (at X Y) (:cond (color X black) (sort X bottle) (sort Y workspace))))
+(:cons_not (:info (plate X) (:cond (sort X book))))
+(:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
+)
+</instr>
+<nl>
+</nl>
+</test>

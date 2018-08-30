@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+    <info>
+    (plate 0) (at 0 2)
+    (sort 1 desk) (size 1 big) (at 1 1)
+    (sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+    (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+    (sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+    (sort 5 cup) (size 5 small) (color 5 red)
+    (sort 6 cup) (size 6 small) (color 6 black)
+    (sort 7 remotecontrol) (size 7 small) (color 7 white)
+    (sort 8 can) (size 8 small) (color 8 green) (hold 8)
+    (sort 9 can) (size 9 small) (color 9 yellow)
+    (sort 10 book) (size 10 small)
+    </info>
+    <mis>
+    (inside 5 4)
+    (at 7 1)
+    </mis>
+    <err>
+        <r>(inside 9 3) (inside 10 3)</r>
+        <w>(inside 9 4) (inside 10 4)</w>
+    </err>
+    <extra>
+    (inside 6 2)
+    </extra>
+</env>
+<instr>
+(:ins
+    (:info (inside X Y) (:cond (sort X cup) (color X black) (sort Y refrigerator)))
+    (:task (takeout X Y) (:cond (sort X cup) (color X red) (sort Y microwave)))
+    (:task (close X) (:cond (sort X microwave)))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X cup) (color X black) (sort Y refrigerator)))))
+</instr>
+<nl>
+The black cup is in the refrigerator.
+Please, take out a cup from microwave oven.
+Then close the door of microwave oven.
+The black cup must be inside the refrigerator.
+</nl>
+</test>

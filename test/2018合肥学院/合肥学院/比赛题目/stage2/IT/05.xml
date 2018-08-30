@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 5)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 washmachine) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 couch) (size 4 big) (at 4 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 chair) (size 6 big) (at 6 6)
+(sort 7 book) (size 7 small) (color 7 green) (plate 7)
+(sort 8 book) (size 8 small) (hold 8)
+(sort 9 cup) (size 9 small) (color 9 white) (at 9 4)
+(sort 10 remotecontrol) (size 10 small) (color 10 green)
+(sort 11 book) (size 11 small) (color 11 green)
+(sort 12 bottle) (size 12 small)
+(sort 13 book) (size 13 small) (color 13 red)
+(sort 14 book) (size 14 small) (color 14 yellow) (inside 14 2)
+(sort 15 cup) (size 15 small) (color 15 green)
+(sort 16 book) (size 16 small) (color 16 yellow)
+(sort 17 remotecontrol) (size 17 small) (color 17 black) (at 17 4)
+</info>
+<mis>
+(inside 10 3)
+(inside 12 5)
+(inside 16 5)
+</mis>
+<err>
+<r>
+(inside 11 5)
+(at 13 4)
+(inside 15 2)
+</r>
+<w>
+(inside 11 4)
+(at 13 3)
+(inside 15 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X bottle) (sort Y refrigerator)))
+(:task (open X) (:cond (type X container) (sort X washmachine)))
+(:task (close X) (:cond (type X container) (sort X microwave)))
+(:info (opened X) (:cond (type X container)))
+(:info (plate X) (:cond (sort X bottle)))
+(:info (at X Y) (:cond (color X green) (sort X book) (type Y container) (sort Y refrigerator)))
+(:info (at X Y) (:cond (color X yellow) (sort X book) (type Y container)))
+(:cons_not (:task (putin X Y) (:cond (color X green) (sort X remotecontrol) (type Y container) (sort Y washmachine))))
+(:cons_not (:info (opened X) (:cond (sort X refrigerator) (type X container))))
+)
+</instr>
+<nl>
+Take out the bottle from the refrigerator
+Open the washmachine
+Close the microwave
+The container is opened
+The bottle is on the plate
+The green book is at the refrigerator
+The yellow book is at the container
+Do not put the green remotecontrol in the washmachine
+The refrigerator must not be opened
+</nl>
+</test>

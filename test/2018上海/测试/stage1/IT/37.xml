@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 4)
+(sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 human) (size 2 big) (at 2 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 sofa) (size 4 big) (at 4 4)
+(sort 5 remotecontrol) (size 5 small) (color 5 blue) (hold 5)
+(sort 6 bottle) (size 6 small) (color 6 green) (inside 6 1)
+(sort 7 can) (size 7 small) (color 7 green) (at 7 3)
+(sort 8 cup) (size 8 small) (color 8 green) (plate 8)
+(sort 9 cup) (size 9 small) (color 9 yellow)
+(sort 10 can) (size 10 small) (at 10 4)
+(sort 11 remotecontrol) (size 11 small) (color 11 white)
+(sort 12 bottle) (size 12 small) (color 12 white)
+(sort 13 book) (size 13 small) (color 13 green) (at 13 3)
+(sort 14 remotecontrol) (size 14 small) (color 14 black) (at 14 3)
+(sort 15 bottle) (size 15 small)
+(sort 16 cup) (size 16 small) (color 16 red) (at 16 3)
+(sort 17 bottle) (size 17 small)
+(sort 18 book) (size 18 small) (color 18 blue) (at 18 3)
+(sort 19 cup) (size 19 small) (color 19 blue)
+(sort 20 book) (size 20 small) (color 20 yellow) (at 20 4)
+</info>
+<mis>
+(inside 11 1)
+(inside 12 1)
+(at 15 2)
+</mis>
+<err>
+<r>
+(at 9 2)
+(at 17 2)
+(inside 19 1)
+</r>
+<w>
+(at 9 3)
+(at 17 4)
+(inside 19 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (puton X Y) (:cond (sort X bottle) (sort Y sofa)))
+(:task (open X) (:cond (sort X microwave) (type X container)))
+(:info (at X Y) (:cond (sort X bottle) (color X white) (sort Y microwave) (type Y container)))
+(:info (opened X) (:cond (sort X microwave)))
+(:info (plate X) (:cond (sort X bottle) (color X green)))
+(:cons_notnot (:info (opened X) (:cond (type X container) (sort X microwave))))
+(:cons_not (:task (putin X Y) (:cond (color X blue) (sort X remotecontrol) (sort Y microwave))))
+)
+</instr>
+<nl>
+Put the bottle on the sofa.
+Open the microwave.
+The white is at the microwave.
+The microwave is opened.
+The green is on the plate.
+The microwave must be opened.
+Do not put the blue remotecontrol in the microwave.
+</nl>
+</test>

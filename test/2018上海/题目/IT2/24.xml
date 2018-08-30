@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 4)
+(sort 1 table) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 couch) (size 5 big) (at 5 5)
+(sort 6 chair) (size 6 big) (at 6 6)
+(sort 7 workspace) (size 7 big) (at 7 7)
+(sort 8 remotecontrol) (size 8 small) (color 8 blue)
+(sort 9 book) (size 9 small) (color 9 yellow) (plate 9)
+(sort 10 bottle) (size 10 small) (color 10 green)
+(sort 11 bottle) (size 11 small) (color 11 blue)
+(sort 12 remotecontrol) (size 12 small) (color 12 green)
+(sort 13 book) (size 13 small)
+</info>
+<mis>
+(inside 12 4)
+</mis>
+<err>
+<r>
+(at 8 6)
+(at 10 6)
+(inside 11 4)
+(at 13 1)
+</r>
+<w>
+(at 8 1)
+(at 10 2)
+(inside 11 3)
+(at 13 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X book) (type Y container)))
+(:task (open X) (:cond (type X container) (sort X microwave)))
+(:cons_notnot (:info (opened X) (:cond (sort X washmachine) (type X container))))
+(:cons_not (:task (puton X Y) (:cond (color X green) (sort X remotecontrol) (sort Y couch))))
+)
+</instr>
+<nl>
+Take out the book from the container
+Open the microwave
+The washmachine must be opened
+Do not put the green remotecontrol on the couch
+</nl>
+</test>

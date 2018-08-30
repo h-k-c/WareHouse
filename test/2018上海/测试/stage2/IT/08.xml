@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 4)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 human) (size 3 big) (at 3 3)
+(sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 book) (size 8 small) (inside 8 5)
+(sort 9 can) (size 9 small)
+(sort 10 cup) (size 10 small) (color 10 white)
+(sort 11 remotecontrol) (size 11 small) (at 11 3)
+(sort 12 bottle) (size 12 small) (color 12 black) (hold 12)
+(sort 13 book) (size 13 small)
+(sort 14 book) (size 14 small) (color 14 red) (plate 14)
+(sort 15 book) (size 15 small) (at 15 7)
+(sort 16 bottle) (size 16 small) (color 16 green) (inside 16 5)
+</info>
+<mis>
+(inside 13 4)
+</mis>
+<err>
+<r>
+(inside 9 5)
+(inside 10 1)
+</r>
+<w>
+(inside 9 3)
+(inside 10 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X book) (sort Y microwave) (type Y container)))
+(:task (puton X Y) (:cond (color X red) (sort X book) (sort Y airconditioner)))
+(:task (takeout X Y) (:cond (sort X book) (sort Y microwave)))
+(:task (open X) (:cond (sort X refrigerator)))
+(:task (puton X Y) (:cond (sort X book) (type Y container) (sort Y microwave)))
+(:task (putdown X) (:cond (sort X can)))
+(:info (closed X) (:cond (sort X refrigerator)))
+(:info (opened X) (:cond (type X container) (sort X microwave)))
+(:cons_not (:info (plate X) (:cond (sort X bottle))))
+(:cons_not (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))))
+)
+</instr>
+<nl>
+Put a book in the microwave.
+Put a red book on the airconditioner.
+Take a book out from microwave.
+Open the door of the refrigerator.
+Please put a book on the microwave.
+Put down the can.
+Close the door of the refrigerator.
+Open the door of the microwave.
+There must not be a bottle on the plate.
+Do not put a remotecontrol on the television.
+</nl>
+</test>

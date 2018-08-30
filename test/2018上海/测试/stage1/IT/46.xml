@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 7)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 worktable) (size 4 big) (at 4 4)
+(sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 airconditioner) (size 6 big) (at 6 6)
+(sort 7 chair) (size 7 big) (at 7 7)
+(sort 8 can) (size 8 small) (color 8 white)
+(sort 9 bottle) (size 9 small) (color 9 white) (at 9 7)
+(sort 10 cup) (size 10 small) (at 10 1)
+(sort 11 bottle) (size 11 small)
+(sort 12 book) (size 12 small) (color 12 yellow) (inside 12 3)
+(sort 13 cup) (size 13 small) (color 13 green) (inside 13 2)
+(sort 14 can) (size 14 small) (color 14 yellow) (plate 14)
+(sort 15 cup) (size 15 small) (color 15 green) (at 15 4)
+(sort 16 can) (size 16 small) (color 16 green) (at 16 4)
+(sort 17 can) (size 17 small) (color 17 white) (at 17 1)
+(sort 18 cup) (size 18 small) (color 18 green) (hold 18)
+(sort 19 cup) (size 19 small) (color 19 yellow) (inside 19 3)
+(sort 20 can) (size 20 small) (color 20 blue) (inside 20 5)
+(sort 21 can) (size 21 small) (at 21 6)
+(sort 22 remotecontrol) (size 22 small) (color 22 blue) (at 22 1)
+</info>
+<mis>
+(inside 8 3)
+</mis>
+<err>
+<r>
+(inside 11 5)
+</r>
+<w>
+(inside 11 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X closet) (type X container)))
+(:task (putin X Y) (:cond (sort X can) (color X white) (sort Y cupboard) (type Y container)))
+(:task (putdown X) (:cond (sort X can)))
+(:info (at X Y) (:cond (sort X can) (sort Y closet)))
+(:cons_notnot (:info (opened X) (:cond (sort X closet) (type X container))))
+)
+</instr>
+<nl>
+Close the closet.
+Put the white can in the cupboard.
+Put down the can.
+The can is at the closet.
+The closet must be opened.
+</nl>
+</test>

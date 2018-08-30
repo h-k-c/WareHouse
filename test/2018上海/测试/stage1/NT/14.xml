@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 6) (hold 9) (plate 15)
+(sort 1 chair) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 desk) (size 4 big) (at 4 4)
+(sort 5 plant) (size 5 big) (at 5 5)
+(sort 6 workspace) (size 6 big) (at 6 6)
+(sort 7 human) (size 7 big) (at 7 7)
+(sort 8 bottle) (size 8 small) (color 8 red)
+(sort 9 cup) (size 9 small) (color 9 green)
+(sort 10 remotecontrol) (size 10 small) (color 10 red) (at 10 7)
+(sort 11 bottle) (size 11 small) (color 11 black)
+(sort 12 cup) (size 12 small) (color 12 white) (at 12 2)
+(sort 13 book) (size 13 small) (at 13 4)
+(sort 14 remotecontrol) (size 14 small) (color 14 blue) (at 14 3)
+(sort 15 cup) (size 15 small) (color 15 grey)
+(sort 16 cup) (size 16 small) (color 16 blue) (at 16 4)
+(sort 17 can) (size 17 small) (color 17 black)
+(sort 18 remotecontrol) (size 18 small) (color 18 black) (at 18 3)
+(sort 19 can) (size 19 small) (color 19 red)
+</info>
+<mis>
+(at 11 3)
+(at 17 7)
+</mis>
+<err>
+<r>
+(at 8 4)
+(at 19 5)
+</r>
+<w>
+(at 8 2)
+(at 19 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (at X Y) (:cond (sort X cup) (color X green) (sort Y sofa)))
+(:cons_not (:info (plate X) (:cond (sort X cup) (color X blue))))
+(:task (puton X Y) (:cond (sort X cup) (color X green) (sort Y table)))
+(:task (puton X Y) (:cond (sort X cup) (color X grey) (sort Y desk)))
+(:task (give human X) (:cond (sort X book)))
+)
+</instr>
+<nl>
+The green cup is on the sofa.
+Do not put the blue cup on the plate.
+Put the green cup on the table.
+Put the grey cup on the desk.
+Give the book for human.
+</nl>
+</test>

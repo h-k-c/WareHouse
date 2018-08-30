@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 4)
+(sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 desk) (size 4 big) (at 4 4)
+(sort 5 workspace) (size 5 big) (at 5 5)
+(sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 cup) (size 7 small) (color 7 white)
+(sort 8 bottle) (size 8 small) (at 8 5)
+(sort 9 remotecontrol) (size 9 small) (color 9 black) (hold 9)
+(sort 10 bottle) (size 10 small)
+(sort 11 remotecontrol) (size 11 small) (color 11 black) (inside 11 6)
+(sort 12 bottle) (size 12 small) (color 12 black)
+(sort 13 cup) (size 13 small) (color 13 blue)
+(sort 14 can) (size 14 small) (color 14 red)
+(sort 15 book) (size 15 small) (color 15 blue) (at 15 4)
+(sort 16 cup) (size 16 small) (color 16 black)
+(sort 17 can) (size 17 small)
+(sort 18 remotecontrol) (size 18 small) (color 18 white) (inside 18 1)
+(sort 19 cup) (size 19 small) (color 19 white) (at 19 3)
+(sort 20 can) (size 20 small)
+(sort 21 cup) (size 21 small) (at 21 2)
+(sort 22 remotecontrol) (size 22 small) (color 22 white) (at 22 2)
+</info>
+<mis>
+(at 12 5)
+(at 13 5)
+(at 14 4)
+(at 17 4)
+(at 20 4)
+</mis>
+<err>
+<r>
+(at 7 5)
+(at 10 2)
+(at 16 3)
+</r>
+<w>
+(at 7 6)
+(at 10 3)
+(at 16 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X cup)))
+(:task (puton X Y) (:cond (sort X cup) (sort Y refrigerator)))
+(:task (close X) (:cond (sort X refrigerator)))
+(:task (open X) (:cond (type X container)))
+(:info (plate X) (:cond (sort X bottle)))
+(:info (closed X) (:cond (sort X refrigerator)))
+(:cons_not (:task (goto X) (:cond (sort X desk))))
+(:cons_notnot (:info (at X Y) (:cond (sort X cup) (sort Y desk))))
+(:cons_notnot (:info (at X Y) (:cond (sort X bottle) (sort Y bed))))
+)
+</instr>
+<nl>
+Pick up the cup.
+Put a cup on the refrigerator.
+Close the regrigerator.
+Open the door of each container.
+There is a cup on the plate.
+The door of the refrigerator is closed.
+Do not go to the desk.
+There must be a cup at the desk.
+There must be a bottle at the bed.
+</nl>
+</test>

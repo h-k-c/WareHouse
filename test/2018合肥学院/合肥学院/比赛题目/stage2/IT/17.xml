@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 6)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 desk) (size 2 big) (at 2 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 table) (size 4 big) (at 4 4)
+(sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 remotecontrol) (size 9 small) (color 9 white) (plate 9)
+(sort 10 book) (size 10 small)
+(sort 11 book) (size 11 small) (color 11 red)
+(sort 12 can) (size 12 small) (color 12 black)
+(sort 13 remotecontrol) (size 13 small) (color 13 blue)
+(sort 14 book) (size 14 small)
+(sort 15 can) (size 15 small) (color 15 black)
+(sort 16 can) (size 16 small) (color 16 red)
+(sort 17 bottle) (size 17 small) (color 17 black)
+</info>
+<mis>
+(inside 12 5)
+(inside 16 6)
+(at 17 3)
+</mis>
+<err>
+<r>
+(inside 10 8)
+(inside 11 6)
+(at 13 1)
+(at 14 1)
+(inside 15 5)
+</r>
+<w>
+(inside 10 4)
+(inside 11 4)
+(at 13 5)
+(at 14 4)
+(inside 15 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X closet) (type X container)))
+(:task (goto X) (:cond (sort X desk)))
+(:info (opened X) (:cond (type X container) (sort X closet)))
+(:info (plate X) (:cond (sort X book)))
+(:cons_notnot (:info (closed X) (:cond (sort X closet))))
+(:cons_notnot (:info (opened X) (:cond (sort X washmachine) (type X container))))
+)
+</instr>
+<nl>
+Close The door of the closet.
+Go to the desk.
+The door of the closet is opened.
+A book is on the plate.
+The closet must be closed.
+The door of the washmachine must be opened.
+</nl>
+</test>

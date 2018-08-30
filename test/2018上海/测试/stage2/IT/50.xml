@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 6)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 sofa) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 workspace) (size 4 big) (at 4 4)
+(sort 5 television) (size 5 big) (at 5 5)
+(sort 6 bed) (size 6 big) (at 6 6)
+(sort 7 plant) (size 7 big) (at 7 7)
+(sort 8 workspace) (size 8 big) (at 8 8)
+(sort 9 desk) (size 9 big) (at 9 9)
+(sort 10 bed) (size 10 big) (at 10 10)
+(sort 11 cupboard) (size 11 big) (at 11 11) (type 11 container) (opened 11)
+(sort 12 plant) (size 12 big) (at 12 12)
+(sort 13 washmachine) (size 13 big) (at 13 13) (type 13 container) (opened 13)
+(sort 14 cup) (size 14 small)
+(sort 15 book) (size 15 small) (color 15 red)
+(sort 16 cup) (size 16 small) (color 16 black)
+(sort 17 book) (size 17 small) (color 17 red)
+(sort 18 book) (size 18 small) (color 18 green)
+(sort 19 bottle) (size 19 small)
+</info>
+<mis>
+(at 16 9)
+</mis>
+<err>
+<r>
+(at 14 12)
+(at 15 6)
+(at 17 2)
+(inside 18 13)
+(at 19 2)
+</r>
+<w>
+(at 14 10)
+(at 15 12)
+(at 17 10)
+(inside 18 11)
+(at 19 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (puton X Y) (:cond (sort X bottle) (sort Y television)))
+(:task (open X) (:cond (sort X cupboard) (type X container)))
+(:task (goto X) (:cond (sort X plant)))
+(:task (putin X Y) (:cond (sort X bottle) (type Y container)))
+(:task (putdown X) (:cond (color X green) (sort X book)))
+(:info (plate X) (:cond (sort X book) (color X red)))
+(:info (closed X) (:cond (type X container) (sort X cupboard)))
+(:info (plate X) (:cond (sort X book)))
+(:cons_not (:task (pickup X) (:cond (sort X cup))))
+)
+</instr>
+<nl>
+Put a bottle on the television.
+Open the door of the cupboard.
+Go tot the plant.
+Put a bottle in the container.
+Put the green book down.
+There is red book on the plate.
+The door of the cupboard is closed.
+There is book on the plate.
+Do not pick up the cup.
+</nl>
+</test>

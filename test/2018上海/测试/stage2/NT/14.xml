@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 1)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 book) (size 4 small) (color 4 white) (plate 4)
+(sort 5 cup) (size 5 small) (color 5 blue) (at 5 3)
+(sort 6 book) (size 6 small) (color 6 red) (at 6 1)
+(sort 7 cup) (size 7 small) (color 7 white) (inside 7 2)
+(sort 8 bottle) (size 8 small) (color 8 green)
+(sort 9 remotecontrol) (size 9 small) (color 9 yellow)
+(sort 10 bottle) (size 10 small) (color 10 blue)
+(sort 11 remotecontrol) (size 11 small) (at 11 3)
+(sort 12 can) (size 12 small) (color 12 blue)
+(sort 13 remotecontrol) (size 13 small) (color 13 white) (hold 13)
+(sort 14 remotecontrol) (size 14 small) (inside 14 2)
+(sort 15 remotecontrol) (size 15 small) (color 15 red)
+(sort 16 bottle) (size 16 small) (color 16 red) (at 16 1)
+(sort 17 remotecontrol) (size 17 small) (color 17 red) (at 17 1)
+</info>
+<mis>
+(inside 9 2)
+(at 10 1)
+</mis>
+<err>
+<r>
+(at 8 1)
+(at 12 1)
+(at 15 3)
+</r>
+<w>
+(at 8 2)
+(at 12 3)
+(at 15 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X book) (color X white) (type Y container)))
+(:task (takeout X Y) (:cond (color X red) (sort X remotecontrol) (type Y container) (sort Y microwave)))
+(:task (goto X) (:cond (sort X teapoy)))
+(:info (plate X) (:cond (color X blue) (sort X can)))
+)
+</instr>
+<nl>
+Put the white book in the microwave.
+Take the red remotecontrol out of the microwave.
+Go to teapoy.
+There has a blue can on the plate.
+</nl>
+</test>

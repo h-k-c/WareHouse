@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 1)
+(sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 table) (size 4 big) (at 4 4)
+(sort 5 workspace) (size 5 big) (at 5 5)
+(sort 6 bottle) (size 6 small) (color 6 green)
+(sort 7 bottle) (size 7 small) (color 7 green) (inside 7 2)
+(sort 8 remotecontrol) (size 8 small)
+(sort 9 cup) (size 9 small) (color 9 blue) (hold 9)
+(sort 10 can) (size 10 small) (color 10 white) (inside 10 2)
+(sort 11 bottle) (size 11 small) (color 11 yellow) (at 11 4)
+(sort 12 can) (size 12 small)
+(sort 13 bottle) (size 13 small) (color 13 black)
+(sort 14 cup) (size 14 small) (at 14 3)
+(sort 15 can) (size 15 small) (at 15 4)
+(sort 16 can) (size 16 small) (color 16 yellow)
+(sort 17 bottle) (size 17 small)
+(sort 18 bottle) (size 18 small) (color 18 yellow) (at 18 4)
+(sort 19 bottle) (size 19 small)
+(sort 20 cup) (size 20 small) (color 20 white) (inside 20 2)
+</info>
+<mis>
+(at 6 3)
+(at 16 4)
+(at 17 4)
+</mis>
+<err>
+<r>
+(inside 8 2)
+(at 12 4)
+(at 13 5)
+(at 19 4)
+</r>
+<w>
+(inside 8 4)
+(at 12 3)
+(at 13 2)
+(at 19 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X cupboard) (type X container)))
+(:task (close X) (:cond (type X container) (sort X cupboard)))
+(:task (takeout X Y) (:cond (sort X cup) (color X blue) (sort Y cupboard) (type Y container)))
+(:info (at X Y) (:cond (color X yellow) (sort X bottle) (sort Y table)))
+(:info (closed X) (:cond (type X container)))
+(:cons_not (:info (plate X) (:cond (sort X cup))))
+)
+</instr>
+<nl>
+Open the cupboard
+Close the cupboard
+Take out the blue cup from the cupboard
+The yellow bottle is at the table
+The container is closed
+The cup must not be on the plate
+</nl>
+</test>

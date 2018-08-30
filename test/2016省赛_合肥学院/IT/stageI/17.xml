@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 10)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 airconditioner) (size 4 big) (at 4 4)
+(sort 5 workspace) (size 5 big) (at 5 5)
+(sort 6 bed) (size 6 big) (at 6 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 washmachine) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 airconditioner) (size 9 big) (at 9 9)
+(sort 10 cupboard) (size 10 big) (at 10 10) (type 10 container) (opened 10)
+(sort 11 cup) (size 11 small) (color 11 red) (plate 11)
+(sort 12 can) (size 12 small) (color 12 red) (at 12 7)
+(sort 13 bottle) (size 13 small)
+(sort 14 can) (size 14 small) (at 14 4)
+(sort 15 bottle) (size 15 small) (at 15 5)
+(sort 16 bottle) (size 16 small) (color 16 black)
+(sort 17 remotecontrol) (size 17 small)
+(sort 18 remotecontrol) (size 18 small) (color 18 red)
+(sort 19 book) (size 19 small) (color 19 white)
+(sort 20 remotecontrol) (size 20 small) (color 20 red) (at 20 4)
+(sort 21 book) (size 21 small) (color 21 yellow) (at 21 4)
+(sort 22 cup) (size 22 small) (color 22 yellow) (at 22 4)
+(sort 23 book) (size 23 small) (color 23 blue)
+(sort 24 book) (size 24 small) (color 24 white)
+(sort 25 remotecontrol) (size 25 small) (color 25 yellow)
+(sort 26 bottle) (size 26 small) (color 26 green) (at 26 2)
+</info>
+<mis>
+(at 16 3)
+(at 18 2)
+(at 23 7)
+(at 24 5)
+</mis>
+<err>
+<r>
+(at 13 2)
+(at 17 7)
+(inside 19 8)
+(inside 25 10)
+</r>
+<w>
+(at 13 5)
+(at 17 2)
+(inside 19 1)
+(inside 25 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X washmachine)))
+(:task (takeout X Y) (:cond (sort X book) (type Y container) (sort Y washmachine)))
+(:task (puton X Y) (:cond (color X red) (sort Y television)))
+(:task (goto X) (:cond (type X container) (sort X teapoy)))
+(:task (putdown X) (:cond (color X black) (sort X bottle)))
+(:info (plate X) (:cond (sort X cup) (color X red) ))
+(:info (closed X) (:cond (sort X washmachine)))
+)
+</instr>
+<nl>
+Close the washmachine.
+Take out the can from the washmachine.
+Put the red book on the television.
+Go to the teapoy.
+Put down the black bottle.
+The red cup is on the plate.
+The door of washmachine is closed.
+</nl>
+</test>

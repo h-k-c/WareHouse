@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 bed) (size 4 big) (at 4 4)
+(sort 5 cupboard) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+(sort 6 workspace) (size 6 big) (at 6 6)
+(sort 7 can) (size 7 small) (color 7 yellow) (hold 7)
+(sort 8 can) (size 8 small) (color 8 black) (inside 8 5)
+(sort 9 remotecontrol) (size 9 small) (color 9 white)
+(sort 10 can) (size 10 small) (plate 10)
+(sort 11 can) (size 11 small)
+(sort 12 bottle) (size 12 small) (at 12 3)
+(sort 13 can) (size 13 small) (color 13 white)
+(sort 14 can) (size 14 small) (color 14 green)
+(sort 15 bottle) (size 15 small) (color 15 blue) (inside 15 1)
+(sort 16 book) (size 16 small) (color 16 white) (at 16 6)
+(sort 17 can) (size 17 small) (color 17 blue)
+(sort 18 book) (size 18 small) (color 18 white) (inside 18 1)
+(sort 19 can) (size 19 small) (at 19 2)
+</info>
+<mis>
+(at 13 4)
+</mis>
+<err>
+<r>
+(at 9 3)
+(inside 11 1)
+(at 14 3)
+(inside 17 5)
+</r>
+<w>
+(at 9 1)
+(inside 11 4)
+(at 14 2)
+(inside 17 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (sort X can) (sort Y closet)))
+(:task (open X) (:cond (sort X closet) (type X container)))
+(:task (putdown X) (:cond (color X white) (sort X remotecontrol)))
+(:task (goto X) (:cond (sort X workspace)))
+(:info (opened X) (:cond (type X container) (sort X closet)))
+(:info (at X Y) (:cond (color X white) (sort X remotecontrol) (sort Y cupboard)))
+(:info (at X Y) (:cond (color X white) (sort Y bed) (sort X can)))
+(:cons_notnot (:info (opened X) (:cond (type X container))))
+(:cons_not (:task (pickup X) (:cond (color X yellow) (sort X can))))
+)
+</instr>
+<nl>
+Put a can in the closet.
+Open the closet.
+Put down the white remotecontrol.
+Go to the workspace.
+The door of closet is opened.
+There is a white remotecontrol on the cupboard.
+A white can is on the bed.
+The containers' door must be opened.
+Do not pick the yellow can up.
+</nl>
+</test>

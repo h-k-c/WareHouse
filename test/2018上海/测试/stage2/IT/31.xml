@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(plate 0) (hold 0) (at 0 12)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 chair) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 human) (size 5 big) (at 5 5)
+(sort 6 television) (size 6 big) (at 6 6)
+(sort 7 bed) (size 7 big) (at 7 7)
+(sort 8 plant) (size 8 big) (at 8 8)
+(sort 9 couch) (size 9 big) (at 9 9)
+(sort 10 television) (size 10 big) (at 10 10)
+(sort 11 desk) (size 11 big) (at 11 11)
+(sort 12 airconditioner) (size 12 big) (at 12 12)
+(sort 13 can) (size 13 small) (color 13 black) (inside 13 3)
+(sort 14 cup) (size 14 small) (color 14 red) (at 14 10)
+(sort 15 remotecontrol) (size 15 small) (color 15 black)
+(sort 16 remotecontrol) (size 16 small) (color 16 black)
+(sort 17 can) (size 17 small) (inside 17 4)
+(sort 18 book) (size 18 small) (color 18 yellow) (at 18 12)
+(sort 19 book) (size 19 small) (color 19 green) (at 19 11)
+(sort 20 bottle) (size 20 small) (color 20 black)
+(sort 21 book) (size 21 small) (at 21 12)
+(sort 22 book) (size 22 small) (color 22 green) (at 22 2)
+</info>
+<mis>
+(at 15 5)
+(at 20 8)
+</mis>
+<err>
+<r>
+(inside 16 3)
+</r>
+<w>
+(inside 16 11)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X plant)))
+(:task (putdown X) (:cond (sort X book)))
+(:task (close X) (:cond (type X container) (sort X washmachine)))
+(:task (takeout X Y) (:cond (color X green) (sort X book) (type Y container) (sort Y closet)))
+(:task (takeout X Y) (:cond (sort X book) (sort Y washmachine)))
+(:task (open X) (:cond (sort X closet)))
+(:info (plate X) (:cond (sort X bottle)))
+(:info (closed X) (:cond (type X container) (sort X closet)))
+(:cons_notnot (:info (closed X) (:cond (sort X washmachine) (type X container))))
+)
+</instr>
+<nl>
+Go to plant.
+Put down the book.
+Close the door of the washmachine.
+Take a green book out from the closet.
+Take a book out from the washmachine.
+Open the closet.
+There is a bottle on the plate.
+The door of the closet is closed.
+The door of the washmachine must be closed.
+</nl>
+</test>

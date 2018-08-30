@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 3) (hold 5)
+(sort 1 table) (size 1 big) (at 1 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 plant) (size 3 big) (at 3 3)
+(sort 4 human) (size 4 big) (at 4 4)
+(sort 5 cup) (size 5 small) (color 5 blue) 
+(sort 6 bottle) (size 6 small) (color 6 red)
+(sort 7 cup) (size 7 small) (color 7 red)
+(sort 8 remotecontrol) (size 8 small) (color 8 yellow)
+(sort 9 book) (size 9 small) (color 9 black)
+(sort 10 book) (size 10 small) (color 10 blue)
+</info>
+<mis>
+(at 8 2)
+(at 9 2)
+(at 10 3)
+</mis>
+<err>
+<r>
+(at 6 2)
+(at 7 1)
+</r>
+<w>
+(at 6 3)
+(at 7 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:cons_not (:task (goto X) (:cond (sort X workspace))))
+(:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y plant)))
+(:task (pickup X) (:cond (sort X cup) (color X red)))
+(:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y plant)))
+(:task (pickup X) (:cond (sort X book) (color X blue)))
+(:task (give human X) (:cond (sort X book) (color X blue)))
+)
+</instr>
+<nl>
+Do not go to the workspace.
+Put the blue cup on the plant.
+Pick up the red cup.
+Put the red cup on the plant.
+Pick up the blue book.
+Give the blue book for human.
+</nl>
+</test>

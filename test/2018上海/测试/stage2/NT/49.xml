@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 plant) (size 1 big) (at 1 1)
+(sort 2 television) (size 2 big) (at 2 2)
+(sort 3 teapoy) (size 3 big) (at 3 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 teapoy) (size 5 big) (at 5 5)
+(sort 6 bottle) (size 6 small) (color 6 red) (hold 6)
+(sort 7 can) (size 7 small) (color 7 yellow)
+(sort 8 remotecontrol) (size 8 small) (color 8 red) (plate 8)
+(sort 9 book) (size 9 small) (at 9 4)
+(sort 10 book) (size 10 small) (color 10 yellow)
+(sort 11 book) (size 11 small)
+(sort 12 remotecontrol) (size 12 small) (color 12 yellow)
+(sort 13 book) (size 13 small) (color 13 white) (at 13 5)
+(sort 14 cup) (size 14 small) (color 14 blue)
+(sort 15 can) (size 15 small) (color 15 red) (at 15 4)
+</info>
+<mis>
+(at 10 4)
+(at 14 3)
+</mis>
+<err>
+<r>
+(at 7 1)
+(at 11 4)
+(at 12 2)
+</r>
+<w>
+(at 7 2)
+(at 11 1)
+(at 12 4)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X bottle)))
+(:task (pickup X) (:cond (sort X can) (color X red)))
+(:task (goto X) (:cond (sort X television)))
+(:info (at X Y) (:cond (color X white) (sort X book) (sort Y plant)))
+(:cons_notnot (:info (at X Y) (:cond (sort X remotecontrol) (sort Y television))))
+(:cons_not (:info (at X Y) (:cond (sort X cup) (color X blue) (sort Y television))))
+)
+</instr>
+<nl>
+Put down the red bottle.
+Pick up the can which is red.
+Go to the television.
+There has a white book on the plant.
+There must have a remotecontrol on the television.
+There must not have a blue cup on the television.
+</nl>
+</test>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env>
+<info>
+(plate 0) (at 0 2)
+(sort 1 couch) (size 1 big) (at 1 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 desk) (size 4 big) (at 4 4)
+(sort 5 table) (size 5 big) (at 5 5)
+(sort 6 teapoy) (size 6 big) (at 6 6)
+(sort 7 workspace) (size 7 big) (at 7 7)
+(sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 bed) (size 9 big) (at 9 9)
+(sort 10 closet) (size 10 big) (at 10 10) (type 10 container) (closed 10)
+(sort 11 book) (size 11 small) (color 11 red) (at 11 1)
+(sort 12 can) (size 12 small) (color 12 red) (at 12 1)
+(sort 13 can) (size 13 small) (color 13 green) (at 13 5)
+(sort 14 can) (size 14 small) (color 14 black) (at 14 4)
+(sort 15 remotecontrol) (size 15 small) (color 15 yellow)
+(sort 16 book) (size 16 small) (color 16 blue)
+(sort 17 bottle) (size 17 small) (color 17 black) (at 17 2)
+(sort 18 cup) (size 18 small) (color 18 blue) (inside 18 8)
+(sort 19 remotecontrol) (size 19 small) (inside 19 7)
+(sort 20 can) (size 20 small) (color 20 blue)
+(sort 21 cup) (size 21 small) (color 21 black)
+(sort 22 cup) (size 22 small) (color 22 red) 
+(sort 23 cup) (size 23 small) (color 22 yellow) (inside 23 8)
+(sort 24 can) (size 24 small) (color 24 yellow) (hold 24)
+</info>
+<mis>
+(inside 11 8)
+(at 21 5)
+
+</mis>
+<err>
+<r>
+(at 15 4)
+(inside 16 3)
+(at 20 6)
+</r>
+<w>
+(at 15 7)
+(inside 16 8)
+(at 20 3)
+</w>
+</err>
+</env>
+<instr>(:ins
+(:task (puton X Y) (:cond (color X blue) (sort X cup) (sort Y microwave)))
+(:task (puton X Y) (:cond (sort X cup) (sort Y teapoy)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y couch)))
+(:task (close X) (:cond (sort X microwave)))
+(:task (close X) (:cond (sort X cupboard)))
+(:task (close X) (:cond (sort X closet)))
+(:task (takeout X Y) (:cond (sort X can) (sort Y closet)))
+(:task (goto X) (:cond (sort X cupboard)))
+(:info (opened X) (:cond (sort X closet)))
+(:info (opened X) (:cond (sort X microwave)))
+(:cons_notnot (:info (opened X) (:cond (sort X microwave))))
+(:cons_not (:task (puton X Y) (:cond (sort X can) (sort Y teapoy))))
+)
+</instr>
+<nl>
+</nl>
+</test>

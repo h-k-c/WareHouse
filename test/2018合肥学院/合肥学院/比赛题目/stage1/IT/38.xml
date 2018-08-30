@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1)
+(sort 1 table) (size 1 big) (at 1 1)
+(sort 2 washmachine) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 book) (size 4 small) (color 4 white) (plate 4)
+(sort 5 remotecontrol) (size 5 small) (at 5 3)
+(sort 6 book) (size 6 small) (color 6 white) (hold 6)
+(sort 7 cup) (size 7 small) (color 7 white) (inside 7 2)
+(sort 8 can) (size 8 small) (color 8 white) (at 8 3)
+(sort 9 bottle) (size 9 small) (color 9 yellow) (inside 9 2)
+(sort 10 cup) (size 10 small)
+(sort 11 book) (size 11 small) (color 11 green) (inside 11 2)
+(sort 12 can) (size 12 small) (color 12 black) (at 12 3)
+(sort 13 book) (size 13 small) (color 13 red)
+(sort 14 remotecontrol) (size 14 small)
+(sort 15 can) (size 15 small) (color 15 blue)
+(sort 16 cup) (size 16 small) (color 16 green) (at 16 1)
+(sort 17 bottle) (size 17 small) (color 17 blue) (at 17 3)
+</info>
+<mis>
+(at 15 1)
+</mis>
+<err>
+<r>
+(inside 10 2)
+(at 13 3)
+(at 14 3)
+</r>
+<w>
+(inside 10 1)
+(at 13 2)
+(at 14 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X desk)))
+(:task (putin X Y) (:cond (color X white) (sort X can) (type Y container) (sort Y washmachine)))
+(:task (putdown X) (:cond (sort X book) (color X white)))
+(:info (plate X) (:cond (sort X book)))
+(:info (at X Y) (:cond (sort X cup) (color X white) (sort Y washmachine)))
+)
+</instr>
+<nl>
+Go to the desk.
+Put the white can in the washmachine.
+put the white book down.
+A book is on the plate.
+A white cup is in the washmachine.
+</nl>
+</test>

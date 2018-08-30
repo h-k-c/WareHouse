@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 1)
+(sort 1 human) (size 1 big) (at 1 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 sofa) (size 3 big) (at 3 3)
+(sort 4 closet) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 couch) (size 5 big) (at 5 5)
+(sort 6 plant) (size 6 big) (at 6 6)
+(sort 7 worktable) (size 7 big) (at 7 7)
+(sort 8 can) (size 8 small)
+(sort 9 remotecontrol) (size 9 small) (color 9 green) (hold 9)
+(sort 10 bottle) (size 10 small)
+(sort 11 remotecontrol) (size 11 small) (color 11 red)
+(sort 12 can) (size 12 small)
+(sort 13 book) (size 13 small) (color 13 green)
+</info>
+<mis>
+(at 8 2)
+</mis>
+<err>
+<r>
+(at 10 1)
+(at 11 3)
+(at 12 3)
+(at 13 1)
+</r>
+<w>
+(at 10 3)
+(at 11 2)
+(at 12 2)
+(at 13 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X closet)))
+(:info (plate X) (:cond (sort X can)))
+(:cons_not (:info (closed X) (:cond (sort X closet) (type X container))))
+(:cons_not (:task (puton X Y) (:cond (sort X can) (sort Y human))))
+(:cons_not (:task (puton X Y) (:cond (color X green) (sort X remotecontrol) (sort Y closet))))
+)
+</instr>
+<nl>
+Open the closet.
+The can is on the plate.
+Do not close the closet.
+Do not put the can on human.
+Do not put the green remotecontrol on the closet. 
+</nl>
+</test>

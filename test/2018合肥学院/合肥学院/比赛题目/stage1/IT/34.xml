@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 1)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 couch) (size 3 big) (at 3 3)
+(sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 teapoy) (size 5 big) (at 5 5)
+(sort 6 desk) (size 6 big) (at 6 6)
+(sort 7 worktable) (size 7 big) (at 7 7)
+(sort 8 plant) (size 8 big) (at 8 8)
+(sort 9 couch) (size 9 big) (at 9 9)
+(sort 10 bottle) (size 10 small) (color 10 green)
+(sort 11 cup) (size 11 small) (color 11 green) (plate 11)
+(sort 12 bottle) (size 12 small) (color 12 red)
+(sort 13 book) (size 13 small) (color 13 white)
+(sort 14 bottle) (size 14 small) (color 14 red)
+(sort 15 bottle) (size 15 small) (color 15 blue)
+(sort 16 can) (size 16 small) (color 16 blue)
+(sort 17 cup) (size 17 small) (color 17 black)
+</info>
+<mis>
+(at 10 9)
+(inside 12 4)
+(at 14 5)
+(at 16 8)
+(inside 17 4)
+</mis>
+<err>
+<r>
+(at 13 6)
+(at 15 5)
+</r>
+<w>
+(at 13 9)
+(at 15 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (color X green) (sort X bottle) (sort Y refrigerator)))
+(:task (pickup X) (:cond (color X white) (sort X book)))
+(:task (open X) (:cond (sort X refrigerator)))
+(:task (pickup X) (:cond (color X green) (sort X bottle)))
+(:task (putin X Y) (:cond (color X black) (sort X cup) (sort Y refrigerator)))
+(:cons_not (:task (puton X Y) (:cond (color X green) (sort X bottle) (sort Y desk))))
+(:cons_notnot (:info (closed X) (:cond (sort X refrigerator))))
+)
+</instr>
+<nl>
+</nl>
+</test>

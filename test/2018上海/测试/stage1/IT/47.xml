@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 7)
+(sort 1 couch) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 closet) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 airconditioner) (size 6 big) (at 6 6)
+(sort 7 workspace) (size 7 big) (at 7 7)
+(sort 8 refrigerator) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 remotecontrol) (size 9 small) (color 9 white)
+(sort 10 can) (size 10 small)
+(sort 11 bottle) (size 11 small) (color 11 green)
+(sort 12 cup) (size 12 small) (color 12 green)
+(sort 13 remotecontrol) (size 13 small) (color 13 white)
+(sort 14 cup) (size 14 small) (color 14 green) (plate 14)
+</info>
+<mis>
+(inside 9 4)
+(at 10 3)
+(at 11 6)
+(at 12 1)
+(at 13 7)
+</mis>
+<err>
+<r>
+</r>
+<w>
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X bottle) (sort Y closet) (type Y container)))
+(:task (puton X Y) (:cond (color X green) (sort X cup) (sort Y closet)))
+(:info (plate X) (:cond (sort X cup) (color X green)))
+(:info (closed X) (:cond (sort X closet)))
+)
+</instr>
+<nl>
+Take the bottle out from the closet.
+Put the green cup on the closet.
+The green cup is on the plate.
+The closet is closed.
+</nl>
+</test>

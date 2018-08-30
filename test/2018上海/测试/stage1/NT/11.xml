@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)  (hold 5) (plate 6)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 worktable) (size 2 big) (at 2 2)
+(sort 3 chair) (size 3 big) (at 3 3)
+(sort 4 can) (size 4 small) (color 4 green) (at 4 3)
+(sort 5 remotecontrol) (size 5 small) (color 5 yellow)
+(sort 6 book) (size 6 small) (color 6 yellow)
+(sort 7 book) (size 7 small) (color 7 black) (at 7 3)
+(sort 8 book) (size 8 small) (color 8 red)
+(sort 9 bottle) (size 9 small) (color 9 red) (at 9 2)
+(sort 10 book) (size 10 small) (color 10 green)
+(sort 11 cup) (size 11 small) (color 11 yellow) (at 11 1)
+(sort 12 can) (size 12 small) (color 12 black) (at 12 2)
+(sort 13 book) (size 13 small) (color 13 white) (at 13 1)
+(sort 14 cup) (size 14 small) (color 14 black)
+(sort 15 cup) (size 15 small) (color 15 white)
+</info>
+<mis>
+(at 14 3)
+(at 15 2)
+</mis>
+<err>
+<r>
+(at 8 1)
+(at 10 3)
+</r>
+<w>
+(at 8 3)
+(at 10 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:cons_notnot (:info (on X Y) (:cond (sort X book) (color X black) (sort Y worktable))))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X yellow)))
+(:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y worktable)))
+(:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y chair)))
+(:task (goto X) (:cond (sort X sofa)))
+)
+</instr>
+<nl>
+The black book must be on the worktable.
+Put down the yellow remotecontrol.
+Put the yellow book on the worktable.
+Put the white cup on the chair.
+Go to the sofa.
+</nl>
+</test>

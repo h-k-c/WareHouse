@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 workspace) (size 2 big) (at 2 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 can) (size 4 small) (color 4 black) (at 4 2)
+(sort 5 can) (size 5 small) (color 5 white) (hold 5)
+(sort 6 can) (size 6 small) (color 6 yellow) (plate 6)
+(sort 7 book) (size 7 small) (color 7 white) (at 7 2)
+(sort 8 cup) (size 8 small) (color 8 green) (at 8 2)
+(sort 9 book) (size 9 small) (color 9 black)
+(sort 10 book) (size 10 small) (color 10 black)
+(sort 11 remotecontrol) (size 11 small) (color 11 white)
+(sort 12 cup) (size 12 small) (at 12 1)
+(sort 13 cup) (size 13 small) (color 13 blue) (at 13 1)
+</info>
+<mis>
+(at 10 2)
+(at 11 1)
+</mis>
+<err>
+<r>
+(at 9 2)
+</r>
+<w>
+(at 9 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X cup)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y worktable)))
+(:task (open X) (:cond (sort X cupboard)))
+(:info (closed X) (:cond (sort X cupboard)(type X container)))
+)
+</instr>
+<nl>
+Put down the cup.
+Put the remotecontrol on the worktable.
+Open the cupboard.
+The cupboard is closed.
+</nl>
+</test>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1)
+(sort 1 teapoy) (size 1 big) (at 1 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 plant) (size 3 big) (at 3 3)
+(sort 4 plant) (size 4 big) (at 4 4)
+(sort 5 human) (size 5 big) (at 5 5)
+(sort 6 can) (size 6 small) (hold 6)
+(sort 7 book) (size 7 small) (color 7 blue)
+(sort 8 remotecontrol) (size 8 small) (color 8 green) (plate 8)
+(sort 9 can) (size 9 small) (color 9 white) (at 9 3)
+(sort 10 cup) (size 10 small)
+(sort 11 cup) (size 11 small)
+(sort 12 remotecontrol) (size 12 small) (color 12 white)
+(sort 13 remotecontrol) (size 13 small) (color 13 blue) (at 13 1)
+(sort 14 bottle) (size 14 small) (at 14 1)
+(sort 15 book) (size 15 small) (color 15 yellow)
+(sort 16 remotecontrol) (size 16 small) (color 16 white)
+(sort 17 cup) (size 17 small) (color 17 black)
+</info>
+<mis>
+(at 7 4)
+(at 10 1)
+(at 11 3)
+(at 12 1)
+</mis>
+<err>
+<r>
+(inside 15 2)
+(at 16 3)
+(at 17 1)
+</r>
+<w>
+(inside 15 5)
+(at 16 2)
+(at 17 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X cup)))
+(:task (takeout X Y) (:cond (color X blue) (sort X book) (type Y container) (sort Y refrigerator)))
+(:task (open X) (:cond (sort X refrigerator)))
+(:info (opened X) (:cond (sort X refrigerator)))
+(:info (at X Y) (:cond (sort X remotecontrol) (sort Y human)))
+(:info (at X Y) (:cond (color X yellow) (sort X book) (sort Y plant)))
+(:cons_notnot (:info (closed X) (:cond (sort X refrigerator))))
+)
+</instr>
+<nl>
+Pick up the cup.
+Please take the blue book out the refrigerator.
+Please open the refrigerator.
+The refrigerator is opened.
+The remotecontrol is at the human.
+The yellow book is at the plant.
+The refrigerator must be closed.
+</nl>
+</test>

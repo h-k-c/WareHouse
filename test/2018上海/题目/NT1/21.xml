@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 1) (hold 7) (plate 4)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 closet) (size 2 big) (at 2 2) (type 2 container) 
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 book) (size 4 small) (color 4 yellow)
+(sort 5 cup) (size 5 small)
+(sort 6 can) (size 6 small) (color 6 green)
+(sort 7 remotecontrol) (size 7 small) (color 9 red)
+(sort 8 book) (size 8 small) (color 8 green) (at 8 1)
+(sort 9 remotecontrol) (size 9 small) (color 9 white) (at 9 2)
+(sort 10 bottle) (size 10 small) (color 10 yellow)
+</info>
+<mis>
+(at 5 1)
+(at 6 3)
+</mis>
+<err>
+<r>
+(at 10 3)
+</r>
+<w>
+(at 10 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X closet) (type X container)))
+(:cons_not (:info (inside X Y) (:cond (sort X can) (color X green) (sort Y worktable))))
+(:cons_notnot (:info (at X Y) (:cond (sort X remotecontrol) (color X white) (sort Y closet))))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X red)))
+(:task (puton X Y) (:cond (sort X cup) (sort Y bed)))
+(:task (takeout X Y) (:cond (sort X remotecontrol) (color X white) (sort Y closet)))
+(:task (putin X Y) (:cond (sort X book) (color X yellow) (sort Y closet)))
+)
+</instr>
+<nl>
+The closet is closed.
+Do not put the green can on the worktable.
+The white remotecontrol must be in the closet.
+Put down the red remotecontrol.
+Put the cup on the bed.
+Take out the white remotecontrol from the closet.
+Put the yellow book in the closet.
+</nl>
+</test>

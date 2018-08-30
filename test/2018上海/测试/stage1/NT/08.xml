@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 8) (hold 13) (plate 18)
+(sort 1 desk) (size 1 big) (at 1 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 airconditioner) (size 4 big) (at 4 4)
+(sort 5 couch) (size 5 big) (at 5 5)
+(sort 6 television) (size 6 big) (at 6 6)
+(sort 7 workspace) (size 7 big) (at 7 7)
+(sort 8 human) (size 8 big) (at 8 8)
+(sort 9 television) (size 9 big) (at 9 9)
+(sort 10 book) (size 10 small) (color 10 green)
+(sort 11 cup) (size 11 small) (color 11 green)
+(sort 12 can) (size 12 small) (color 12 yellow)
+(sort 13 can) (size 13 small) (color 13 green)
+(sort 14 remotecontrol) (size 14 small) (color 14 red)
+(sort 15 remotecontrol) (size 15 small) (color 15 green)
+(sort 16 can) (size 16 small) (color 16 black)
+(sort 17 bottle) (size 17 small) (color 17 blue) (inside 17 3)
+(sort 18 remotecontrol) (size 18 small) (color 18 yellow) 
+(sort 19 bottle) (size 19 small) (inside 19 2)
+(sort 20 can) (size 20 small) (color 20 green)
+(sort 21 bottle) (size 21 small) (color 21 white) (at 21 9)
+(sort 22 bottle) (size 22 small) (color 22 yellow) (at 22 5)
+(sort 23 bottle) (size 23 small) (color 23 blue)
+</info>
+<mis>
+(at 10 1)
+(at 12 7)
+(at 14 9)
+</mis>
+<err>
+<r>
+(inside 11 3)
+(at 15 7)
+(at 16 5)
+(at 20 5)
+(at 23 5)
+</r>
+<w>
+(inside 11 9)
+(at 15 6)
+(at 16 1)
+(at 20 8)
+(at 23 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:cons_not (:task (putin X Y) (:cond (color X yellow) (sort X remotecontrol) (sort Y cupboard) (type Y container))))
+(:task (give human X) (:cond (sort X can) (color X green)))
+(:task (puton X Y) (:cond (sort X book) (color X green) (sort Y workspace)))
+(:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y couch)))
+(:task (pickup X) (:cond (sort X bottle) (color X yellow)))
+(:task (putdown X) (:cond (sort X remotecontrol) (color X yellow)))
+(:task (give human X) (:cond (sort X bottle) (color X yellow)))
+)
+</instr>
+<nl>
+Do not put the yellow remotecontrol in the cupboard.
+Give the green can for human.
+Put the green book on the workspace.
+Put the blue bottle on the couch.
+Pick up the yellow bottle.
+Put down the yellow remotecontrol.
+Give the yellow bottle for human.
+</nl>
+</test>

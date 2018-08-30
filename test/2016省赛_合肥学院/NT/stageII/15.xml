@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 6)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 human) (size 2 big) (at 2 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 table) (size 5 big) (at 5 5)
+(sort 6 couch) (size 6 big) (at 6 6)
+(sort 7 worktable) (size 7 big) (at 7 7)
+(sort 8 bottle) (size 8 small) (hold 8)
+(sort 9 bottle) (size 9 small) (color 9 red)
+(sort 10 can) (size 10 small) (color 10 green)
+(sort 11 can) (size 11 small) (color 11 yellow) (at 11 4)
+(sort 12 bottle) (size 12 small) (plate 12)
+(sort 13 cup) (size 13 small) (color 13 red)
+(sort 14 cup) (size 14 small) (at 14 7)
+(sort 15 remotecontrol) (size 15 small) (color 15 red) (inside 15 3)
+(sort 16 cup) (size 16 small) (color 16 black)
+(sort 17 can) (size 17 small) (color 17 yellow)
+(sort 18 remotecontrol) (size 18 small) (inside 18 3)
+(sort 19 can) (size 19 small) (color 19 black) (at 19 5)
+(sort 20 cup) (size 20 small) (color 20 black)
+</info>
+<mis>
+(at 9 4)
+(at 10 7)
+(at 13 7)
+(at 20 6)
+</mis>
+<err>
+<r>
+(inside 16 3)
+(inside 17 3)
+</r>
+<w>
+(inside 16 4)
+(inside 17 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (goto X) (:cond (sort X chair)))
+(:task (open X) (:cond (sort X washmachine) (type X container)))
+(:task (putin X Y) (:cond (color X black) (sort X can) (sort Y washmachine) (type Y container)))
+(:task (close X) (:cond (sort X washmachine)))
+(:cons_not (:info (plate X) (:cond (color X red) (sort X remotecontrol))))
+(:cons_notnot (:info (at X Y) (:cond (sort X bottle) (sort Y washmachine))))
+(:cons_not (:task (pickup X) (:cond (color X yellow) (sort X can) )))
+)
+</instr>
+<nl>
+Go to the chair.
+Open the washmachine.
+Put the black can in the washmachine.
+Close the washmachine.
+There must not be a remotecontrol on the plate.
+A bottle must be on the washmachine.
+Do not pick up the yellow can.
+</nl>
+</test>

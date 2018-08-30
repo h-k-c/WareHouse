@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 sofa) (size 1 big) (at 1 1)
+(sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) 
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 closet) (size 4 big) (at 4 4) (type 4 container) 
+(sort 5 can) (size 5 small) (color 5 blue) (hold 5)
+(sort 6 bottle) (size 6 small) (color 6 green) (at 6 1)
+(sort 7 bottle) (size 7 small) (color 7 black) (inside 7 2)
+(sort 8 cup) (size 8 small)
+(sort 9 can) (size 9 small) (color 9 black)
+(sort 10 book) (size 10 small) (color 10 green)
+(sort 11 cup) (size 11 small) (color 11 green) (plate 11)
+(sort 12 bottle) (size 12 small) (color 12 yellow) (inside 12 2)
+(sort 13 cup) (size 13 small) (color 13 black) (inside 13 2)
+(sort 14 can) (size 14 small) (color 14 green)
+(sort 15 remotecontrol) (size 15 small) (color 15 red) (at 15 3)
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 8 1)
+(at 9 1)
+(inside 10 4)
+(inside 14 4)
+</r>
+<w>
+(at 8 2)
+(at 9 2)
+(inside 10 1)
+(inside 14 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X cupboard)))
+(:info (opened X) (:cond (sort X closet)))
+(:cons_not (:task (puton X Y) (:cond (sort X bottle) (color X yellow) (sort Y airconditioner))))
+(:cons_notnot (:info (at X Y) (:cond (sort X book) (color X green) (sort Y closet))))
+(:task (puton X Y) (:cond (sort X can) (color X blue) (sort Y airconditioner)))
+(:task (putin X Y) (:cond (sort X remotecontrol) (color X red) (sort Y cupboard)))
+(:task (takeout X Y) (:cond (sort X bottle) (color X yellow) (type Y container) (sort Y cupboard)))
+(:task (goto X) (:cond (sort X sofa)))
+(:task (putdown X) (:cond (color X yellow) (sort X bottle)))
+)
+</instr>
+<nl>
+The cupboard is closed.
+The closet is opened.
+Do not put the yellow bottle on the airconditioner.
+The green book must be in the closet.
+Put the blue can on the airconditioner.
+Put the red remotecontrol in the cupboard.
+Take out the yellow bottle from the cupboard.
+Go to the sofa.
+Put down the yellow bottle.
+</nl>
+</test>

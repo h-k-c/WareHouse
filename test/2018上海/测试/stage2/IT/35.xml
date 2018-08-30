@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(hold 0) (at 0 5)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 bed) (size 3 big) (at 3 3)
+(sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 airconditioner) (size 5 big) (at 5 5)
+(sort 6 chair) (size 6 big) (at 6 6)
+(sort 7 bottle) (size 7 small) (inside 7 1)
+(sort 8 bottle) (size 8 small) (color 8 blue) (inside 8 1)
+(sort 9 can) (size 9 small) (color 9 blue) (plate 9)
+(sort 10 cup) (size 10 small) (color 10 yellow)
+(sort 11 book) (size 11 small) (color 11 black)
+(sort 12 bottle) (size 12 small) (color 12 white)
+(sort 13 can) (size 13 small) (color 13 red)
+(sort 14 remotecontrol) (size 14 small) (color 14 red)
+(sort 15 book) (size 15 small)
+(sort 16 remotecontrol) (size 16 small) (color 16 red) (at 16 4)
+</info>
+<mis>
+(at 11 4)
+(at 12 2)
+(at 13 3)
+</mis>
+<err>
+<r>
+(inside 14 1)
+(at 10 5)
+(at 15 4)
+</r>
+<w>
+(inside 14 4)
+(at 10 6)
+(at 15 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (color X yellow) (sort X cup)))
+(:task (takeout X Y) (:cond (color X blue) (type Y container) (sort Y washmachine)))
+(:task (pickup X) (:cond (sort X can) (color X blue)))
+(:task (putin X Y) (:cond (sort X bottle) (sort Y washmachine)))
+(:task (puton X Y) (:cond (sort X can) (sort Y bed)))
+(:task (putin X Y) (:cond (color X red) (sort X can) (type Y container) (sort Y washmachine)))
+(:task (goto X) (:cond (sort X bed)))
+(:task (takeout X Y) (:cond (sort X remotecontrol) (type Y container)))
+(:info (plate X) (:cond (color X red) (sort X can)))
+(:cons_not (:info (plate X) (:cond (sort X book) (color X black))))
+)
+</instr>
+<nl>
+Put down the yellow cup.
+Pick up a blue can.
+Put a bottle in the washmachine.
+Put a can on the bed.
+Put the red can in the washmachine.
+Go to the bed.
+Take out a remotecontrol.
+The red can is on the plate.
+The black book must not be on the plate.
+</nl>
+</test>

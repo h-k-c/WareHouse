@@ -1,0 +1,60 @@
+p[0<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 4)
+(sort 1 washmachine) (size 1 big) (at 1 1) (type 1 container) (closed 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 couch) (size 5 big) (at 5 5)
+(sort 6 washmachine) (size 6 big) (at 6 6) (type 6 container) (opened 6)
+(sort 7 chair) (size 7 big) (at 7 7)
+(sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 chair) (size 9 big) (at 9 9)
+(sort 10 desk) (size 10 big) (at 10 10)
+(sort 11 cup) (size 11 small) (color 11 black)
+(sort 12 remotecontrol) (size 12 small) (color 12 yellow) (at 12 2)
+(sort 13 bottle) (size 13 small) (inside 13 3)
+(sort 14 book) (size 14 small) (hold 14)
+(sort 15 cup) (size 15 small) (color 15 white) (at 15 4)
+(sort 16 cup) (size 16 small) (at 16 9)
+(sort 17 cup) (size 17 small) (color 17 yellow) (at 17 2)
+(sort 18 cup) (size 18 small) (color 18 yellow) (at 18 10)
+(sort 19 book) (size 19 small) (color 19 blue) (inside 19 3)
+(sort 20 remotecontrol) (size 20 small) (color 20 blue) (plate 20)
+(sort 21 book) (size 21 small) (inside 21 8)
+(sort 22 book) (size 22 small) (color 22 blue) (at 22 4)
+(sort 23 remotecontrol) (size 23 small) (color 23 white) (inside 23 3)
+(sort 24 book) (size 24 small) (color 24 white)
+(sort 25 book) (size 25 small) (color 25 black)
+</info>
+<mis>
+(inside 11 8)
+(inside 25 8)
+</mis>
+<err>
+<r>
+(at 24 9)
+</r>
+<w>
+(at 24 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X book)))
+(:task (close X) (:cond (sort X washmachine) (type X container)))
+(:task (open X) (:cond (sort X washmachine) (type X container)))
+(:info (plate X) (:cond (sort X remotecontrol) (color X white)))
+(:info (opened X) (:cond (sort X washmachine) (type X container)))
+)
+</instr>
+<nl>
+Put down the book.
+Close the door of the washmachine.
+Open the door of the washmachine.
+There has a white remotecontrol on the plate.
+The door of the washmachine is opened.
+</nl>
+</test>

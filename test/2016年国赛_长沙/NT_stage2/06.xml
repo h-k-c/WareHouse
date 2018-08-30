@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 18) (hold 21) (plate 19)
+(sort 1 couch) (size 1 big) (at 1 14)
+(sort 2 table) (size 2 big) (at 2 13)
+(sort 3 workspace) (size 3 big) (at 3 11)
+(sort 4 plant) (size 4 big) (at 4 12)
+(sort 5 washmachine) (size 5 big) (type 5 container) (closed 5) (at 5 9)
+(sort 6 television) (size 6 big) (at 6 10)
+(sort 7 sofa) (size 7 big) (at 7 8)
+(sort 8 bed) (size 8 big) (at 8 7)
+(sort 9 closet) (size 9 big) (type 9 container) (closed 9) (at 9 5)
+(sort 10 cupboard) (size 10 big) (type 10 container) (closed 10) (at 10 6)
+(sort 11 desk) (size 11 big) (at 11 2)
+(sort 12 chair) (size 12 big) (at 12 1)
+(sort 13 bed) (size 13 big) (at 13 4)
+(sort 14 teapoy) (size 14 big) (at 14 3)
+(sort 15 airconditioner) (size 15 big) (at 15 17)
+(sort 16 human) (size 16 big) (at 16 15)
+(sort 17 worktable) (size 17 big) (at 17 18)
+(sort 18 microwave) (size 18 big) (at 18 16) (type 18 container) (opened 18)
+(sort 19 remotecontrol) (size 19 small) (color 19 black)
+(sort 20 book) (size 20 small) (color 20 white)
+(sort 21 book) (size 21 small) (color 21 white)
+(sort 22 cup) (size 22 small) (color 22 green)
+(sort 23 cup) (size 23 small) (color 23 white)
+(sort 24 book) (size 24 small)
+(sort 25 can) (size 25 small)
+</info>
+<mis>
+(at 20 18)
+(at 23 15)
+(at 24 18)
+(at 25 15)
+</mis>
+<err>
+<r>
+(at 22 17)
+</r>
+<w>
+(at 22 15)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X remotecontrol)))
+(:task (putdown X) (:cond (sort X cup)))
+(:task (takeout X Y) (:cond (sort X can) (sort Y microwave)))
+)
+</instr>
+<nl>
+Pick up the remotecontrol.
+Putdown the cup.
+Take out the can from microwave.
+</nl>
+</test>

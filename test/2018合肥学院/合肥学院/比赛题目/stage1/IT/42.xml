@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(plate 0) (at 0 1)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 sofa) (size 2 big) (at 2 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 chair) (size 4 big) (color 4 red) (at 4 4)
+(sort 5 table) (size 5 big) (at 5 5)
+(sort 6 workspace) (size 6 big) (at 6 6)
+(sort 7 chair) (size 7 big) (color 7 blue) (at 7 7)
+(sort 8 washmachine) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 human) (size 9 big) (at 9 9)
+(sort 10 television) (size 10 big) (at 10 10)
+(sort 11 can) (size 11 small) (color 11 black)
+(sort 12 remotecontrol) (size 12 small) (color 12 blue)
+(sort 13 can) (size 13 small) (color 13 white)
+(sort 14 bottle) (size 14 small) (color 14 white)
+(sort 15 can) (size 15 small) (color 15 yellow)
+(sort 16 book) (size 16 small)
+</info>
+<mis>
+(at 12 10)
+(at 13 2)
+(at 14 7)
+(at 16 1)
+</mis>
+<err>
+<r>
+(at 11 6)
+(at 15 7)
+</r>
+<w>
+(at 11 7)
+(at 15 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putin X Y) (:cond (color X white) (sort X bottle) (sort Y washmachine) (type Y container)))
+(:task (takeout X Y) (:cond (sort X can) (color X yellow) (sort Y washmachine) (type Y container)))
+(:info (plate X) (:cond (sort X can) (color X black)))
+)
+</instr>
+<nl>
+Please put the white bottle in the washmachine.
+Please takeout the yellow can from the washmachine.
+The black can is on the plate.
+</nl>
+</test>

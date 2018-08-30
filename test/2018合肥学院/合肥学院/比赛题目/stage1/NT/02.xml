@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 7) (hold 0) (plate 0)
+(sort 1 chair) (size 1 big) (at 1 1)
+(sort 2 couch) (size 2 big) (at 2 2)
+(sort 3 teapoy) (size 3 big) (at 3 3)
+(sort 4 workspace) (size 4 big) (at 4 4)
+(sort 5 sofa) (size 5 big) (at 5 5)
+(sort 6 television) (size 6 big) (at 6 6)
+(sort 7 table) (size 7 big) (at 7 7)
+(sort 8 closet) (size 8 big) (at 8 8)
+(sort 9 human) (size 9 big) (at 9 9)
+(sort 10 sofa) (size 10 big) (at 10 10)
+(sort 11 bottle) (size 11 small) (color 11 red) (at 11 4)
+(sort 12 can) (size 12 small) (color 12 white)
+(sort 13 cup) (size 13 small) (color 13 black) (inside 13 8)
+(sort 14 bottle) (size 14 small) (color 14 black) (at 14 7)
+(sort 15 cup) (size 15 small) (color 15 yellow)
+(sort 16 book) (size 16 small) (color 16 white) (at 16 1)
+(sort 17 bottle) (size 17 small) (color 17 blue)
+(sort 18 remotecontrol) (size 18 small) (color 18 red) (at 18 5)
+(sort 19 can) (size 19 small) (color 19 green)
+(sort 20 remotecontrol) (size 20 small) (color 20 green) (at 20 1)
+(sort 21 book) (size 21 small) (color 21 red)
+(sort 22 bottle) (size 22 small) (color 22 green)
+(sort 23 cup) (size 23 small) (color 23 white) (at 23 6)
+(sort 24 cup) (size 24 small) (color 24 red) (at 24 4)
+(sort 25 bottle) (size 25 small) (color 25 yellow)
+</info>
+<mis>
+(inside 12 8)
+(at 17 1)
+(at 21 7)
+(at 22 7)
+</mis>
+<err>
+<r>
+(inside 15 8)
+(at 25 7)
+</r>
+<w>
+(at 15 9)
+(at 25 6)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:info (closed X) (:cond (sort X closet)))
+(:info (at X Y) (:cond (color X green) (sort X can) (sort Y couch)))
+(:task (puton X Y) (:cond (sort X bottle) (color X black) (sort Y teapoy)))
+(:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y workspace)))
+(:task (pickup X) (:cond (sort X cup) (color X red)))
+(:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y closet)))
+(:task (goto X) (:cond (sort X sofa)))
+)
+</instr>
+<nl>
+The closet is closed.
+The green can is on the couch.
+Put the black bottle on the teapoy.
+Put the green bottle on the workspace.
+Pick up the red cup.
+Put the white cup in the closet.
+Go to the sofa.
+</nl>
+</test>

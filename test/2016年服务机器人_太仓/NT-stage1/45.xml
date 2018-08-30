@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(hold 0) (at 0 7)
+(sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 table) (size 3 big) (at 3 3)
+(sort 4 sofa) (size 4 big) (at 4 4)
+(sort 5 bed) (size 5 big) (at 5 5)
+(sort 6 washmachine) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 television) (size 7 big) (at 7 7)
+(sort 8 bed) (size 8 big) (at 8 8)
+(sort 9 television) (size 9 big) (at 9 9)
+(sort 10 airconditioner) (size 10 big) (at 10 10)
+(sort 11 cup) (size 11 small) (color 11 yellow) (inside 11 2)
+(sort 12 can) (size 12 small) (color 12 blue) (at 12 10)
+(sort 13 can) (size 13 small) (color 13 white)
+(sort 14 bottle) (size 14 small) (at 14 5)
+(sort 15 bottle) (size 15 small) (color 15 black)
+(sort 16 can) (size 16 small) (inside 16 6)
+(sort 17 cup) (size 17 small) (color 17 yellow) (at 17 5)
+(sort 18 can) (size 18 small) (at 18 8)
+(sort 19 bottle) (size 19 small) (at 19 8)
+(sort 20 book) (size 20 small) (at 20 4)
+(sort 21 remotecontrol) (size 21 small) (color 21 white) (inside 21 1)
+(sort 22 bottle) (size 22 small) (inside 22 1)
+(sort 23 cup) (size 23 small) (color 23 red) (at 23 10)
+(sort 24 cup) (size 24 small) (color 24 black)
+(sort 25 can) (size 25 small) (color 25 red) (plate 25)
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 13 9)
+(at 15 4)
+(inside 24 6)
+</r>
+<w>
+(at 13 2)
+(at 15 10)
+(inside 24 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (type X container) (sort X washmachine)))
+(:task (open X) (:cond (sort X refrigerator)))
+(:task (open X) (:cond (sort X cupboard)))
+(:task (putdown X) (:cond (sort X book)))
+(:task (pickup X) (:cond (color X blue) (sort X can)))
+)
+</instr>
+<nl>
+Close the washmachine.
+Open the refrigerator.
+Open the cupboard.
+Put down the book.
+Pick up the blue can.
+</nl>
+</test>

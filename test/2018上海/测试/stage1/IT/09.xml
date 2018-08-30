@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 bed) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 teapoy) (size 3 big) (at 3 3)
+(sort 4 desk) (size 4 big) (at 4 4)
+(sort 5 worktable) (size 5 big) (at 5 5)
+(sort 6 teapoy) (size 6 big) (at 6 6)
+(sort 7 human) (size 7 big) (at 7 7)
+(sort 8 refrigerator) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+(sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (closed 9)
+(sort 10 refrigerator) (size 10 big) (at 10 10) (type 10 container) (opened 10)
+(sort 11 cup) (size 11 small) (inside 11 8)
+(sort 12 remotecontrol) (size 12 small) (at 12 1)
+(sort 13 bottle) (size 13 small) (at 13 5)
+(sort 14 bottle) (size 14 small) (color 14 black) (at 14 7)
+(sort 15 bottle) (size 15 small) (plate 15)
+(sort 16 remotecontrol) (size 16 small) (color 16 white) (at 16 5)
+(sort 17 can) (size 17 small) (color 17 blue) (at 17 2)
+(sort 18 book) (size 18 small) (color 18 white) (at 18 7)
+(sort 19 cup) (size 19 small) (color 19 blue) (hold 19)
+(sort 20 book) (size 20 small) (color 20 green) (at 20 7)
+(sort 21 bottle) (size 21 small) (at 21 1)
+(sort 22 bottle) (size 22 small) (color 22 yellow)
+(sort 23 remotecontrol) (size 23 small) (color 23 blue) (at 23 7)
+(sort 24 cup) (size 24 small) (color 24 white) (inside 24 10)
+(sort 25 bottle) (size 25 small) (color 25 green)
+(sort 26 remotecontrol) (size 26 small) (color 26 green)
+</info>
+<mis>
+(inside 25 9)
+</mis>
+<err>
+<r>
+(at 22 2)
+(at 26 1)
+</r>
+<w>
+(at 22 5)
+(at 26 7)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X remotecontrol)))
+(:task (takeout X Y) (:cond (sort X remotecontrol)(color X blue) (type Y container) (sort Y microwave)))
+(:info (closed X) (:cond (sort X refrigerator) (type X container)))
+)
+</instr>
+<nl>
+Put dowm the remotecontrol.
+Take the blue remotecontrol from the microwave.
+The refrigerator is closed.
+</nl>
+</test>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env  mis="on" err="on" ans="on">
+<info>
+(plate 0) (at 0 11)
+(sort 1 closet) (size 1 big) (at 1 1) (type 1 container) (opened 1)
+(sort 2 human) (size 2 big) (at 2 2)
+(sort 3 table) (size 3 big) (at 3 3)
+(sort 4 teapoy) (size 4 big) (at 4 4)
+(sort 5 chair) (size 5 big) (at 5 5)
+(sort 6 desk) (size 6 big) (at 6 6)
+(sort 7 bed) (size 7 big) (at 7 7)
+(sort 8 sofa) (size 8 big) (at 8 8)
+(sort 10 washmachine) (size 10 big) (at 10 10) (type 10 container) (opened 10)
+(sort 11 refrigerator) (size 11 big) (at 11 11) (type 11 container) (opened 11)
+(sort 12 plant) (size 12 big) (at 12 12)
+(sort 13 teapoy) (size 13 big) (at 13 13)
+(sort 14 microwave) (size 14 big) (at 14 14) (type 14 container) (closed 14)
+(sort 15 cupboard) (size 15 big) (at 15 15) (type 15 container) (opened 15)
+(sort 16 can) (size 16 small)
+(sort 17 can) (size 17 small) (color 17 blue)
+(sort 18 remotecontrol) (size 18 small)
+(sort 19 remotecontrol) (size 19 small) (color 19 green)
+(sort 20 bottle) (size 20 small) (hold 20)
+(sort 21 cup) (size 21 small) (color 21 blue)
+(sort 22 remotecontrol) (size 22 small) (color 22 green) (at 22 13)
+(sort 23 book) (size 23 small) (color 23 black)
+(sort 24 cup) (size 24 small) (color 24 green)
+(sort 25 bottle) (size 25 small) (at 25 12)
+(sort 26 bottle) (size 26 small) (color 26 yellow) (at 26 8)
+</info>
+<mis>
+(inside 16 14)
+(at 23 7)
+</mis>
+<err>
+<r>
+(inside 17 9)
+(inside 18 11)
+(inside 19 1)
+(at 21 13)
+(inside 24 9)
+</r>
+<w>
+(inside 17 4)
+(inside 18 9)
+(inside 19 8)
+(at 21 14)
+(inside 24 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (puton X Y) (:cond (sort X book) (color X black) (sort Y table)))
+(:task (takeout X Y) (:cond (color X green) (sort X remotecontrol) (type Y container) (sort Y closet)))
+(:task (close X) (:cond (sort X cupboard)))
+(:task (close X) (:cond (sort X washmachine)))
+(:task (give human X) (:cond (sort X bottle)))
+)
+</instr>
+<nl>
+Put a black book on the table.
+Close the cupboard.
+Pick up a blue can.
+Close the washmachine.
+Give the human a bottle.
+</nl>
+</test>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 3)
+(sort 1 chair) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 can) (size 4 small) (color 4 blue) (hold 4)
+(sort 5 can) (size 5 small) (color 5 yellow)
+(sort 6 book) (size 6 small)
+(sort 7 remotecontrol) (size 7 small) (color 7 red)
+(sort 8 cup) (size 8 small) (color 8 red)
+(sort 9 bottle) (size 9 small) (at 9 1)
+(sort 10 book) (size 10 small)
+(sort 11 cup) (size 11 small) (color 11 blue) (plate 11)
+(sort 12 remotecontrol) (size 12 small) (color 12 red)
+(sort 13 bottle) (size 13 small) (color 13 black) (at 13 3)
+(sort 14 can) (size 14 small)
+</info>
+<mis>
+(at 5 3)
+(inside 7 2)
+(at 8 1)
+(inside 12 2)
+</mis>
+<err>
+<r>
+(at 6 3)
+(at 10 1)
+(inside 14 2)
+</r>
+<w>
+(at 6 2)
+(at 10 3)
+(inside 14 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (sort X book)))
+(:task (putin X Y) (:cond (sort X can) (color X blue) (sort Y microwave)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (color X red) (sort Y airconditioner)))
+(:task (pickup X) (:cond (sort X book)))
+(:info (closed X) (:cond (sort X microwave)))
+)
+</instr>
+<nl>
+Please pick up the book.
+Put a can which is blue in the microwave.
+Put a remotecontrol which is red on the airconditioner.
+Then pick up the book.
+The microwave is closed.
+</nl>
+</test>

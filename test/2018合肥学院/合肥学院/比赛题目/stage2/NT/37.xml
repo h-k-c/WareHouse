@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 6)
+(sort 1 plant) (size 1 big) (at 1 1)
+(sort 2 bed) (size 2 big) (at 2 2)
+(sort 3 teapoy) (size 3 big) (at 3 3)
+(sort 4 chair) (size 4 big) (at 4 4)
+(sort 5 cupboard) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 chair) (size 6 big) (at 6 6)
+(sort 7 plant) (size 7 big) (at 7 7)
+(sort 8 can) (size 8 small) (color 8 yellow) (plate 8)
+(sort 9 book) (size 9 small) (hold 9)
+(sort 10 can) (size 10 small)
+(sort 11 can) (size 11 small) (color 11 blue)
+(sort 12 bottle) (size 12 small) (color 12 white)
+(sort 13 bottle) (size 13 small)
+</info>
+<mis>
+(inside 10 5)
+(at 12 3)
+(at 13 7)
+</mis>
+<err>
+<r>
+(at 11 4)
+</r>
+<w>
+(at 11 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (close X) (:cond (sort X cupboard)))
+(:task (putdown X) (:cond (sort X can)))
+(:task (goto X) (:cond (sort X chair)))
+(:info (opened X) (:cond (sort X cupboard) ))
+(:info (at X Y) (:cond (sort X book) (sort Y bed)))
+(:cons_notnot (:info (plate X) (:cond (color X blue) (sort X can))))
+(:cons_not (:task (open X) (:cond (sort X cupboard))))
+(:cons_not (:task (takeout X Y) (:cond (sort X book) (sort Y cupboard))))
+)
+</instr>
+<nl>
+Please close the cupboard.
+Put down the can.
+Go to the chair.
+Open the cupboard.
+The book is at the bed.
+Do not open the cupboard.
+Do not take out the book from the cupboard.
+</nl>
+</test>

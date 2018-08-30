@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 4)
+(sort 1 airconditioner) (size 1 big) (at 1 1)
+(sort 2 plant) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+(sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+(sort 5 bottle) (size 5 small) (color 5 blue) (plate 5)
+(sort 6 can) (size 6 small) (color 6 green)
+(sort 7 can) (size 7 small) (color 7 red) (hold 7)
+(sort 8 cup) (size 8 small)
+(sort 9 book) (size 9 small) (color 9 red)
+(sort 10 bottle) (size 10 small) (color 10 yellow)
+(sort 11 bottle) (size 11 small) (color 11 yellow)
+</info>
+<mis>
+(inside 6 3)
+(inside 8 3)
+(inside 9 3)
+</mis>
+<err>
+<r>
+(inside 10 4)
+(inside 11 3)
+</r>
+<w>
+(inside 10 1)
+(inside 11 2)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X cup)))
+(:task (putin X Y) (:cond (sort X can) (sort Y cupboard)))
+(:task (goto X) (:cond (sort X closet) (type X container)))
+(:info (plate X) (:cond (sort X can) (color X green)))
+(:info (closed X) (:cond (sort X closet)))
+(:cons_notnot (:info (closed X) (:cond (sort X closet))))
+(:cons_notnot (:info (opened X) (:cond (sort X cupboard) (type X container))))
+)
+</instr>
+<nl>
+Put down the cup.
+Put the can in the cupboard.
+Go to the closet.
+The green can is on the plate.
+The closet is closed.
+The closet must be closed.
+The cupboard must be opened.
+</nl>
+</test>

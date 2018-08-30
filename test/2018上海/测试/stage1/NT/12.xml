@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 2) (plate 5) (hold 6)
+(sort 1 couch) (size 1 big) (at 1 1)
+(sort 2 airconditioner) (size 2 big) (at 2 2)
+(sort 3 desk) (size 3 big) (at 3 3)
+(sort 4 can) (size 4 small) (color 4 green)
+(sort 5 bottle) (size 5 small) (color 5 blue) 
+(sort 6 cup) (size 6 small) (color 6 blue) 
+(sort 7 cup) (size 7 small) (color 7 green) (at 7 1)
+(sort 8 remotecontrol) (size 8 small) (color 8 red) (at 8 1)
+(sort 9 book) (size 9 small) (color 9 red)
+(sort 10 book) (size 10 small) (color 10 yellow) (at 10 3)
+(sort 11 can) (size 11 small) (at 11 3)
+(sort 12 bottle) (size 12 small) (color 12 black) (at 12 1)
+(sort 13 cup) (size 13 small) (color 13 white) (at 13 3)
+</info>
+<mis>
+</mis>
+<err>
+<r>
+(at 4 1)
+(at 9 1)
+</r>
+<w>
+(at 4 3)
+(at 9 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X black) (sort Y couch))))
+(:task (putdown X) (:cond (color X blue) (sort X cup)))
+(:task (pickup X) (:cond (color X green) (sort X can)))
+(:task (puton X Y) (:cond (sort X can) (color X green) (sort Y desk)))
+(:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y desk)))
+)
+</instr>
+<nl>
+The black bottle must be on the couch.
+Put down the blue cup.
+Pick up the green can.
+Put the green can on the desk.
+Put the blue bottle on the desk.
+</nl>
+</test>

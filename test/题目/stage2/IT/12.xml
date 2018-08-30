@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 7)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 desk) (size 2 big) (at 2 2)
+(sort 3 television) (size 3 big) (at 3 3)
+(sort 4 workspace) (size 4 big) (at 4 4)
+(sort 5 human) (size 5 big) (at 5 5)
+(sort 6 table) (size 6 big) (at 6 6)
+(sort 7 microwave) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+(sort 8 book) (size 8 small) (color 8 red)
+(sort 9 can) (size 9 small) (color 9 white)
+(sort 10 book) (size 10 small) (plate 10)
+(sort 11 book) (size 11 small) (color 11 yellow)
+(sort 12 cup) (size 12 small) (color 12 white) (hold 12)
+(sort 13 bottle) (size 13 small) (color 13 blue)
+(sort 14 bottle) (size 14 small) (color 14 red)
+</info>
+<mis>
+(at 8 2)
+(at 9 2)
+</mis>
+<err>
+<r>
+(at 11 2)
+(at 13 6)
+(at 14 1)
+</r>
+<w>
+(at 11 6)
+(at 13 3)
+(at 14 5)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (pickup X) (:cond (color X yellow) (sort X book)))
+(:task (pickup X Y) (:cond (sort X can) (color X white) (sort Y desk)))
+(:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+(:task (puton X Y) (:cond (sort X book) (color X red) (sort Y table)))
+(:info (plate X) (:cond (sort X bottle) (color X blue)))
+)
+</instr>
+<nl>
+Pick up the yellow book.
+Pick up the white can from the desk.
+Put the red bottle in the microwave.
+Put the red book on the table.
+The blue bottle is on the plate.
+</nl>
+</test>

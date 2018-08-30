@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 worktable) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 teapoy) (size 4 big) (at 4 4)
+(sort 5 human) (size 5 big) (at 5 5)
+(sort 6 plant) (size 6 big) (at 6 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 refrigerator) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+(sort 9 bed) (size 9 big) (at 9 9)
+(sort 10 book) (size 10 small) (color 10 blue)
+(sort 11 remotecontrol) (size 11 small) (color 11 green)
+(sort 12 book) (size 12 small) (color 12 blue)
+(sort 13 book) (size 13 small) (color 13 white)
+(sort 14 can) (size 14 small)
+(sort 15 can) (size 15 small) (color 15 yellow) (plate 15)
+(sort 16 cup) (size 16 small)
+(sort 17 can) (size 17 small) (color 17 yellow)
+(sort 18 bottle) (size 18 small) (color 18 green) (hold 18)
+</info>
+<mis>
+(at 10 9)
+(at 13 2)
+(at 14 4)
+(at 17 7)
+</mis>
+<err>
+<r>
+(at 11 1)
+(at 12 2)
+(at 16 7)
+</r>
+<w>
+(at 11 9)
+(at 12 9)
+(at 16 8)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X cup) (sort Y closet) (type Y container)))
+(:task (close X) (:cond (type X container) (sort X refrigerator)))
+(:task (putin X Y) (:cond (color X blue) (sort X book) (sort Y refrigerator) (type Y container)))
+(:info (at X Y) (:cond (sort X can) (color X yellow) (type Y container) (sort Y closet)))
+(:info (closed X) (:cond (type X container) (sort X closet)))
+(:info (plate X) (:cond (color X yellow) (sort X can)))
+(:cons_not (:task (putin X Y) (:cond (sort X can) (sort Y closet) (type Y container))))
+)
+</instr>
+<nl>
+Take out a cup from the closet.
+Close the door of refrigerator.
+Put a blue book ion the refrigerator.
+The yellow can is in the closet.
+The closet is closed.
+There is yellow can on the plate.
+Do not put a can in the closet.
+</nl>
+</test>

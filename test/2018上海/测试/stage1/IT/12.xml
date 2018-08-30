@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 2)
+(sort 1 television) (size 1 big) (at 1 1)
+(sort 2 microwave) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+(sort 3 workspace) (size 3 big) (at 3 3)
+(sort 4 sofa) (size 4 big) (at 4 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+(sort 7 airconditioner) (size 7 big) (at 7 7)
+(sort 8 table) (size 8 big) (at 8 8)
+(sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (opened 9)
+(sort 10 refrigerator) (size 10 big) (at 10 10) (type 10 container) (opened 10)
+(sort 11 can) (size 11 small) (color 11 black) (plate 11)
+(sort 12 can) (size 12 small) (color 12 yellow) (hold 12)
+(sort 13 book) (size 13 small) (color 13 red)
+(sort 14 cup) (size 14 small) (color 14 yellow)
+(sort 15 book) (size 15 small) (color 15 white)
+(sort 16 book) (size 16 small) (color 16 red)
+</info>
+<mis>
+(at 13 7)
+(at 14 3)
+(at 16 7)
+</mis>
+<err>
+<r>
+(inside 15 10)
+</r>
+<w>
+(inside 15 3)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (open X) (:cond (sort X microwave)))
+(:task (close X) (:cond (sort X microwave)))
+(:task (puton X Y) (:cond (color X red) (sort X book) (sort Y airconditioner)))
+(:info (plate X) (:cond (sort X book) (color X red)))
+(:info (at X Y) (:cond (sort X can) (sort Y airconditioner)))
+)
+</instr>
+<nl>
+Open the microwave.
+Close the microwave.
+Put the red book on the airconditioner.
+The book is on the plate.
+The can is at the airconditioner.
+</nl>
+</test>

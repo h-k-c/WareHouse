@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+<info>
+(at 0 3)
+(sort 1 workspace) (size 1 big) (at 1 1)
+(sort 2 plant) (size 2 big) (at 2 2)
+(sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+(sort 4 bottle) (size 4 small) (color 4 blue)
+(sort 5 bottle) (size 5 small) (color 5 black)
+(sort 6 book) (size 6 small) (color 6 white) (plate 6)
+(sort 7 cup) (size 7 small) (hold 7)
+(sort 8 book) (size 8 small) (color 8 blue)
+(sort 9 cup) (size 9 small)
+</info>
+<mis>
+(inside 4 3)
+(at 5 1)
+(inside 8 3)
+(inside 9 3)
+</mis>
+<err>
+<r>
+</r>
+<w>
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (putdown X) (:cond (sort X cup)))
+(:task (pickup X) (:cond (sort X book) (color X white)))
+(:task (puton X Y) (:cond (sort X book) (sort  Y refrigerator) (type Y container)))
+(:info (opened X) (:cond (sort X refrigerator) (type X container)))
+(:info (plate X) (:cond (color X blue)))
+)
+</instr>
+<nl>
+Put down the cup.
+Pick up the white book.
+Put the book on the refrigerator.
+The refrigerator is opened.
+The color of the plate is blue.
+
+</nl>
+</test>

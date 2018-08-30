@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+<info>
+(at 0 2)
+(sort 1 plant) (size 1 big) (at 1 1)
+(sort 2 table) (size 2 big) (at 2 2)
+(sort 3 airconditioner) (size 3 big) (at 3 3)
+(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (closed 4)
+(sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+(sort 6 can) (size 6 small) (color 6 blue) (inside 6 4)
+(sort 7 book) (size 7 small) (color 7 white)
+(sort 8 bottle) (size 8 small) (color 8 white) (at 8 2)
+(sort 9 remotecontrol) (size 9 small) (color 9 yellow) (plate 9)
+(sort 10 remotecontrol) (size 10 small) (hold 10)
+(sort 11 book) (size 11 small) (color 11 blue) (at 11 3)
+(sort 12 cup) (size 12 small) (color 12 green) (at 12 3)
+(sort 13 can) (size 13 small) (color 13 black) (at 13 3)
+(sort 14 bottle) (size 14 small) (color 14 black) (at 14 1)
+(sort 15 cup) (size 15 small) (color 15 white)
+(sort 16 can) (size 16 small) (color 16 white) (at 16 3)
+(sort 17 bottle) (size 17 small) (color 17 red)
+(sort 18 cup) (size 18 small) (color 18 red)
+(sort 19 book) (size 19 small) (color 19 white) (at 19 2)
+(sort 20 can) (size 20 small) (color 20 yellow) (at 20 3)
+</info>
+<mis>
+(at 18 3)
+</mis>
+<err>
+<r>
+(inside 7 5)
+(at 15 3)
+(at 17 2)
+</r>
+<w>
+(inside 7 4)
+(at 15 5)
+(at 17 1)
+</w>
+</err>
+</env>
+<instr>(:ins 
+(:task (takeout X Y) (:cond (sort X remotecontrol) (type Y container)))
+(:task (puton X Y) (:cond (color X white) (sort X bottle) (sort Y airconditioner)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (sort Y table)))
+(:info (opened X) (:cond (sort X microwave) (type X container)))
+(:cons_notnot (:info (closed X) (:cond (sort X washmachine) (type X container))))
+(:cons_notnot (:info (at X Y) (:cond (color X white) (sort Y table))))
+)
+</instr>
+<nl>
+</nl>
+</test>
